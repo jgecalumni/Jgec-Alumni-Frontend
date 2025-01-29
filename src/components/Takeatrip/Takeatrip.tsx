@@ -347,12 +347,322 @@ const Takeatrip: React.FC = () => {
 						</div>
 					</div>
 				</div>
+				{/* Milestones of Alumni Association Activities at JGEC Campus */}
+				<div>
+					<div className="flex items-center mt-4 gap-2">
+						<div className="border-2 rounded border-blue-400 h-10"></div>
+						<h3 className="text-[#364150] font-semibold uppercase text-[16px] lg:text-[24px]">
+							Milestones of Alumni Association Activities at JGEC Campus
+						</h3>
+					</div>
 
-				<div className="flex items-center mt-4 gap-2">
-					<div className="border-2 rounded border-blue-400 h-10"></div>
-					<h3 className="text-[#364150] font-semibold uppercase text-[16px] lg:text-[24px]">
-						Milestones of Alumni Association Activities at JGEC Campu
-					</h3>
+					<div className="border relative overflow-hidden border-black lg:w-1/2 h-[80vh mt-8">
+						<h3 className="text-center font-medium border-b border-b-black p-2">
+							Major Milestones of Alumni Association Activities at JGEC Campus
+						</h3>
+						<div className="border border-black absolute rotate-0 left-[32%] h-full "></div>
+						<div className="flex border text-sm border-b-black items-center justify-between p-8">
+							<div className="w-1/4 flex items-center justify-center">
+								April 2010
+							</div>
+							<div className="w-2/3 flex items-center justify-center">
+								Alumni Association Journey Began At JGEC Campus
+							</div>
+						</div>
+						<div className="flex text-sm border-b-black border items-center justify-between p-8">
+							<div className="w-1/4 flex items-center justify-center">
+								December 2011
+							</div>
+							<div className="w-2/3 flex flex-col space-y-2 items-center justify-center">
+								<p>
+									First National Level Seminar Organized at Campus (at present,
+									seminars are organized regularly at JGEC campus, along with
+									workshops & alumni-student's knowledge sharing sessions)
+								</p>
+								<p className="text-[#000000] font-medium">
+									Few of the events published in media, portraying positive
+									image of our beloved campus, such as:
+								</p>
+								<ul className="pl-3 space-y-1 list-disc">
+									<li>
+										<span className="font-medium">December 2011 –</span> Visit
+										of Dr.C.V.R Murthy (Professor, IIT, Chennai) and Dr. D.K.Pal
+										(Head of Earth Quake Engineering, Roorkey)
+									</li>
+									<li>
+										<span className="font-medium">January 2015 –</span> Visit of
+										Mr. Asoke K. Laha (President of Indo-American Chamber of
+										Commerce) and Prof. Gautam Biswas (Director, IIT Guwahati)
+									</li>
+									<li>
+										<span className="font-medium">February 2017 –</span> Dr.
+										Promode R Bandyopadhyay (Senior Research Scientist and
+										Technical Program Manager, Naval Undersea Warfare Center,
+										Newport, Rhode Island, USA)
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div className="flex border text-sm border-b-black items-center justify-between p-8">
+							<div className="w-1/4 flex items-center justify-center">
+								March 2012
+							</div>
+							<div className="w-2/3 flex items-center justify-center">
+								Inauguration of statue of Prof. N. C. Bose, Respected Founder
+								Principal of JGEC
+							</div>
+						</div>
+						<div className="flex border text-sm border-b-black items-center justify-between p-8">
+							<div className="w-1/4 flex items-center justify-center">
+								August 2013
+							</div>
+							<div className="w-2/3 flex flex-col gap-2 items-center justify-center">
+								<p>
+									Launch of Scholarship Program (Every year, during May-June,
+									students can apply for scholarship)
+								</p>
+								<p>
+									<span className="font-medium">August 2019 -</span> Number of
+									Scholarship was 10 (15 nos. students received scholarship,
+									total value of scholarship INR 197,000)
+								</p>
+							</div>
+						</div>
+						<div className="flex border text-sm border-b-black items-center justify-between p-8">
+							<div className="w-1/4 flex items-center justify-center">
+								January 2014
+							</div>
+							<div className="w-2/3 flex gap-2 flex-col justify-center">
+								<p>Land for Kanchenjunga Inaugurated</p>
+								<p>
+									Alumni Association purchased an available private land inside
+									JGEC campus for Kanchenjunga (Convention Centre, Alumni House
+									& Students development Centre)
+								</p>
+							</div>
+						</div>
+						<div className="flex border text-sm border-b-black items-center justify-between p-8">
+							<div className="w-1/4 flex items-center justify-center">
+								August 2016
+							</div>
+							<div className="w-2/3 flex gap-2 flex-col  justify-center">
+								<p>
+									Inauguration of Annexed Facility of Kanchenjunga & Alumni
+									Temporary Office;
+								</p>
+								<p>
+									Celebration of Golden Jubilee of Graduation of 1st Batch of
+									JGEC Alumnus
+								</p>
+							</div>
+						</div>
+						<div className="flex border text-sm border-b-black items-center justify-between p-8">
+							<div className="w-1/4 flex items-center justify-center">
+								July 2018
+							</div>
+							<div className="w-2/3 flex flex-col gap-2 justify-center">
+								<p>
+									Beginning of Experience Sharing Welcome Sessions with the
+									first-year students
+								</p>
+								<p className="font-medium">
+									(Since 2018, Alumni Association participate in this annual
+									event)
+								</p>
+							</div>
+						</div>
+						<div className="flex border text-sm border-b-black items-center justify-between p-8">
+							<div className="w-1/4 flex items-center justify-center">
+								December 2020
+							</div>
+							<div className="w-2/3 flex flex-col gap-2 justify-center">
+								<p>Completion of Ground Floor of Kanchenjunga (Phase-I)</p>
+								<p className="font-medium">
+									(Next Target is to complete next Phases for first & second
+									floors, and enhance value added activities at campus with more
+									Alumni-Students & Professor’s Engagements)
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				{/* Third part */}
+				<div>
+					<div className="flex items-center mt-8 gap-2">
+						<div className="border-2 rounded border-blue-400 h-10"></div>
+						<h3 className="text-[#364150] font-semibold uppercase text-[16px] lg:text-[24px]">
+							WHERE SHALL I STUDY?
+						</h3>
+					</div>
+					<div className="p-4 space-y-4">
+						<div>
+							<h3 className="text-primary font-semibold lg:text-[20px] text-[19px]">
+								Am I Taking a Right Decision?
+							</h3>
+							<p className="text-sm text-black mt-2">
+								The most challenging question which confound a student when
+								deciding the perfect Institute to suit their needs is "where
+								should I study?" Universities, Colleges and Schools have just
+								mushroomed all over within the past decades worldwide. Students
+								have plenty of choices when choosing the best and most promising
+								one. With everyone offering the best of syllabus, faculty and
+								infrastructure, Alumni connect have become a strategic asset for
+								any kind of higher education institution willing to stand out
+								from the domestic and international competition.
+							</p>
+						</div>
+						<div>
+							<h3 className="text-primary font-semibold lg:text-[20px] text-[19px]">
+								STRATEGIC ASSET
+							</h3>
+							<p className="text-sm font-semibold text-black mt-2">
+								Alumni Connect is a Strategic Asset. This means that…
+							</p>
+							<ul className="list-disc pl-6 space-y-3 text-sm">
+								<li>
+									An institution’s alumni are the reflection of its past,
+									representation of its present and a link to its future.
+								</li>
+								<li>
+									Educational institutions are changing the way they see and
+									interact with their alumni community.
+								</li>
+								<li>
+									Earlier, alumni and their alma-mater were treated as separate
+									entities wherein one’s existence was independent of the other.
+								</li>
+								<li>
+									Local alumni chapters were formed as a means to interact with
+									other fellow alumni. However, these associations seldom had
+									any interaction with the institution they graduated from.
+									That's the reasons institutions globally are focusing for
+									centralised campus based Alumni platform.
+								</li>
+								<li>
+									With the advent of Social Media, alumni relationship has taken
+									a different flavour altogether. Centralised alumni platform of
+									institutions have started to harness the power of alumni
+									through various networking platforms and focusing on
+									connecting ex-students with campus.
+								</li>
+							</ul>
+						</div>
+						<div>
+							<h3 className="text-primary font-semibold lg:text-[20px] text-[19px]">
+								Most Loyal Ambassador
+							</h3>
+							<p className="text-sm text-black mt-2">
+								There are various ways in which alumni association is creating a
+								powerful positive impact to campus because alumnus are most
+								loyal ambassador of the campus.
+							</p>
+						</div>
+						<div>
+							<h3 className="text-primary font-semibold lg:text-[20px] text-[19px]">
+								Support System
+							</h3>
+							<p className="text-sm text-black mt-2">
+								An engaged alumni network allows the University to benefit from
+								the skills and experience of our graduates, by offering their
+								support to our students, to the institution and to each other.
+								If we keep them well informed and engaged, alumni are our most
+								loyal supporters and our best ambassadors, offering invaluable
+								marketing and promotion across their personal and professional
+								networks.
+							</p>
+						</div>
+						<div>
+							<h3 className="text-primary font-semibold lg:text-[20px] text-[19px]">
+								Offering Expertise
+							</h3>
+							<p className="text-sm text-black mt-2">
+								Talented alumni will likely have a wealth of experience and
+								skills to share with current students via talks and meets. In
+								certain cases, this could go even further with alumni offering
+								to practically support students in work placements and help them
+								launch their careers. JGEC Alumni Association has created an
+								engaged alumni network which is beneficial because engaged
+								graduates are much more likely to want to “give back” to the
+								University.
+							</p>
+						</div>
+						<div>
+							<h3 className="text-primary font-semibold lg:text-[20px] text-[19px]">
+								Mentorship
+							</h3>
+							<p className="text-sm text-black mt-2">
+								Alumni can play an active role in voluntary programs like
+								mentoring students in their areas of expertise. JGEC Alumni
+								Association has created a structured platform where students got
+								opportunity, through Bridging the Gap initiative, to interact
+								with successful alumnus, professionals, academicians and
+								scientists at JGEC campus. Also through Innovation Challenge,
+								students can nurture and showcase their talents on a regular
+								intervals.
+							</p>
+						</div>
+						<div>
+							<h3 className="text-primary font-semibold lg:text-[20px] text-[19px]">
+								Scholarship
+							</h3>
+							<p className="text-sm text-black mt-2">
+								Alumnus also play a significant role in contributing
+								scholarships to deserving students. Alumni get in touch with
+								students and share their expertise and best practices in a given
+								field.
+							</p>
+						</div>
+						<div>
+							<h3 className="text-primary font-semibold lg:text-[20px] text-[19px]">
+								Assistance in Employability
+							</h3>
+							<p className="text-sm text-black mt-2">
+								Alumni Association's function is not to create job. But Alumni
+								Association helps to connect alumnus with campus and create
+								alumni network. Alumni network has a real life benefit for
+								current students. Alumni also donate their valuable time to
+								offer career support to current students. This enhances the
+								students’ experience and give them that competitive edge in
+								today’s tough job market. The alumni network of a college is one
+								of the biggest sources of placement opportunities to the
+								students. Alumni can help students get placed at their
+								respective organizations.
+							</p>
+						</div>
+						<div>
+							<h3 className="text-primary font-semibold lg:text-[20px] text-[19px]">
+								Why Alumnus Like to Connect?
+							</h3>
+							<p className="text-sm text-black mt-2">
+								Leveraging the alumni community through campus based initiatives
+								is a win-win for both the institution and the alumni. Many of
+								them are willing to ‘Give-Back’ to their alma-mater as a sign of
+								their gratitude and affinity towards the institution.
+							</p>
+							<ul className="text-sm pl-6 mt-2 space-y-1 list-disc">
+								<li>
+									<span className="font-medium">Reconnect : </span>Find and
+									reminisce with fellow graduates; see what everyone’s been up
+									to!
+								</li>
+								<li>
+									<span className="font-medium">Advance : </span>Advance your
+									career through inside connections who work at top companies.
+								</li>
+								<li>
+									<span className="font-medium">Give back : </span>Make
+									meaningful connections, recruit future Wildcats, speak to
+									students and advise fellow alumni.
+								</li>
+								<li>
+									<span className="font-medium">Expand : </span>Leverage your
+									professional network to get introduced to people you should
+									know.
+								</li>
+							</ul>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
