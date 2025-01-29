@@ -351,7 +351,7 @@ const Takeatrip: React.FC = () => {
 				<div className="flex items-center mt-4 gap-2">
 					<div className="border-2 rounded border-blue-400 h-10"></div>
 					<h3 className="text-[#364150] font-semibold uppercase text-[16px] lg:text-[24px]">
-						Milestones of Alumni Association Activities at JGEC Campus
+						Milestones of Alumni Association Activities at JGEC Campu
 					</h3>
 				</div>
 			</div>
