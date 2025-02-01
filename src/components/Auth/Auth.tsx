@@ -253,7 +253,7 @@ const Auth: React.FC = () => {
 												className="min-w-5 w-5"
 											/>
 											<span>
-												{values.photo ? values.photo.name : "Upload your photo"}
+												{values.photo ? "values.photo.name" : "Upload your photo"}
 											</span>
 										</span>
 										<input
@@ -278,7 +278,7 @@ const Auth: React.FC = () => {
 											/>
 											<span>
 												{values.receipt
-													? values.receipt.name
+													? "values.receipt.name"
 													: "Upload your payment receipt"}
 											</span>
 										</span>
