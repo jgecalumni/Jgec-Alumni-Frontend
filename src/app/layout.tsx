@@ -7,18 +7,21 @@ import Footer from "@/components/footer";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import {Toaster} from "react-hot-toast"
+import { Toaster } from "react-hot-toast";
+import ReactQueryProvider from "@/utils/providers/ReactQueryProvider";
 
 const inter = Inter({
 	subsets: ["latin"],
-	weight: ['400', '500', '600', '700'],
+	weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
 	// metadataBase: new URL(""),
 	title: "Jalpaiguri Government Engineering College Alumni Association.",
-	description: "The alumni association of Jalpaiguri Government Engineering College.",
-	keywords: "Jalpaiguri Government Engineering College, JGEC, Alumni Association, JGEC Alumni Association, Jalpaiguri",
+	description:
+		"The alumni association of Jalpaiguri Government Engineering College.",
+	keywords:
+		"Jalpaiguri Government Engineering College, JGEC, Alumni Association, JGEC Alumni Association, Jalpaiguri",
 	openGraph: {
 		title: "Jalpaiguri Government Engineering College.",
 		description:
@@ -38,8 +41,8 @@ export default function RootLayout({
 			<body className="poppins-regular">
 				<Topbar />
 				<Navbar />
-				<Toaster/>
-				{children}
+				<Toaster />
+				<ReactQueryProvider>{children}</ReactQueryProvider>
 				<Footer />
 			</body>
 		</html>

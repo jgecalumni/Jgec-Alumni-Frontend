@@ -6,11 +6,57 @@ import { ErrorMessage, Form, Formik } from "formik";
 import { Button } from "../ui/button";
 import { TextareaField } from "../ui/textarea";
 import { SelectField } from "../ui/select";
-import { AuthSchema } from "@/schemas/AuthSchema";
-
-
+import { LoginSchema, RegisterSchema } from "@/schemas/AuthSchema";
+import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
+import { Loader2 } from "lucide-react";
+import toast from "react-hot-toast";
 
 const Auth: React.FC = () => {
+	const registerUser = async (userData: any, setSubmitting: any) => {
+		const formData = new FormData();
+		formData.append("name", userData.name);
+		formData.append("email", userData.email);
+		formData.append("password", userData.password);
+		formData.append("photo", userData.photo);
+		formData.append("studentId", userData.studentId);
+		formData.append("passingYear", userData.passingYear);
+		formData.append("department", userData.department);
+		formData.append("residentialAddress", userData.residentialAddress);
+		formData.append("professionalAddress", userData.professionalAddress);
+		formData.append("receipt", userData.receipt);
+
+		try {
+			const response = await fetch(
+				"http://localhost:8000/v1/api/auth/member/register",
+				{
+					method: "POST",
+					body: formData,
+				}
+			);
+
+			if (!response.ok) {
+				toast.error("Something went wrong");
+			} else {
+				toast.success("Registration successful");
+			}
+		} catch (error) {
+			console.log(error);
+			toast.error("Error occurred during registration");
+		} finally {
+			setSubmitting(false); 
+		}
+	};
+
+	const { mutate } = useMutation({
+		mutationFn: async ({ values, setSubmitting }: any) => {
+			await registerUser(values, setSubmitting);
+		},
+		onError: (err: any) => {
+			console.error("Registration failed:", err);
+			toast.error("Registration failed. Please try again.");
+		},
+	});
 	return (
 		<section className="bg-white px-4 md:px-10 py-10 md:py-20">
 			{/* Authentication Form */}
@@ -22,7 +68,7 @@ const Auth: React.FC = () => {
 					</h2>
 					<Formik
 						initialValues={{ email: "", password: "" }}
-						validationSchema={AuthSchema}
+						validationSchema={LoginSchema}
 						onSubmit={(values) => {
 							console.log(values);
 						}}>
@@ -79,12 +125,14 @@ const Auth: React.FC = () => {
 							department: "",
 							residentialAddress: "",
 							professionalAddress: "",
+							photo: "",
+							receipt: "",
 						}}
-						validationSchema={AuthSchema}
-						onSubmit={(values) => {
-							console.log(values);
+						// validationSchema={RegisterSchema}
+						onSubmit={(values, actions) => {
+							mutate({values, setSubmitting: actions.setSubmitting});
 						}}>
-						{({ handleChange, values, setFieldValue }) => (
+						{({ handleChange, values, setFieldValue, isSubmitting }) => (
 							<Form>
 								<div className="grid lg:grid-cols-2 grid-col-1 gap-4">
 									<div className="flex flex-col gap-1">
@@ -198,34 +246,53 @@ const Auth: React.FC = () => {
 											className="text-red-500 text-xs"
 										/>
 									</div>
-									<button className="relative w-full h-12 flex items-center justify-center  rounded-md  font-medium text-neutral-950 focus-within:outline-none border border-neutral-200 overflow-hidden cursor-pointer ">
+									<button className="relative w-full h-12 flex items-center justify-center rounded-md font-medium text-neutral-950 focus-within:outline-none border border-neutral-200 overflow-hidden cursor-pointer">
 										<span className="w-full h-full flex justify-center text-sm items-center gap-2 bg-background">
 											<MdCloudUpload
 												size={18}
 												className="min-w-5 w-5"
 											/>
-											<span>Upload your photo</span>
+											<span>
+												{values.photo ? values.photo.name : "Upload your photo"}
+											</span>
 										</span>
 										<input
-											id="paymentReceipt"
-											name="paymentReceipt"
+											id="photo"
+											name="photo"
 											type="file"
 											className="absolute cursor-pointer opacity-0 w-full h-full"
+											onChange={(event) => {
+												const file = event.currentTarget.files?.[0];
+												if (file) {
+													setFieldValue("photo", file);
+												}
+											}}
 										/>
 									</button>
-									<button className="relative w-full h-12 flex items-center justify-center  rounded-md  font-medium text-neutral-950 focus-within:outline-none border border-neutral-200 overflow-hidden cursor-pointer ">
+
+									<button className="relative w-full h-12 flex items-center justify-center rounded-md font-medium text-neutral-950 focus-within:outline-none border border-neutral-200 overflow-hidden cursor-pointer">
 										<span className="w-full h-full flex justify-center text-sm items-center gap-2 bg-background">
 											<MdCloudUpload
 												size={18}
 												className="min-w-5 w-5"
 											/>
-											<span>Upload your payment receipt</span>
+											<span>
+												{values.receipt
+													? values.receipt.name
+													: "Upload your payment receipt"}
+											</span>
 										</span>
 										<input
-											id="paymentReceipt"
-											name="paymentReceipt"
+											id="receipt"
+											name="receipt"
 											type="file"
 											className="absolute cursor-pointer opacity-0 w-full h-full"
+											onChange={(event) => {
+												const file = event.currentTarget.files?.[0];
+												if (file) {
+													setFieldValue("receipt", file);
+												}
+											}}
 										/>
 									</button>
 								</div>
@@ -254,11 +321,24 @@ const Auth: React.FC = () => {
 										</ul>
 									</div>
 								</div>
-								<Button
-									className="py-3 text-white hover:scale-100 w-full max-w-lg lg:max-w-xs"
-									type="submit">
-									Registration
-								</Button>
+								{isSubmitting ? (
+									<>
+										<Button
+											disabled
+											className="py-3 text-white hover:scale-100 w-full max-w-lg lg:max-w-xs"
+											type="submit">
+											<Loader2 className="animate-spin"/> Loading...
+										</Button>
+									</>
+								) : (
+									<>
+										<Button
+											className="py-3 text-white hover:scale-100 w-full max-w-lg lg:max-w-xs"
+											type="submit">
+											Registration
+										</Button>
+									</>
+								)}
 							</Form>
 						)}
 					</Formik>
