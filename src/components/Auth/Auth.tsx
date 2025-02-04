@@ -128,7 +128,7 @@ const Auth: React.FC = () => {
 							photo: null as File | null,
 							receipt:  null as File | null,
 						}}
-						// validationSchema={RegisterSchema}
+						validationSchema={RegisterSchema}
 						onSubmit={(values, actions) => {
 							mutate({values, setSubmitting: actions.setSubmitting});
 						}}>
@@ -252,7 +252,7 @@ const Auth: React.FC = () => {
 												size={18}
 												className="min-w-5 w-5"
 											/>
-											<span>
+											<span className="line-clamp-1">
 												{values.photo ? values.photo.name : "Upload your photo"}
 											</span>
 										</span>
@@ -276,7 +276,7 @@ const Auth: React.FC = () => {
 												size={18}
 												className="min-w-5 w-5"
 											/>
-											<span>
+											<span className="line-clamp-1">
 												{values.receipt
 													? values.receipt.name
 													: "Upload your payment receipt"}
