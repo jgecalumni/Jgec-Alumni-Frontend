@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Toaster } from "react-hot-toast";
-import ReactQueryProvider from "@/utils/providers/ReactQueryProvider";
+import ReactQueryProvider from "@/store/query-client";
 
 const inter = Inter({
 	subsets: ["latin"],
