@@ -16,7 +16,7 @@ interface ILoginType {
 }
 
 interface IEventType {
-	id: string;
+	id: any;
 	name: string;
 	shortDescription: string;
 	details: string;
@@ -53,14 +53,12 @@ interface IScholarshipType {
 	name: string;
 	subtitle: string;
 	providerId: string;
-	provider: [
-		{
-			name: string;
-			photo: string;
-			passingYear: number;
-			department: string;
-		}
-	];
+	provider: {
+		name: string;
+		photo: string;
+		passingYear: number;
+		department: string;
+	};
 	providerDescription: string;
 	description: string;
 	whoCanApply: string;

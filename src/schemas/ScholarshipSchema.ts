@@ -1,6 +1,7 @@
 import * as Yup from "yup";
 
 export const ScholarshipSchema = Yup.object().shape({
+	scholarshipName: Yup.string().required("Required"),
 	name: Yup.string()
 		.min(2, "Too Short!")
 		.max(70, "Too Long!")
@@ -12,8 +13,16 @@ export const ScholarshipSchema = Yup.object().shape({
 		.required("Required")
 		.typeError("Student ID must be a number"),
 	dob: Yup.date().required("Required"),
-	contactHome: Yup.string().min(10,"Must be 10 digit").max(10,"Must be 10 digit").required("Required").typeError("Must be a number"),
-	contact: Yup.string().min(10,"Must be 10 digit").max(10,"Must be 10 digit").required("Required").typeError("Must be a number"),
+	contactHome: Yup.string()
+		.min(10, "Must be 10 digit")
+		.max(10, "Must be 10 digit")
+		.required("Required")
+		.typeError("Must be a number"),
+	contact: Yup.string()
+		.min(10, "Must be 10 digit")
+		.max(10, "Must be 10 digit")
+		.required("Required")
+		.typeError("Must be a number"),
 	numberofdirectfamilyMembers: Yup.number().required("Required"),
 	fatherOccupation: Yup.string()
 		.min(2, "Too Short!")
@@ -32,11 +41,7 @@ export const ScholarshipSchema = Yup.object().shape({
 		.max(70, "Too Long!")
 		.required("Required"),
 	percentHigherSecondary: Yup.string().required("Required"),
-	gradeSemester1: Yup.string().required("Required"),
-	gradeSemester2: Yup.string().required("Required"),
-	gradeSemester3: Yup.string().required("Required"),
-	gradeSemester4: Yup.string().required("Required"),
-	gradeSemester5: Yup.string().required("Required"),
+	
 	average: Yup.string().required("Required"),
 	department: Yup.string().required("Required"),
 	residentialAddress: Yup.string().required("Required"),

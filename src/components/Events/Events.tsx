@@ -2,29 +2,34 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
-
-import { EventDetails } from "@/lib/EventDetails";
 import { Button } from "../ui/button";
 import SectionHeader from "../section-header";
-
-interface TimeRemaining {
-	days: string;
-	hours: string;
-	minutes: string;
-	seconds: string;
-}
+import { useAllEventsQuery } from "@/store/feature/event-feature";
+import toast from "react-hot-toast";
+import Loading from "@/app/Loader";
 
 const Events: React.FC = () => {
-	const [timeRemaining, setTimeRemaining] = useState<
-		Record<number, TimeRemaining>
-	>({});
+	const [page, setPage] = useState<number>(1);
+
+	const { data, error, isError, isLoading } = useAllEventsQuery({
+		page: page,
+		search: "",
+	});
+
+	const [timeRemaining, setTimeRemaining] = useState<Record<number, any>>({});
+	const [totalPages, setTotalPages] = useState<number>(1);
 
 	useEffect(() => {
-		const timer = setInterval(() => {
-			const updatedTimes: Record<number, TimeRemaining> = {};
+		if (isError) {
+			toast.error((error as any)?.data?.message || "Failed to fetch events");
+		}
+		if (!data?.events) return;
 
-			EventDetails.forEach((event) => {
-				const eventDate = new Date(`${event.date}T${event.time}`).getTime();
+		const updateTimes = () => {
+			const updatedTimes: Record<number, any> = {};
+
+			data.events.forEach((event) => {
+				const eventDate = new Date(`${event.date}T${event.time}:00`).getTime();
 				const currentTime = new Date().getTime();
 				const difference = eventDate - currentTime;
 
@@ -56,10 +61,21 @@ const Events: React.FC = () => {
 			});
 
 			setTimeRemaining(updatedTimes);
-		}, 1000);
+		};
+
+		// Run initially and then update every second
+		updateTimes();
+		const timer = setInterval(updateTimes, 1000);
 
 		return () => clearInterval(timer);
-	}, []);
+		if (data) {
+			setTotalPages(data?.totalPages);
+		}
+	}, [data, isError, error]); // Runs whenever `data` updates
+
+	if (isLoading) {
+		return <Loading />;
+	}
 
 	return (
 		<>
@@ -68,69 +84,57 @@ const Events: React.FC = () => {
 				normalTitle="Archive"
 				description="Get information about all our upcoming events."
 			/>
-			{EventDetails.map((event) => (
-				<div
-					key={event.id}
-					className="my-8 flex flex-col justify-center items-center">
-					<div className="bg-primary rounded-md shadow-2xl flex md:flex-row flex-col items-center gap-4 justify-between md:h-full lg:h-full 2xl:h-[50vh] md:p-6 p-4 w-[90%] lg:w-[70%]">
-						<div className="h-[30vh] md:h-[50vh] lg:h-[60vh] xl:h-[60vh] 2xl:h-full  overflow-hidden lg:flex justify-center items-center rotate-0 w-full md:w-1/2 ">
-							<Image
-								objectPosition="center"
-								objectFit="cover"
-								layout="fill"
-								src={event.imageUrl}
-								alt={event.title}
-								className="rounded-md"
-							/>
-						</div>
-						<div className="flex flex-col gap-4 justify-between md:w-[60%]  h-full">
-							{/* Remaining Time */}
-							<div className="flex gap-4 items-center">
-								<div className="flex flex-col items-center">
-									<div className="text-white font-medium">Days</div>
-									<div className="text-white w-12 h-12 flex justify-center items-center border rounded-md border-white bg-black">
-										{timeRemaining[event.id]?.days || "00"}
+			{data ? (
+				<>
+					{data?.events.map((event) => (
+						<div
+							key={event.id}
+							className="my-8 flex flex-col justify-center items-center">
+							<div className="bg-primary rounded-md shadow-2xl flex md:flex-row flex-col items-center gap-4 justify-between md:h-full lg:h-full 2xl:h-[50vh] md:p-6 p-4 w-[90%] lg:w-[70%]">
+								<Image
+									height={450}
+									width={450}
+									src={event.event_thumbnail}
+									alt={event.name}
+									className="rounded-md"
+								/>
+								<div className="flex flex-col gap-2 justify-evenly md:w-[60%] h-full">
+									<div className="flex gap-4 items-center">
+										{["Days", "Hr", "Min", "Sec"].map((unit, index) => {
+											const values = ["days", "hours", "minutes", "seconds"];
+											return (
+												<div
+													key={unit}
+													className="flex flex-col items-center">
+													<div className="text-white font-medium">{unit}</div>
+													<div className="text-white w-12 h-12 flex justify-center items-center border border-white rounded-md bg-black">
+														{timeRemaining[event.id]?.[values[index]] || "00"}
+													</div>
+												</div>
+											);
+										})}
 									</div>
-								</div>
-								<div className="flex flex-col items-center">
-									<div className="text-white font-medium">Hr</div>
-									<div className="text-white w-12 h-12 flex justify-center items-center border border-white rounded-md bg-black">
-										{timeRemaining[event.id]?.hours || "00"}
+									<div className="flex flex-col gap-2 lg:gap-1">
+										<Link
+											href={`/upcoming-events/${event.id}`}
+											className="text-white text-[18px] lg:text-[22px] font-semibold">
+											{event.name}
+										</Link>
+										<div className="text-white line-clamp-3 lg:text-[14px] leading-6 text-sm">
+											{event.shortDescription}
+										</div>
 									</div>
-								</div>
-								<div className="flex flex-col items-center">
-									<div className="text-white font-medium">Min</div>
-									<div className="text-white w-12 h-12 flex justify-center items-center border border-white rounded-md bg-black">
-										{timeRemaining[event.id]?.minutes || "00"}
-									</div>
-								</div>
-								<div className="flex flex-col items-center">
-									<div className="text-white font-medium">Sec</div>
-									<div className="text-white w-12 h-12 flex justify-center items-center border border-white rounded-md bg-black">
-										{timeRemaining[event.id]?.seconds || "00"}
-									</div>
+									<Button className="border-2 lg:w-[35%] hover:bg-white hover:text-black text-[16px] duration-200 border-white p-3 text-white bg-[#2e4da0] font-semibold">
+										JOIN WITH US
+									</Button>
 								</div>
 							</div>
-							<div className="flex flex-col gap-2">
-								{/* Title */}
-								<Link
-									href={`/upcoming-events/${event.id}`}
-									className="text-white text-[20px] lg:text-[25px] font-semibold">
-									{event.title}
-								</Link>
-								{/* Description */}
-								<div className="text-white lg:text-[16px] leading-6 text-sm">
-									{event.description}
-								</div>
-							</div>
-							{/* Button */}
-							<Button className="border-2 lg:w-[40%] hover:bg-white hover:text-black text-lg duration-200 border-white p-3 text-white bg-[#2e4da0] font-semibold">
-								JOIN WITH US
-							</Button>
 						</div>
-					</div>
-				</div>
-			))}
+					))}
+				</>
+			) : (
+				<><div className="h-full min-h-[70vh] flex justify-center items-center text-primary text-xl font-semibold">No events found</div></>
+			)}
 		</>
 	);
 };

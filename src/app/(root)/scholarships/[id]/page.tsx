@@ -1,35 +1,45 @@
 "use client";
 
+import Loading from "@/app/Loader";
 import { Button } from "@/components/ui/button";
 
 import { InputField } from "@/components/ui/input";
 
 import { SelectField } from "@/components/ui/select";
 import { TextareaField } from "@/components/ui/textarea";
-import { useToast } from "@/hooks/use-toast";
-import { ScholarshipDetails } from "@/lib/ScholarshipsData";
+
 import { ScholarshipSchema } from "@/schemas/ScholarshipSchema";
+import { useScholarshipsQuery } from "@/store/feature/scholarship-feature";
 
 import { ErrorMessage, Formik, Form } from "formik";
+import dynamic from "next/dynamic";
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 interface EventParams {
 	params: { id: string };
 }
 
 const Page: React.FC<EventParams> = ({ params }: EventParams) => {
-	const [loading, setLoading] = useState(false);
-
 	const { id } = params;
-	
-	const data = ScholarshipDetails.filter((e) => e._id === (id));
-	
-	
+	const { data, isLoading, isError, error } = useScholarshipsQuery(id);
+	console.log(data?.data.semRequire);
+
+	const [loading, setLoading] = useState<boolean>(false);
+	useEffect(() => {
+		if (isError) {
+			toast.error((error as any)?.data?.message || "Failed to fetch event");
+		}
+	}, [isError, error]);
+
+	if (isLoading) {
+		return <Loading />;
+	}
 
 	const handleFormSubmit = async (values: any) => {
-		// console.log(values);
+		console.log(values);
 
 		try {
 			setLoading(true);
@@ -51,6 +61,12 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 			setLoading(false);
 		}
 	};
+
+	const semArray: any = data?.data.semRequire
+		.split(",")
+		.map((sem) => sem.trim());
+	
+
 	return (
 		<div className="grid grid-cols-1 ">
 			<div className=" flex lg:flex-row flex-col px-4 lg:px-14 justify-center items-center bg-[#edf1f4] gap-4 pt-[6em] lg:pt-[10em]">
@@ -70,30 +86,37 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 								tools for their enlightenment to outer world outside campus and
 								thus to highlight glory of JGEC to outsiders.
 							</div>
-							<div>{data[0]?.description}</div>
+							<div>
+								<ReactQuill
+									theme="bubble"
+									value={data?.data.description}
+									readOnly={true}
+									className="view_editor"
+								/>
+							</div>
 						</div>
 					</div>
 				</div>
 				<div className="rounded-md h-full  bg-[#c4eb80]  lg:w-1/2">
 					<div className="p-4 lg:text-sm text-xs bg-[#91c837] rounded-t-md font-semibold">
-						{data[0].title}
+						{data?.data.name}
 					</div>
 					<div className="lg:text-sm text-xs space-y-2 p-4">
 						<div>
 							<span className="font-semibold">Who can apply:</span>{" "}
-							{data[0].whocanApply}
+							{data?.data.whoCanApply}
 						</div>
 						<div>
 							<span className="font-semibold">Age Criteria:</span>{" "}
-							{data[0].AgeCriteria}
+							{data?.data.ageLimit}
 						</div>
 						<div>
 							<span className="font-semibold">Amount of scholarship :</span>{" "}
-							{data[0].amountdetails}
+							{data?.data.amountDetails}
 						</div>
 						<div>
 							<span className="font-semibold">When to apply :</span>{" "}
-							{data[0].whentoApply}
+							{data?.data.whenToApply}
 						</div>
 					</div>
 				</div>
@@ -110,14 +133,14 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 					</p>
 					<Formik
 						initialValues={{
-							scholarshipName:data[0].title,
+							scholarshipName: data?.data.name || "",
 							name: "",
 							studentId: "",
 							dob: "",
 							contactHome: "",
 							contact: "",
 							email: "",
-							numberofdirectfamilyMembers: "",
+							numberofdirectfamilyMembers: 1,
 							fatherOccupation: "",
 							totalEarningMembers: "",
 							totalFamilyIncome: "",
@@ -125,11 +148,9 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 							jgecIntakeYear: "",
 							extraCurricularActivities: "",
 							percentHigherSecondary: "",
-							gradeSemester1: "",
-							gradeSemester2: "",
-							gradeSemester3: "",
-							gradeSemester4: "",
-							gradeSemester5: "",
+							...Object.fromEntries(
+								semArray.map((sem:string) => [`sem_${sem.split(" ")[0]}`, ""])
+							),
 							average: "",
 							department: "",
 							residentialAddress: "",
@@ -140,7 +161,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 							handleFormSubmit(values);
 						}}
 						validationSchema={ScholarshipSchema}
-						>
+					>
 						{({ handleChange, values, setFieldValue }) => (
 							<Form>
 								<div className="grid lg:grid-cols-2 grid-col-1 gap-4">
@@ -350,87 +371,24 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 											className="text-red-500 text-xs"
 										/>
 									</div>
-									<div
-										className={`flex ${
-											data[0].firstSem ? "block" : "hidden"
-										} flex-col gap-1`}>
-										<InputField
-											type="text"
-											name="gradeSemester1"
-											label="Grade marks in 1st semester "
-											placeholder="x.xx"
-											onChange={handleChange}
-										/>
-										<ErrorMessage
-											name="gradeSemester1"
-											component="div"
-											className="text-red-500 text-xs"
-										/>
-									</div>
-									<div className={`flex ${
-											data[0].secondSem ? "block" : "hidden"
-										} flex-col gap-1`}>
-										<InputField
-											type="text"
-											name="gradeSemester2"
-											label="Grade marks in 2nd semester "
-											placeholder="x.xx"
-											onChange={handleChange}
-										/>
-										<ErrorMessage
-											name="gradeSemester2"
-											component="div"
-											className="text-red-500 text-xs"
-										/>
-									</div>
-									<div className={`flex ${
-											data[0].thirdSem ? "block" : "hidden"
-										} flex-col gap-1`}>
-										<InputField
-											type="text"
-											name="gradeSemester3"
-											label="Grade marks in 3rd semester "
-											placeholder="x.xx"
-											onChange={handleChange}
-										/>
-										<ErrorMessage
-											name="gradeSemester3"
-											component="div"
-											className="text-red-500 text-xs"
-										/>
-									</div>
-									<div className={`flex ${
-											data[0].fourthSem ? "block" : "hidden"
-										} flex-col gap-1`}>
-										<InputField
-											type="text"
-											name="gradeSemester4"
-											label="Grade marks in 4th semester "
-											placeholder="x.xx"
-											onChange={handleChange}
-										/>
-										<ErrorMessage
-											name="gradeSemester4"
-											component="div"
-											className="text-red-500 text-xs"
-										/>
-									</div>
-									<div className={`flex ${
-											data[0].fifthSem ? "block" : "hidden"
-										} flex-col gap-1`}>
-										<InputField
-											type="text"
-											name="gradeSemester5"
-											label="Grade marks in 5th semester "
-											placeholder="x.xx"
-											onChange={handleChange}
-										/>
-										<ErrorMessage
-											name="gradeSemester5"
-											component="div"
-											className="text-red-500 text-xs"
-										/>
-									</div>
+									{semArray.map((sem: string, index: number) => (
+										<div
+											key={index}
+											className="flex flex-col gap-1">
+											<InputField
+												type="text"
+												name={`sem_${sem.split(" ")[0]}`}
+												label={`Grade marks in ${sem}`}
+												placeholder="x.xx"
+												onChange={handleChange}
+											/>
+											<ErrorMessage
+												name={sem.replace(/\s/g, "")}
+												component="div"
+												className="text-red-500 text-xs"
+											/>
+										</div>
+									))}
 									<div className="flex flex-col gap-1">
 										<InputField
 											type="text"
@@ -528,16 +486,20 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 				<div className="h-full lg:w-1/2 lg:px-4  rounded-md">
 					<div className="flex rotate-0 rounded-md overflow-hidden shadow-xl  bg-white h-[40vh] items-center justify-center">
 						<Image
-							src={data[0].imageUrl}
-							alt={data[0].providerName}
-							
+							src={data?.data.provider.photo || ""}
+							alt={data?.data.provider.name || ""}
 							layout="fill"
 							objectFit="contain"
 							className=" rotate-0  rounded-sm"
 						/>
 					</div>
 					<div className="lg:text-sm text-xs my-4 bg-white shadow-xl rounded-md p-4">
-						{data[0].providerDetails}
+						<ReactQuill
+							theme="bubble"
+							value={data?.data.providerDescription}
+							readOnly={true}
+							className="view_editor"
+						/>
 					</div>
 				</div>
 			</div>

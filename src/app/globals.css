@@ -156,7 +156,7 @@
 }
 
 .bottom-top {
-	animation: bottom-top 30s linear infinite;
+	animation: bottom-top 60s linear infinite;
 }
 .bottom-top:hover {
 	animation-play-state: paused;
@@ -168,5 +168,34 @@
 	}
 	100% {
 		transform: translateY(-100%);
+	}
+}
+
+/* Default styles (for larger screens) */
+.view_editor .ql-container.ql-disabled .ql-tooltip {
+	display: none !important;
+	height: 0 !important;
+}
+
+.view_editor .ql-editor {
+	padding: 0 !important;
+	font-size: 15px;
+	font-weight: 400;
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+	.view_editor .ql-editor {
+		font-size: 12px; /* Slightly smaller font size for readability */
+		padding: 0px !important; /* Add some padding */
+	}
+
+	.view_editor .ql-container {
+		min-height: 150px; /* Prevents text editor from collapsing on mobile */
+	}
+
+	.view_editor .ql-editor p {
+		line-height: 1.4; /* Adjust line spacing for better readability */
+		word-break: break-word; /* Ensures text wraps properly */
 	}
 }

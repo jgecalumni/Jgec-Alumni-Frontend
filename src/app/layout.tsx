@@ -9,6 +9,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Toaster } from "react-hot-toast";
 import ReactQueryProvider from "@/store/query-client";
+import Providers from "@/store/provider";
 
 const inter = Inter({
 	subsets: ["latin"],
@@ -39,11 +40,15 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className="poppins-regular">
-				<Topbar />
-				<Navbar />
-				<Toaster />
-				<ReactQueryProvider>{children}</ReactQueryProvider>
-				<Footer />
+				<Providers>
+					<ReactQueryProvider>
+						<Topbar />
+						<Navbar />
+						<Toaster />
+						{children}
+						<Footer />
+					</ReactQueryProvider>
+				</Providers>
 			</body>
 		</html>
 	);

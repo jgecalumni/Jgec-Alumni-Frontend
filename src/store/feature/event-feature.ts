@@ -7,7 +7,7 @@ interface IGetAllEventsRes {
 	limit: number;
 	page: number;
 	docCount: number;
-	totalPages: number;
+	totalPages: any;
 	totalCount: number;
 }
 interface IResponse {
@@ -34,7 +34,7 @@ export const eventApi = baseApi
 				}),
 				providesTags: ["events"],
 			}),
-			getEventById: builder.query<IResponse, string>({
+			getEventById: builder.query<IResponse, string >({
 				query: (id) => ({
 					url: `/events/${id}`,
 					method: "GET",

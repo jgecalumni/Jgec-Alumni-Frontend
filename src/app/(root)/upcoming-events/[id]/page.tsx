@@ -1,77 +1,91 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { EventDetails } from "@/lib/EventDetails";
 import Image from "next/image";
 import { FaLocationDot } from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
-
+import { useGetEventByIdQuery } from "@/store/feature/event-feature";
+import dynamic from "next/dynamic";
+import Loading from "@/app/Loader";
+import toast from "react-hot-toast";
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 interface EventParams {
 	params: { id: string };
 }
 
-interface Event {
-	id: number;
-	imageUrl: string;
-	title: string;
-	details: string;
-	schedule: {
-		id: number;
-		startTime: string;
-		endTime: string;
-		activity: string;
-	}[];
-}
-
 const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 	const { id } = params;
-	const data = EventDetails.filter((event) => event.id === Number(id));
+	const { data, isLoading, isError, error } = useGetEventByIdQuery(id);
 
-	if (data.length === 0) {
-		return (
-			<div className="pt-[10em] flex bg-[#edf1f4] justify-center items-center">
-				<div className="text-2xl text-red-500 font-semibold">
-					Event not found!
-				</div>
-			</div>
-		);
+	useEffect(() => {
+		if (isError) {
+			toast.error((error as any)?.data?.message || "Failed to fetch event");
+		}
+	}, [isError, error]);
+
+	if (isLoading) {
+		return <Loading />;
 	}
-
-	const event = data[0];
 
 	return (
 		<div className="lg:pt-[10em] pt-[4em] flex bg-[#edf1f4] justify-center items-center">
 			<div className="lg:px-14 px-4 flex flex-col lg:w-2/3 justify-center gap-8 items-center">
 				<div className="relative rounded-md shadow-xl  w-full h-[60vh]">
 					<Image
-						src={event.imageUrl}
+						src={data?.data.event_thumbnail || ""}
 						objectFit="cover"
 						layout="fill"
-						alt={event.title}
+						alt={data?.data.name || ""}
 						className="z-10 rounded-md brightness-50"
 					/>
 					<div className="z-20 bg-[#161616d5] flex gap-2 flex-col w-full absolute bottom-0 p-4">
 						<div className="text-white text-lg md:text-xl font-semibold">
-							{event.title}
+							{data?.data.name} ({data?.data.date})
 						</div>
 						<div className="flex items-center text-yellow-300 text-sm lg:text-lg">
 							<FaLocationDot
 								color="yellow"
 								size={20}
 							/>
-							Jalpaiguri, West Bengal
+							{data?.data.location}
 						</div>
 					</div>
 				</div>
 				{/* Details of the event */}
 				<div className="flex shadow-xl bg-white w-full mb-4 flex-col py-6 rounded-md p-4">
-					<div className="flex flex-col">
-						<div className="text-black text-2xl md:text-3xl font-bold">
+					<div className="flex gap-0 flex-col">
+						<div className="text-black text-2xl  font-bold">
 							Details of the Event
 						</div>
 						<div className="border w-1/2 lg:w-1/4 border-blue-500"></div>
 					</div>
-					<div className="py-4 md:text-lg text-sm ">{event.details}</div>
+					<div className="pt-4 md:text-lg text-sm ">
+						<ReactQuill
+							theme="bubble"
+							value={data?.data.details}
+							readOnly={true}
+							className="view_editor"
+						/>
+					</div>
+					<div className="flex flex-col">
+						<div className="text-black text-xl font-bold">Host Details</div>
+						<div className="border w-1/2 lg:w-14 border-blue-500"></div>
+					</div>
+
+					<div className="text-[16px] pl-2 pt-3 font-medium">
+						Name : {data?.data.hostName}
+					</div>
+
+					<div className=" flex gap-2 pl-2 md:text-lg text-sm ">
+						<div className="text-[16px] font-medium">About : </div>
+						<ReactQuill
+							theme="bubble"
+							value={data?.data.hostDetails}
+							readOnly={true}
+							className="view_editor"
+						/>
+					</div>
 				</div>
 				{/* Event Schedule */}
 				<div className="w-full mb-8 flex flex-col gap-4">
@@ -79,10 +93,10 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 						EVENT SCHEDULE
 					</div>
 					<div className="w-full px-2 lg:px-4">
-						{event.schedule.map((schedule, index) => (
+						{data?.data.schedule.map((schedule, index) => (
 							<div
 								key={index}
-								className="rounded-md p-3 flex shadow-xl gap-4 items-center bg-white h-[8vh]">
+								className="rounded-md p-3 mb-2 flex shadow-xl gap-4 items-center bg-white h-[8vh]">
 								<Button className="border bg-primary flex items-center justify-center text-white font-medium px-3 h-full">
 									{schedule.startTime}-{schedule.endTime}
 								</Button>

@@ -1,11 +1,10 @@
-import { google } from "googleapis"; // Import the Google API Client Library
+import { google } from "googleapis";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
 	try {
 		const body = await req.json();
-		
-		
+
 		const {
 			scholarshipName,
 			name,
@@ -14,7 +13,7 @@ export async function POST(req) {
 			contactHome,
 			contact,
 			email,
-			numberofdirectfamilymembers,
+			numberofdirectfamilyMembers,
 			fatherOccupation,
 			totalEarningMembers,
 			totalFamilyIncome,
@@ -22,11 +21,11 @@ export async function POST(req) {
 			jgecIntakeYear,
 			extraCurricularActivities,
 			percentHigherSecondary,
-			gradeSemester1,
-			gradeSemester2,
-			gradeSemester3,
-			gradeSemester4,
-			gradeSemester5,
+			sem_1st,
+			sem_2nd,
+			sem_3rd,
+			sem_4th,
+			sem_5th,
 			average,
 			department,
 			residentialAddress,
@@ -34,15 +33,14 @@ export async function POST(req) {
 			jobCampusing,
 		} = body;
 
-		console.log(scholarshipName);
-		
+		console.log(`Processing scholarship: ${scholarshipName}`);
 
 		// Authenticate with Google Sheets API
 		const auth = new google.auth.GoogleAuth({
 			credentials: {
 				client_email: process.env.CLIENT_EMAIL,
 				client_id: process.env.CLIENT_ID,
-				private_key: process.env.PRIVATE_KEY,
+				private_key: process.env.PRIVATE_KEY.replace(/\\n/g, "\n"), // Fix for newlines in private key
 			},
 			scopes: [
 				"https://www.googleapis.com/auth/drive",
@@ -52,11 +50,79 @@ export async function POST(req) {
 		});
 
 		const sheets = google.sheets({ auth, version: "v4" });
+		const spreadsheetId = process.env.SPREADSHEET_ID; // Ensure this is set correctly
 
-		// Append data to the spreadsheet
-		const response = await sheets.spreadsheets.values.append({
-			spreadsheetId: process.env.SPREADSHEET_ID, // Make sure this is correctly set in your .env file
-			range:`${scholarshipName}!A1`,// Replace with the correct sheet name and range
+		const sheetname = scholarshipName.substring(0, 100);
+
+		// Check if the sheet with scholarshipName exists
+		const sheetMetadata = await sheets.spreadsheets.get({
+			spreadsheetId,
+		});
+
+		const sheetExists = sheetMetadata.data.sheets.some(
+			(sheet) => sheet.properties.title === sheetname
+		);
+
+		// If sheet doesn't exist, create it and add headings
+		if (!sheetExists) {
+			await sheets.spreadsheets.batchUpdate({
+				spreadsheetId,
+				requestBody: {
+					requests: [
+						{
+							addSheet: {
+								properties: {
+									title: sheetname,
+								},
+							},
+						},
+					],
+				},
+			});
+
+			// Define column headings
+			const headers = [
+				"Name",
+				"Student ID",
+				"Date of Birth",
+				"Home Contact",
+				"Personal Contact",
+				"Email",
+				"Family Members",
+				"Father's Occupation",
+				"Earning Members",
+				"Total Family Income",
+				"Each Family Income",
+				"JGEC Intake Year",
+				"Extra Curricular Activities",
+				"Higher Secondary %",
+				"Grade Sem 1",
+				"Grade Sem 2",
+				"Grade Sem 3",
+				"Grade Sem 4",
+				"Grade Sem 5",
+				"Average Grade",
+				"Department",
+				"Residential Address",
+				"Special Achievements",
+				"Job Campus Placement",
+			];
+
+			// Insert the headers into the new sheet
+			await sheets.spreadsheets.values.update({
+				spreadsheetId,
+				range: `${sheetname}!A1`,
+				valueInputOption: "USER_ENTERED",
+				requestBody: {
+					values: [headers],
+				},
+			});
+		}
+
+		// Append the actual student data to the spreadsheet
+		await sheets.spreadsheets.values.append({
+			spreadsheetId,
+			range: `${sheetname}!A2`, // Start appending data from the second row
 			valueInputOption: "USER_ENTERED",
 			requestBody: {
 				values: [
@@ -67,7 +133,7 @@ export async function POST(req) {
 						contactHome,
 						contact,
 						email,
-						numberofdirectfamilymembers,
+						numberofdirectfamilyMembers,
 						fatherOccupation,
 						totalEarningMembers,
 						totalFamilyIncome,
@@ -75,11 +141,11 @@ export async function POST(req) {
 						jgecIntakeYear,
 						extraCurricularActivities,
 						percentHigherSecondary,
-						gradeSemester1,
-						gradeSemester2,
-						gradeSemester3,
-						gradeSemester4,
-						gradeSemester5,
+						sem_1st,
+						sem_2nd,
+						sem_3rd,
+						sem_4th,
+						sem_5th,
 						average,
 						department,
 						residentialAddress,
@@ -91,7 +157,7 @@ export async function POST(req) {
 		});
 
 		return NextResponse.json(
-			{ message: "Data added to Google Sheets successfully!" },
+			{ message: `Data added to ${scholarshipName} successfully!` },
 			{ status: 200 }
 		);
 	} catch (error) {
