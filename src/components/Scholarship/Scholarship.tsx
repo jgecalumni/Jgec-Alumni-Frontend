@@ -17,7 +17,7 @@ const Scholarship = () => {
 	});
 	useEffect(() => {
 		if (isError) {
-			toast.error((error as any)?.data?.message || "Failed to fetch events");
+			toast.error((error as any)?.data?.message || "Failed to fetch scholarships");
 		}
 		if (data) {
 			setTotalPages(data?.totalPages);

@@ -30,7 +30,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 	const [loading, setLoading] = useState<boolean>(false);
 	useEffect(() => {
 		if (isError) {
-			toast.error((error as any)?.data?.message || "Failed to fetch event");
+			toast.error((error as any)?.data?.message || "Failed to fetch scholarship");
 		}
 	}, [isError, error]);
 
