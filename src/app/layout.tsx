@@ -10,6 +10,7 @@ import "swiper/css/navigation";
 import { Toaster } from "react-hot-toast";
 import ReactQueryProvider from "@/store/query-client";
 import Providers from "@/store/provider";
+import { AuthProvider } from "@/store/AuthContext";
 
 const inter = Inter({
 	subsets: ["latin"],
@@ -37,17 +38,21 @@ export default function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	
+
 	return (
 		<html lang="en">
 			<body className="poppins-regular">
 				<Providers>
-					<ReactQueryProvider>
-						<Topbar />
-						<Navbar />
-						<Toaster />
-						{children}
-						<Footer />
-					</ReactQueryProvider>
+					<AuthProvider>
+						<ReactQueryProvider>
+							<Topbar />
+							<Navbar />
+							<Toaster />
+							{children}
+							<Footer />
+						</ReactQueryProvider>
+					</AuthProvider>
 				</Providers>
 			</body>
 		</html>

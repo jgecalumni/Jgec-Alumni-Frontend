@@ -1,5 +1,13 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+
+interface IRegisterResponse{
+	message: string;
+	data: IRegisterType;
+	success: boolean;
+	error: boolean;
+}
+
 export const baseApi = createApi({
 	reducerPath: "api",
 	baseQuery: fetchBaseQuery({
@@ -10,13 +18,13 @@ export const baseApi = createApi({
 	endpoints: (builder) => ({
 		login: builder.mutation<any, ILoginType>({
 			query: (data) => ({
-				url: "/auth/member/admin/login",
+				url: "/auth/member/login",
 				method: "POST",
 				body: data,
 			}),
 			invalidatesTags: ["login"],
 		}),
-		register: builder.mutation<any, IRegisterType>({
+		register: builder.mutation<IRegisterResponse,any >({
 			query: (data) => ({
 				url: "/auth/member/register",
 				method: "POST",
@@ -27,7 +35,7 @@ export const baseApi = createApi({
 		logout: builder.mutation<any, void>({
 			query: () => ({
 				url: "/auth/member/logout",
-				method: "POST",
+				method: "GET",
 			}),
 			invalidatesTags: ["logout"],
 		}),

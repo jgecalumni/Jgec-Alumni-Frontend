@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { MdCloudUpload } from "react-icons/md";
 import { InputField } from "../ui/input";
 import { ErrorMessage, Form, Formik } from "formik";
@@ -7,56 +7,41 @@ import { Button } from "../ui/button";
 import { TextareaField } from "../ui/textarea";
 import { SelectField } from "../ui/select";
 import { LoginSchema, RegisterSchema } from "@/schemas/AuthSchema";
-import axios from "axios";
-import { useMutation } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 import toast from "react-hot-toast";
+import { useRegisterMutation } from "@/store/baseApi";
+import { useAuth } from "@/store/AuthContext";
 
 const Auth: React.FC = () => {
-	const registerUser = async (userData: any, setSubmitting: any) => {
+	const { handleLogin } = useAuth();
+	const [register, { isError, error }] = useRegisterMutation();
+
+	useEffect(() => {
+		if (isError) {
+			toast.error((error as any)?.data?.message || "Failed to add user");
+		}
+	}, [isError, error]);
+
+	const registerUser = async (userData: IRegisterType, setSubmitting: any) => {
 		const formData = new FormData();
 		formData.append("name", userData.name);
 		formData.append("email", userData.email);
 		formData.append("password", userData.password);
-		formData.append("photo", userData.photo);
+		formData.append("photo", userData.photo || "");
 		formData.append("studentId", userData.studentId);
 		formData.append("passingYear", userData.passingYear);
 		formData.append("department", userData.department);
 		formData.append("residentialAddress", userData.residentialAddress);
 		formData.append("professionalAddress", userData.professionalAddress);
-		formData.append("receipt", userData.receipt);
+		formData.append("receipt", userData.receipt || "");
 
-		try {
-			const response = await fetch(
-				"http://localhost:8000/v1/api/auth/member/register",
-				{
-					method: "POST",
-					body: formData,
-				}
-			);
-
-			if (!response.ok) {
-				toast.error("Something went wrong");
-			} else {
-				toast.success("Registration successful");
-			}
-		} catch (error) {
-			console.log(error);
-			toast.error("Error occurred during registration");
-		} finally {
-			setSubmitting(false); 
+		const res = await register(formData);
+		if (res?.data?.success) {
+			toast.success("Registered successfully");
 		}
+		setSubmitting(false);
 	};
 
-	const { mutate } = useMutation({
-		mutationFn: async ({ values, setSubmitting }: any) => {
-			await registerUser(values, setSubmitting);
-		},
-		onError: (err: any) => {
-			console.error("Registration failed:", err);
-			toast.error("Registration failed. Please try again.");
-		},
-	});
 	return (
 		<section className="bg-white px-4 md:px-10 py-10 md:py-20">
 			{/* Authentication Form */}
@@ -69,8 +54,8 @@ const Auth: React.FC = () => {
 					<Formik
 						initialValues={{ email: "", password: "" }}
 						validationSchema={LoginSchema}
-						onSubmit={(values) => {
-							console.log(values);
+						onSubmit={(values, actions) => {
+							handleLogin(values, actions.setSubmitting);
 						}}>
 						{({ handleChange }) => (
 							<Form className="flex flex-col gap-4">
@@ -126,11 +111,11 @@ const Auth: React.FC = () => {
 							residentialAddress: "",
 							professionalAddress: "",
 							photo: null as File | null,
-							receipt:  null as File | null,
+							receipt: null as File | null,
 						}}
 						validationSchema={RegisterSchema}
-						onSubmit={(values, actions) => {
-							mutate({values, setSubmitting: actions.setSubmitting});
+						onSubmit={(values: any, actions: any) => {
+							registerUser(values, actions.setSubmitting);
 						}}>
 						{({ handleChange, values, setFieldValue, isSubmitting }) => (
 							<Form>
@@ -327,7 +312,7 @@ const Auth: React.FC = () => {
 											disabled
 											className="py-3 text-white hover:scale-100 w-full max-w-lg lg:max-w-xs"
 											type="submit">
-											<Loader2 className="animate-spin"/> Loading...
+											<Loader2 className="animate-spin" /> Loading...
 										</Button>
 									</>
 								) : (
