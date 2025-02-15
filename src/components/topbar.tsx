@@ -25,7 +25,7 @@ const Topbar = () => {
 				<div className="flex xl:text-sm lg:text-sm  gap-6">
 					{!!token ? (
 						<>
-							<Link href={`/profile/${user?.userId}`}>
+							{/* <Link href={`/profile/${user?.userId}`}>
 								<Image
 									src={user?.userPhoto || ""}
 									width={40}
@@ -33,7 +33,18 @@ const Topbar = () => {
 									className="rounded-full"
 									alt=""
 								/>
+							</Link> */}
+							<div className="rotate-0  w-10 h-10">
+							<Link href={`/profile/${user?.userId}`}>
+								<Image
+									src={user?.userPhoto || ""}
+									layout="fill"
+									objectFit="cover"
+									className="rounded-full"
+									alt=""
+								/>
 							</Link>
+							</div>
 							<button
 								onClick={handleLogout}
 								className="bg-red-500 px-4 font-medium ">
