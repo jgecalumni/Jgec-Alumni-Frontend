@@ -8,7 +8,8 @@ import { IoIosArrowDown } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RxCross2 } from "react-icons/rx";
 import { Button } from "./ui/button";
-import { Drawer,DrawerContent } from "./ui/drawer";
+import { Drawer, DrawerContent } from "./ui/drawer";
+import { useAuth } from "@/store/AuthContext";
 
 const Links = [
 	{
@@ -68,6 +69,7 @@ const Navbar = () => {
 	const [open, setOpen] = useState(false);
 	const [openNav, setOpenNav] = useState(false);
 	const pathname = usePathname();
+	const { token, handleLogout, user } = useAuth();
 
 	return (
 		<>
@@ -103,10 +105,11 @@ const Navbar = () => {
 							<Link
 								key={link.name}
 								href={link.link}
-								className={` items-center hover:text-blue-500 duration-200 flex px-4 h-full ${pathname == link.link
-									? "bg-[#dae5f2] border-b-4 border-b-[#3a60c8] text-blue-500"
-									: "text-black"
-									}`}>
+								className={` items-center hover:text-blue-500 duration-200 flex px-4 h-full ${
+									pathname == link.link
+										? "bg-[#dae5f2] border-b-4 border-b-[#3a60c8] text-blue-500"
+										: "text-black"
+								}`}>
 								{link.name}
 							</Link>
 						))}
@@ -115,30 +118,34 @@ const Navbar = () => {
 							className="flex cursor-pointer  items-center gap-1 duration-200"
 							onClick={() => setOpen(!open)}>
 							<div
-								className={`hover:text-blue-600 ${open ? "text-blue-600" : ""
-									} duration-200`}>
+								className={`hover:text-blue-600 ${
+									open ? "text-blue-600" : ""
+								} duration-200`}>
 								More
 							</div>
-							<div className={`${open ? "rotate-180" : "rotate-0"} duration-200`}>
+							<div
+								className={`${open ? "rotate-180" : "rotate-0"} duration-200`}>
 								{" "}
 								<IoIosArrowDown />
 							</div>
 							<div
-								className={`${open
-									? "block absolute  w-[15%] right-[4em] bg-[#ffffff] rounded-sm shadow-lg top-[7em]"
-									: "hidden pointer-events-none"
-									}`}>
+								className={`${
+									open
+										? "block absolute  w-[15%] right-[4em] bg-[#ffffff] rounded-sm shadow-lg top-[7em]"
+										: "hidden pointer-events-none"
+								}`}>
 								<div className="flex flex-col justify-center">
 									{moreLinks.map((links, i) => (
 										<Link
 											key={links.name}
 											href={links.link}
-											className={`border-b hover:text-blue-600 border-b-[#ebeaea] ${pathname == links.link
-												? "bg-[#dae5f2] border-b-4 border-b-[#3a60c8] text-blue-500"
-												: ""
-												} text-black ${i === (moreLinks.length - 1) && "border-b-0"}`
-											}
-										>
+											className={`border-b hover:text-blue-600 border-b-[#ebeaea] ${
+												pathname == links.link
+													? "bg-[#dae5f2] border-b-4 border-b-[#3a60c8] text-blue-500"
+													: ""
+											} text-black ${
+												i === moreLinks.length - 1 && "border-b-0"
+											}`}>
 											<div className="p-3">{links.name}</div>
 										</Link>
 									))}
@@ -149,7 +156,10 @@ const Navbar = () => {
 				</div>
 			</nav>
 
-			<Drawer open={openNav} onClose={() => setOpenNav(false)} direction="left" >
+			<Drawer
+				open={openNav}
+				onClose={() => setOpenNav(false)}
+				direction="left">
 				<DrawerContent className="overflow-hidden block lg:hidden">
 					<div className="w-full h-full py-4 overflow-y-auto flex flex-col  items-center">
 						<div className="flex flex-col justify-center items-center">
@@ -174,36 +184,57 @@ const Navbar = () => {
 								<RxCross2 />
 							</div>
 						</div>
-						<div className="flex text-white mt-4 gap-6">
-							<Link href="/login">
-								<Button onClick={() => setOpenNav(false)} >
-									LOGIN
-								</Button>
-							</Link>
-							<Link href="/login">
-								<Button className="bg-[#1cad6c]" onClick={() => setOpenNav(false)} >
-									SIGN UP
-								</Button>
-							</Link>
-							<Link href="https://jgec.ac.in/" target="_blank" onClick={() => setOpenNav(false)} >
-								<Button className="bg-[#663298] ">
-									VISIT
-								</Button>
+						<div className="flex items-center text-white mt-4 gap-6">
+							{!!token ? (
+								<>
+									<Link href={`/profile/${user?.userId}`} onClick={()=>setOpenNav(false)}>
+										<Image
+											src={user?.userPhoto || ""}
+											width={50}
+											height={50}
+											className="rounded-full"
+											alt=""
+										/>
+									</Link>
+									<Button
+										onClick={()=>{handleLogout(),setOpenNav(false)}}
+										className="bg-red-500  px-4 font-medium ">
+										Logout
+									</Button>
+								</>
+							) : (
+								<>
+									<Link href="/login">
+										<Button onClick={() => setOpenNav(false)}>LOGIN</Button>
+									</Link>
+									<Link href="/login">
+										<Button
+											className="bg-[#1cad6c]"
+											onClick={() => setOpenNav(false)}>
+											SIGN UP
+										</Button>
+									</Link>
+								</>
+							)}
+							<Link
+								href="https://jgec.ac.in/"
+								target="_blank"
+								onClick={() => setOpenNav(false)}>
+								<Button className="bg-[#663298] ">VISIT</Button>
 							</Link>
 						</div>
 						<hr className="mt-6 border border-[#e8e8e8] w-full" />
 						<div className="flex text-sm font-medium flex-col justify-center w-full">
-							{[...Links, ...moreLinks].map((link, i,arr) => (
+							{[...Links, ...moreLinks].map((link, i, arr) => (
 								<Link
 									key={link.name}
 									href={link.link}
 									onClick={() => setOpenNav(false)}
-									className={` items-center flex px-6 min-[350px]:px-8 py-3 text-sm h-full ${pathname == link.link
-										? "bg-[#dae5f2] border-l-4  border-l-[#3a60c8] text-blue-500"
-										: "text-black"
-										}  ${i === (arr.length - 1) ? "border-b-0" : "border-b"}`
-									}
-								>
+									className={` items-center flex px-6 min-[350px]:px-8 py-3 text-sm h-full ${
+										pathname == link.link
+											? "bg-[#dae5f2] border-l-4  border-l-[#3a60c8] text-blue-500"
+											: "text-black"
+									}  ${i === arr.length - 1 ? "border-b-0" : "border-b"}`}>
 									{link.name}
 								</Link>
 							))}

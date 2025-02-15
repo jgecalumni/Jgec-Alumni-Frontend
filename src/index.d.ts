@@ -78,3 +78,20 @@ interface IScholarshipType {
 		}
 	];
 }
+interface IUserType {
+	id: number;
+	name: string;
+	email: string;
+	password: string;
+	studentId: any;
+	passingYear: any;
+	department: string;
+	residentialAddress: string;
+	professionalAddress: string;
+	photo: string | null;
+	photo_public_id: string;
+	receipt: string | null;
+	receipt_public_id: string;
+	createdAt: string;
+	updatedAt: string;
+}

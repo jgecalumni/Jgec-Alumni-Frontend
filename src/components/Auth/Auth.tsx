@@ -57,7 +57,7 @@ const Auth: React.FC = () => {
 						onSubmit={(values, actions) => {
 							handleLogin(values, actions.setSubmitting);
 						}}>
-						{({ handleChange }) => (
+						{({ handleChange,isSubmitting }) => (
 							<Form className="flex flex-col gap-4">
 								<div className="flex flex-col gap-1">
 									<InputField
@@ -87,11 +87,24 @@ const Auth: React.FC = () => {
 										className="text-red-500 text-xs"
 									/>
 								</div>
-								<Button
-									className="py-3 hover:scale-100 text-white"
-									type="submit">
-									Login
-								</Button>
+								{isSubmitting ? (
+									<>
+										<Button
+											disabled
+											className="py-3 text-white hover:scale-100 w-full max-w-lg lg:max-w-xs"
+											type="submit">
+											<Loader2 className="animate-spin" /> Loading...
+										</Button>
+									</>
+								) : (
+									<>
+										<Button
+											className="py-3 text-white hover:scale-100 w-full max-w-lg lg:max-w-xs"
+											type="submit">
+											Login
+										</Button>
+									</>
+								)}
 							</Form>
 						)}
 					</Formik>

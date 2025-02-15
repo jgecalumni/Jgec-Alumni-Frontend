@@ -14,17 +14,21 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 interface User {
-	id: string;
 	email: string;
+	exp: number;
+	iat: number;
 	name: string;
+	userId: number;
+	userPhoto: string;
 }
 
 interface AuthContextType {
 	token: string | null;
 	user: User | null;
+	loading: boolean;
 	setToken: (token: string | null) => void;
 	handleLogin: (values: ILoginType, setSubmitting: any) => void;
-    handleLogout: () => void;
+	handleLogout: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -38,6 +42,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 	const [user, setUser] = useState<User | null>(null);
 	const [login, { isError: isLoginError, error: loginError }] =
 		useLoginMutation();
+	const [loading, setLoading] = useState<boolean>(false);
 	const [logout] = useLogoutMutation();
 
 	const router = useRouter();
@@ -45,17 +50,19 @@ export function AuthProvider({ children }: AuthProviderProps) {
 	const decodeToken = (token: string | null): User | null => {
 		if (!token) return null;
 		try {
-			return jwtDecode<User>(token); 
+			return jwtDecode<User>(token);
 		} catch (error) {
 			console.error("Invalid token:", error);
 			return null;
 		}
+		setLoading(false);
 	};
 
 	useEffect(() => {
+		setLoading(true);
 		const storedToken = Cookies.get("token") || null;
 		setToken(storedToken);
-		setUser(decodeToken(storedToken)); 
+		setUser(decodeToken(storedToken));
 	}, []);
 
 	useEffect(() => {
@@ -74,7 +81,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 			setToken(accessToken);
 			setUser(decodeToken(accessToken));
 		}
-		setSubmitting(false);
+		return setSubmitting(false);
 	};
 
 	const handleLogout = async () => {
@@ -83,11 +90,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
 			toast.success("Logout successful");
 			setToken("");
 			setUser(null);
+			router.push("/login")
 		}
 	};
 
 	return (
-		<AuthContext.Provider value={{ token, user, setToken, handleLogin,handleLogout }}>
+		<AuthContext.Provider
+			value={{ token, user, setToken, handleLogin, handleLogout, loading }}>
 			{children}
 		</AuthContext.Provider>
 	);

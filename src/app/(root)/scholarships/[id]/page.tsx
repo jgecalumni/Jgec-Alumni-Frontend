@@ -25,7 +25,6 @@ interface EventParams {
 const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 	const { id } = params;
 	const { data, isLoading, isError, error } = useScholarshipsQuery(id);
-	console.log(data?.data.semRequire);
 
 	const [loading, setLoading] = useState<boolean>(false);
 	useEffect(() => {

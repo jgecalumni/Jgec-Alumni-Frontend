@@ -46,11 +46,8 @@ export default function RootLayout({
 				<Providers>
 					<AuthProvider>
 						<ReactQueryProvider>
-							<Topbar />
-							<Navbar />
 							<Toaster />
 							{children}
-							<Footer />
 						</ReactQueryProvider>
 					</AuthProvider>
 				</Providers>
