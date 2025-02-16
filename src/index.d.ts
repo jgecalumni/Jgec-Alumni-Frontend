@@ -52,13 +52,10 @@ interface IScholarshipType {
 	id: string;
 	name: string;
 	subtitle: string;
-	providerId: string;
-	provider: {
-		name: string;
-		photo: string;
-		passingYear: number;
-		department: string;
-	};
+	providerName: string;
+	providerImage: string;
+	providerDepartment:string;
+	providerPassingYear:any
 	providerDescription: string;
 	description: string;
 	whoCanApply: string;

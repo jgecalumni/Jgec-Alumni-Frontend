@@ -20,7 +20,7 @@ const Page: React.FC<ProfileParams> = ({ params }: ProfileParams) => {
 	const { data, isError, error, refetch } = useUserDetailsQuery(id);
 	const [updateUser, { isError: isUpdateError, error: updateError }] =
 		useUpdateUserMutation();
-	const [imagePreview, setImagePreview] = useState<string | null>(null);
+	const [imagePreview, setImagePreview] = useState<string|null>(null);
 
 	const handleFileChange = (
 		event: React.ChangeEvent<HTMLInputElement>,
@@ -53,7 +53,8 @@ const Page: React.FC<ProfileParams> = ({ params }: ProfileParams) => {
 			console.log((updateError as any)?.data?.message);
 			
 		}
-	}, [isError, error, isUpdateError, updateError]);
+		setImagePreview(data?.data.photo||null)
+	}, [isError, error, isUpdateError, updateError,data]);
 
 	const handleUpdate = async (values: IUserType, setSubmitting: any) => {
 		const formData = new FormData();
@@ -249,7 +250,7 @@ const Page: React.FC<ProfileParams> = ({ params }: ProfileParams) => {
 								) : (
 									<div className="mt-2">
 										<Image
-											src={data?.data.photo || ""}
+											src={imagePreview||""}
 											alt="Profile Photo"
 											width={180}
 											height={180}

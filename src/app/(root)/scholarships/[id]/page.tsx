@@ -485,8 +485,8 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 				<div className="h-full lg:w-1/2 lg:px-4  rounded-md">
 					<div className="flex rotate-0 rounded-md overflow-hidden shadow-xl  bg-white h-[40vh] items-center justify-center">
 						<Image
-							src={data?.data.provider.photo || ""}
-							alt={data?.data.provider.name || ""}
+							src={data?.data.providerImage || ""}
+							alt={data?.data.providerName || ""}
 							layout="fill"
 							objectFit="contain"
 							className=" rotate-0  rounded-sm"
