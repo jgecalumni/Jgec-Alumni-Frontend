@@ -15,7 +15,6 @@ const Events: React.FC = () => {
 		page: page,
 		search: "",
 	});
-
 	const [timeRemaining, setTimeRemaining] = useState<Record<number, any>>({});
 	const [totalPages, setTotalPages] = useState<number>(1);
 
@@ -84,7 +83,7 @@ const Events: React.FC = () => {
 				normalTitle="Archive"
 				description="Get information about all our upcoming events."
 			/>
-			{data ? (
+			{data?.events.length!=0 ? (
 				<>
 					{data?.events.map((event) => (
 						<div
