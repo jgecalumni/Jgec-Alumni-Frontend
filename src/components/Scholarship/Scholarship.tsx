@@ -44,7 +44,7 @@ const Scholarship = () => {
 							Scholarship Programs
 						</div>
 						<div className="w-full overflow-hidden h-[calc(70vh-4rem)]">
-							<ul className="bottom-to overflow-auto">
+							<ul className="bottom-top overflow-auto">
 								{data?.scholarships.map((item, index) => (
 									<li
 										key={index}
