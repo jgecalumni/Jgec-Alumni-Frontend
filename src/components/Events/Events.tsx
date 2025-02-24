@@ -81,7 +81,7 @@ const Events: React.FC = () => {
 			<SectionHeader
 				highlightTitle="All Events"
 				normalTitle="Archive"
-				description="Get information about all our upcoming events."
+				description="Get information about all our upcoming events"
 			/>
 			{data?.events.length!=0 ? (
 				<>
