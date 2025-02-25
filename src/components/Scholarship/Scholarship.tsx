@@ -8,7 +8,7 @@ import Loading from "@/app/Loader";
 import toast from "react-hot-toast";
 import { useGetAllScholDocsQuery } from "@/store/feature/document-feature";
 import Image from "next/image";
-import { Eye } from "lucide-react";
+import { Download, Eye } from "lucide-react";
 
 const Scholarship = () => {
 	const [page, setPage] = useState<number>(1);
@@ -41,6 +41,21 @@ const Scholarship = () => {
 		return <Loading />;
 	}
 
+	const handleDownload = async (url: string, filename: string) => {
+		try {
+			const response = await fetch(url);
+			const blob = await response.blob();
+			const link = document.createElement("a");
+			link.href = URL.createObjectURL(blob);
+			link.download = filename || "download.pdf"; // Default filename
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+		} catch (error) {
+			console.error("Download failed:", error);
+		}
+	};
+
 	return (
 		<>
 			<SectionHeader
@@ -57,7 +72,7 @@ const Scholarship = () => {
 							Documents
 						</div>
 						<div className="p-4 flex flex-wrap justify-center gap-3 ">
-							{docsData?.response.map((item:any) => (
+							{docsData?.response.map((item: any) => (
 								<div
 									key={item.title}
 									className="group rounded border shadow-lg flex flex-col items-center bg-[#f2f2f2]  w-[30vh] h-[20vh] relative overflow-hidden">
@@ -78,14 +93,22 @@ const Scholarship = () => {
 												height={20}
 												alt=""
 											/>
-											<div className="text-sm line-clamp-1 group-hover:line-clamp-2">{item.title}</div>
+											<div className="text-sm line-clamp-1 group-hover:line-clamp-2">
+												{item.title}
+											</div>
 										</div>
-										<div className="mt-4 flex gap-6 justify-center items-center p-4">
+										<div className="mt-5 flex gap-6 justify-center items-center p-4">
 											<Link
 												href={item.link}
 												target="_blank">
-												<Eye size={18} />
+												<Eye size={19} />
 											</Link>
+											<Download
+												size={19}
+												onClick={() =>
+													handleDownload(item.link, `${item.title}.pdf`)
+												}
+											/>
 										</div>
 									</div>
 								</div>
