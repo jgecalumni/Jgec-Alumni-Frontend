@@ -56,7 +56,7 @@ const Scholarship = () => {
 						<div className="font-medium rounded bg-slate-200 p-2">
 							Documents
 						</div>
-						<div className="p-4">
+						<div className="p-4 flex flex-wrap overflow-scroll">
 							{docsData?.response.map((item:any) => (
 								<div
 									key={item.title}
