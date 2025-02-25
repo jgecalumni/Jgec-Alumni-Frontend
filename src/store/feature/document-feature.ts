@@ -11,7 +11,7 @@ interface IGetAllDocsRes {
 
 export const docsApi = baseApi
 	.enhanceEndpoints({
-		addTagTypes: ["getAllScholarshipsDocs"],
+		addTagTypes: ["getAllScholarshipsDocs","getAllkanchenjungaDocs"],
 	})
 	.injectEndpoints({
 		endpoints: (builder) => ({
@@ -23,7 +23,15 @@ export const docsApi = baseApi
 				}),
 				providesTags: ["getAllScholarshipsDocs"],
 			}),
+			getAllKanchenungaDocs: builder.query<IGetAllDocsRes, any>({
+				query: () => ({
+					url: "/documents/kanchenjungaDocs",
+					method: "GET",
+					credentials: "include",
+				}),
+				providesTags: ["getAllkanchenjungaDocs"],
+			}),
 		}),
 	});
 
-export const { useGetAllScholDocsQuery } = docsApi;
+export const { useGetAllScholDocsQuery,useGetAllKanchenungaDocsQuery } = docsApi;

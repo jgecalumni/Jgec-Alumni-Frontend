@@ -20,7 +20,6 @@ const Scholarship = () => {
 		error: docsError,
 		refetch,
 	} = useGetAllScholDocsQuery({});
-	console.log(docsData?.response);
 
 	const { data, error, isError, isLoading } = useAllScholarshipsQuery({
 		page: page,
@@ -69,14 +68,14 @@ const Scholarship = () => {
 				{docsData?.response.length > 0 ? (
 					<div className=" bg-slate-100 mb-8 rounded overflow-y-auto lg:w-1/2 h-[70vh]">
 						<div className="font-medium rounded bg-slate-200 p-2">
-							Documents
+							Scholarship Documents
 						</div>
 						<div className="p-4 grid lg:grid-cols-3 lg:gap-3 grid-cols-2 gap-3 ">
 							{docsData?.response.map((item: any) => (
 								<div
 									key={item.title}
 									className="group rounded border shadow-lg flex flex-col items-center bg-[#f2f2f2]  h-[20vh]  lg:w-[30vh] lg:h-[20vh] relative overflow-hidden">
-									<div className="mt-3 lg:mt-8">
+									<div className="mt-8 lg:mt-8">
 										<Image
 											src="/assets/pdf.png"
 											width={40}
