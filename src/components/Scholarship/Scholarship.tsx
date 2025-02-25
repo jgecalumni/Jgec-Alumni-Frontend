@@ -52,11 +52,11 @@ const Scholarship = () => {
 			{/* Scholarship Details */}
 			<div className="h-screen flex items-center px-3 justify-evenly">
 				{docsData?.response.length > 0 ? (
-					<div className=" bg-slate-100 rounded w-1/2 h-[70vh]">
+					<div className=" bg-slate-100 rounded overflow-y-auto w-1/2 h-[70vh]">
 						<div className="font-medium rounded bg-slate-200 p-2">
 							Documents
 						</div>
-						<div className="p-4 flex flex-wrap overflow-scroll">
+						<div className="p-4 flex flex-wrap justify-center gap-3 ">
 							{docsData?.response.map((item:any) => (
 								<div
 									key={item.title}
@@ -78,7 +78,7 @@ const Scholarship = () => {
 												height={20}
 												alt=""
 											/>
-											<div className="text-sm line-clamp-2">{item.title}</div>
+											<div className="text-sm line-clamp-1 group-hover:line-clamp-2">{item.title}</div>
 										</div>
 										<div className="mt-4 flex gap-6 justify-center items-center p-4">
 											<Link
