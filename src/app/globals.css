@@ -172,7 +172,7 @@
 }
 
 .bottom-top {
-	animation: bottom-top 60s linear infinite;
+	animation: bottom-top 20s linear infinite;
 }
 .bottom-top:hover {
 	animation-play-state: paused;

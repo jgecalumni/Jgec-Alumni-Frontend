@@ -6,8 +6,16 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { useAllScholarshipsQuery } from "@/store/feature/scholarship-feature";
 const Home: React.FC = () => {
+	const { data, error, isError, isLoading } = useAllScholarshipsQuery({
+			page: 1,
+			search: "",
+		});
+		console.log(data);
+		
 	return (
+		
 		<>
 			<div className="w-full">
 				<div className="text-neutral-950  flex justify-center  relative h-[30vh] xs:h-[50vh] md:h-[60vh] lg:h-[70vh] lg:mt-[8em] mt-[6em] ">
@@ -17,10 +25,10 @@ const Home: React.FC = () => {
 							clickable: false,
 						}}
 						loop={true}
-						autoplay={{
-							delay: 5000,
-							disableOnInteraction: true,
-						}}
+						// autoplay={{
+						// 	delay: 5000,
+						// 	disableOnInteraction: true,
+						// }}
 						modules={[Pagination, Autoplay]}
 						className="mySwiper">
 						{[0, 1, 2].map((ele) => (
@@ -74,30 +82,24 @@ const Home: React.FC = () => {
 								// navigation={true}
 								modules={[Navigation]}
 								className="mySwiper">
-								{[0, 1, 2].map((ele) => (
+								{data?.scholarships.map((ele:any) => (
 									<SwiperSlide key={ele}>
 										<div className="w-full h-full flex flex-col lg:flex-row gap-6 pb-4 pr-4 ">
 											<div className="h-auto sm:h-60 w-full lg:w-1/2 lg:h-full">
 												<Image
-													src="/uploads/scholarship/Bibhas-Bhowmik-1737607751252-WhatsApp Image 2025-01-23 at 08.jpg"
-													alt="slide-1"
+													src={ele.providerImage}
+													alt={ele.providerName}
 													width={150}
 													height={150}
 													className="w-full h-full !object-contain lg:!object-cover rounded-sm"
 												/>
 											</div>
-											<div className="flex flex-col justify-start  gap-6  w-full text-white lg:pt-4">
+											<div className="flex flex-col justify-start  gap-6  w-full text-white lg:pt-8">
 												<div className="text-base md:text-lg lg:text-xl uppercase font-medium w-full text-center">
-													Confident and Profession Personality Scholarship
+													{ele.name}
 												</div>
-												<div className="flex flex-col text-sm md:text-base justify-center items-center text-slate-200 gap-2">
-													<h4>For any 4th year Civil Engineering Student</h4>
-													<h1>
-														Sponsored by Mr. Bibhas Bhowmik(JGEC, Civil 1985).
-													</h1>
-													<p className="text-xs md:text-sm text-neutral-200">
-														(Initiated from 2013)
-													</p>
+												<div className="flex flex-col text-[14px] lg:text-[18px] md:text-base justify-center items-center text-slate-200 gap-2">
+													{ele.subtitle}
 												</div>
 											</div>
 										</div>

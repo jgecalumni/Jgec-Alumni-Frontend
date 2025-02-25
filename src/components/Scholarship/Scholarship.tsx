@@ -37,7 +37,7 @@ const Scholarship = () => {
 		}
 	}, [data, isError, error]); // Runs whenever `data` updates
 
-	if (isLoading) {
+	if (isLoading && docsLoading) {
 		return <Loading />;
 	}
 
@@ -65,18 +65,18 @@ const Scholarship = () => {
 			/>
 
 			{/* Scholarship Details */}
-			<div className="h-screen flex items-center px-3 justify-evenly">
+			<div className="my-8 lg:flex items-center p-3 justify-evenly">
 				{docsData?.response.length > 0 ? (
-					<div className=" bg-slate-100 rounded overflow-y-auto w-1/2 h-[70vh]">
+					<div className=" bg-slate-100 mb-8 rounded overflow-y-auto lg:w-1/2 h-[70vh]">
 						<div className="font-medium rounded bg-slate-200 p-2">
 							Documents
 						</div>
-						<div className="p-4 flex flex-wrap justify-center gap-3 ">
+						<div className="p-4 grid lg:grid-cols-3 lg:gap-3 grid-cols-2 gap-3 ">
 							{docsData?.response.map((item: any) => (
 								<div
 									key={item.title}
-									className="group rounded border shadow-lg flex flex-col items-center bg-[#f2f2f2]  w-[30vh] h-[20vh] relative overflow-hidden">
-									<div className="mt-8">
+									className="group rounded border shadow-lg flex flex-col items-center bg-[#f2f2f2]  h-[20vh]  lg:w-[30vh] lg:h-[20vh] relative overflow-hidden">
+									<div className="mt-3 lg:mt-8">
 										<Image
 											src="/assets/pdf.png"
 											width={40}
@@ -86,14 +86,14 @@ const Scholarship = () => {
 									</div>
 
 									<div className="bg-white absolute bottom-0 w-full p-2 group-hover:p-3 group-hover:h-full transition-all duration-300 h-1/4">
-										<div className="flex gap-1 items-start line-clamp-1">
+										<div className="flex gap-1 group-hover:items-start items-center line-clamp-1 text-xs">
 											<Image
 												src="/assets/pdf.png"
 												width={20}
 												height={20}
 												alt=""
 											/>
-											<div className="text-sm line-clamp-1 group-hover:line-clamp-2">
+											<div className=" line-clamp-1 group-hover:line-clamp-2">
 												{item.title}
 											</div>
 										</div>
