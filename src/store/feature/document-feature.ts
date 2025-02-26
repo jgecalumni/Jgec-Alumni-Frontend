@@ -7,11 +7,13 @@ interface IGetAllDocsRes {
 	error: boolean;
 }
 
-
-
 export const docsApi = baseApi
 	.enhanceEndpoints({
-		addTagTypes: ["getAllScholarshipsDocs","getAllkanchenjungaDocs"],
+		addTagTypes: [
+			"getAllScholarshipsDocs",
+			"getAllkanchenjungaDocs",
+			"getAllGivingBackDocs",
+		],
 	})
 	.injectEndpoints({
 		endpoints: (builder) => ({
@@ -31,7 +33,19 @@ export const docsApi = baseApi
 				}),
 				providesTags: ["getAllkanchenjungaDocs"],
 			}),
+			getAllGivingBackDocs: builder.query<IGetAllDocsRes, any>({
+				query: () => ({
+					url: "/documents/givingBackDocs",
+					method: "GET",
+					credentials: "include",
+				}),
+				providesTags: ["getAllGivingBackDocs"],
+			}),
 		}),
 	});
 
-export const { useGetAllScholDocsQuery,useGetAllKanchenungaDocsQuery } = docsApi;
+export const {
+	useGetAllScholDocsQuery,
+	useGetAllKanchenungaDocsQuery,
+	useGetAllGivingBackDocsQuery,
+} = docsApi;

@@ -1,8 +1,38 @@
+"use client"
+
 import Image from "next/image";
 import React from "react";
-import SectionHeader from "../section-header";
+import { Download, Eye } from "lucide-react";
+import Link from "next/link";
+import { useGetAllGivingBackDocsQuery } from "@/store/feature/document-feature";
+import Loading from "@/app/Loader";
 
 const Giving_Back = () => {
+	const {
+		data: docsData,
+		isLoading: docsLoading,
+		isError: docsisError,
+		error: docsError,
+		refetch,
+	} = useGetAllGivingBackDocsQuery({});
+	if (docsLoading) {
+		return <Loading />;
+	}
+
+	const handleDownload = async (url: string, filename: string) => {
+		try {
+			const response = await fetch(url);
+			const blob = await response.blob();
+			const link = document.createElement("a");
+			link.href = URL.createObjectURL(blob);
+			link.download = filename || "download.pdf"; // Default filename
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+		} catch (error) {
+			console.error("Download failed:", error);
+		}
+	};
 	return (
 		<>
 			<div className="lg:mt-[8em] w-full   mt-[6em] h-[60vh] overflow-hidden  ">
@@ -25,82 +55,140 @@ const Giving_Back = () => {
 					/>
 				</div>
 			</div>
-			<div className="pb-14">
-				<div className="lg:p-14 p-6 w-full flex flex-col">
-					<h2 className="lg:text-4xl md:text-3xl text-2xl text-primary  font-semibold">
-						How can you give back?
-					</h2>
-					<div className="border-primary w-20 md:w-48 mt-2 border-[2.5px] rounded-full"></div>
-				</div>
-				<div className="bg-[#f8f9f9] rounded-lg h-[70vh] md:h-[80vh] lg:h-[60vh]  flex flex-col-reverse lg:flex-row lg:justify-center items-end lg:items-center   mt-4">
-					<div className="p-8 lg:p-14">
-						<h2 className="lg:text-5xl md:text-4xl text-2xl lg:mb-6 mb-4 font-semibold">Donation</h2>
-						<p className="md:w-[80%] lg:text-lg md:text-lg text-sm">
-							Donations to the Alumni Association help us support and strengthen
-							our alumni network, career services, mentorship program, and other
-							initiatives that benefit both our alumni and our university.
-						</p>
-					</div>
-					<div className="  w-[75%] relative h-full p-4  bg-[#516bb7]">
-						<div className=" absolute rotate-0 bg-white  lg:top-[2.8rem] border-black w-full  -left-[4rem] h-full">
-							<Image
-								loading="lazy"
-								layout="fill"
-								objectFit="cover"
-								src="/assets/membership.jpg"
-								alt=""
-								className="p-4"
-							/>
+			<div className="my-8 flex flex-col-reverse items-center p-3 px-8 justify-evenly">
+				{docsData?.response.length > 0 ? (
+					<div className=" bg-slate-100 mb-8 rounded overflow-y-auto w-full  h-[50vh]">
+						<div className="font-medium rounded bg-slate-200 p-2">
+							Documents
+						</div>
+						<div className="p-4 grid lg:grid-cols-3  lg:gap-3 grid-cols-2 gap-3 ">
+							{docsData?.response.map((item: any) => (
+								<div
+									key={item.title}
+									className="group rounded border shadow-lg flex flex-col items-center bg-[#f2f2f2]  h-[20vh]  lg:w-[30vh] lg:h-[20vh] relative overflow-hidden">
+									<div className="mt-8 lg:mt-8">
+										<Image
+											src="/assets/pdf.png"
+											width={40}
+											height={40}
+											alt=""
+										/>
+									</div>
+
+									<div className="bg-white absolute bottom-0 w-full p-2 group-hover:p-3 group-hover:h-full transition-all duration-300 h-1/4">
+										<div className="flex gap-1 group-hover:items-start items-center line-clamp-1 text-xs">
+											<Image
+												src="/assets/pdf.png"
+												width={20}
+												height={20}
+												alt=""
+											/>
+											<div className=" line-clamp-1 group-hover:line-clamp-2">
+												{item.title}
+											</div>
+										</div>
+										<div className="mt-5 flex gap-6 justify-center items-center p-4">
+											<Link
+												href={item.link}
+												target="_blank">
+												<Eye size={19} />
+											</Link>
+											<Download
+												size={19}
+												onClick={() =>
+													handleDownload(item.link, `${item.title}.pdf`)
+												}
+											/>
+										</div>
+									</div>
+								</div>
+							))}
 						</div>
 					</div>
-				</div>
-				<div className="bg-[#fff] rounded-lg h-[75vh] md:h-[84vh] lg:h-[60vh]  flex lg:flex-row flex-col lg:justify-center lg:items-center gap-8   mb-4">
-					<div className="  w-[75%] relative h-full p-4  bg-[#516bb7]">
-						<div className=" absolute rotate-0 bg-white  lg:top-[2.8rem] border-black w-full  -right-[4rem] h-full">
-							<Image
-								loading="lazy"
-								layout="fill"
-								objectFit="cover"
-								src="/assets/membership.jpg"
-								alt=""
-								className="p-4"
-							/>
+				) : (
+					<></>
+				)}
+				<div className="pb-14">
+					<div className="lg:p-14 p-6 w-full flex flex-col">
+						<h2 className="lg:text-4xl md:text-3xl text-2xl text-primary  font-semibold">
+							How can you give back?
+						</h2>
+						<div className="border-primary w-20 md:w-48 mt-2 border-[2.5px] rounded-full"></div>
+					</div>
+					<div className="bg-[#f8f9f9] rounded-lg h-[70vh] md:h-[80vh] lg:h-[60vh]  flex flex-col-reverse lg:flex-row lg:justify-center items-end lg:items-center   mt-4">
+						<div className="p-8 lg:p-14">
+							<h2 className="lg:text-5xl md:text-4xl text-2xl lg:mb-6 mb-4 font-semibold">
+								Donation
+							</h2>
+							<p className="md:w-[80%] lg:text-lg md:text-lg text-sm">
+								Donations to the Alumni Association help us support and
+								strengthen our alumni network, career services, mentorship
+								program, and other initiatives that benefit both our alumni and
+								our university.
+							</p>
+						</div>
+						<div className="  w-[75%] relative h-full p-4  bg-[#516bb7]">
+							<div className=" absolute rotate-0 bg-white  lg:top-[2.8rem] border-black w-full  -left-[4rem] h-full">
+								<Image
+									loading="lazy"
+									layout="fill"
+									objectFit="cover"
+									src="/assets/membership.jpg"
+									alt=""
+									className="p-4"
+								/>
+							</div>
 						</div>
 					</div>
-					<div className="lg:p-14 p-8 ">
-						<h2 className="lg:text-5xl md:text-4xl text-2xl mb-4 lg:mb-6 font-semibold">
-							Internship/Job opportunity
-						</h2>
-						<p className="md:w-[90%] text-sm md:text-lg lg:text-lg">
-							JGEC Alumni Association provides internship opportunities for our
-							students with alumni-owned or alumni-managed companies, offering
-							valuable hands-on experience and networking opportunities to help
-							jump-start their careers.
-						</p>
+					<div className="bg-[#fff] rounded-lg h-[75vh] md:h-[84vh] lg:h-[60vh]  flex lg:flex-row flex-col lg:justify-center lg:items-center gap-8   mb-4">
+						<div className="  w-[75%] relative h-full p-4  bg-[#516bb7]">
+							<div className=" absolute rotate-0 bg-white  lg:top-[2.8rem] border-black w-full  -right-[4rem] h-full">
+								<Image
+									loading="lazy"
+									layout="fill"
+									objectFit="cover"
+									src="/assets/membership.jpg"
+									alt=""
+									className="p-4"
+								/>
+							</div>
+						</div>
+						<div className="lg:p-14 p-8 ">
+							<h2 className="lg:text-5xl md:text-4xl text-2xl mb-4 lg:mb-6 font-semibold">
+								Internship/Job opportunity
+							</h2>
+							<p className="md:w-[90%] text-sm md:text-lg lg:text-lg">
+								JGEC Alumni Association provides internship opportunities for
+								our students with alumni-owned or alumni-managed companies,
+								offering valuable hands-on experience and networking
+								opportunities to help jump-start their careers.
+							</p>
+						</div>
 					</div>
-				</div>
-				<div className="bg-[#f8f9f9] rounded-lg h-[70vh] md:h-[80vh] lg:h-[60vh]  flex flex-col-reverse lg:flex-row lg:justify-center items-end lg:items-center   mt-4">
-					<div className="p-8 lg:p-14">
-						<h2 className="lg:text-5xl text-2xl lg:mb-6 mb-4 font-semibold">
-							Mentorship Programme
-						</h2>
-						<p className="md:w-[80%] text-sm md:text-lg lg:text-lg">
-							The alumni mentoring program at Jalpaiguri Government Engineering College is an
-							initiative that connects current students with experienced alumni
-							who can provide guidance and support as they navigate their
-							academic and professional journeys.
-						</p>
-					</div>
-					<div className="  w-[75%] relative h-full p-4  bg-[#516bb7]">
-						<div className=" absolute rotate-0 bg-white  lg:top-[2.8rem] border-black w-full  -left-[4rem] h-full">
-							<Image
-								loading="lazy"
-								layout="fill"
-								objectFit="cover"
-								src="/assets/membership.jpg"
-								alt=""
-								className="p-4"
-							/>
+					<div className="bg-[#f8f9f9] rounded-lg h-[70vh] md:h-[80vh] lg:h-[60vh]  flex flex-col-reverse lg:flex-row lg:justify-center items-end lg:items-center   mt-4">
+						<div className="p-8 lg:p-14">
+							<h2 className="lg:text-5xl text-2xl lg:mb-6 mb-4 font-semibold">
+								Mentorship Programme
+							</h2>
+							<p className="md:w-[80%] text-sm md:text-lg lg:text-lg">
+								The alumni mentoring program at Jalpaiguri Government
+								Engineering College is an initiative that connects current
+								students with experienced alumni who can provide guidance and
+								support as they navigate their academic and professional
+								journeys.
+							</p>
+						</div>
+						<div className="  w-[75%] relative h-full p-4  bg-[#516bb7]">
+							<div className=" absolute rotate-0 bg-white  lg:top-[2.8rem] border-black w-full  -left-[4rem] h-full">
+								<Image
+									loading="lazy"
+									layout="fill"
+									objectFit="cover"
+									src="/assets/membership.jpg"
+									alt=""
+									className="p-4"
+								/>
+							</div>
 						</div>
 					</div>
 				</div>
