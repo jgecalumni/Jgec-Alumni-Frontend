@@ -212,10 +212,11 @@ const Kanchenjunga = () => {
 												<Link
 													href={item.link}
 													target="_blank">
-													<Eye size={19} />
+													<Eye size={19} cursor={"pointer"}/>
 												</Link>
 												<Download
 													size={19}
+													cursor={"pointer"}
 													onClick={() =>
 														handleDownload(item.link, `${item.title}.pdf`)
 													}

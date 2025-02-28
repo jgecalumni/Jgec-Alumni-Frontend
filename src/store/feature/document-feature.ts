@@ -13,6 +13,7 @@ export const docsApi = baseApi
 			"getAllScholarshipsDocs",
 			"getAllkanchenjungaDocs",
 			"getAllGivingBackDocs",
+			"getAllAuditReportDocs",
 		],
 	})
 	.injectEndpoints({
@@ -41,6 +42,14 @@ export const docsApi = baseApi
 				}),
 				providesTags: ["getAllGivingBackDocs"],
 			}),
+			getAllAuditReportDocs: builder.query<IGetAllDocsRes, any>({
+				query: () => ({
+					url: "/documents/auditReportDocs",
+					method: "GET",
+					credentials: "include",
+				}),
+				providesTags: ["getAllAuditReportDocs"],
+			}),
 		}),
 	});
 
@@ -48,4 +57,5 @@ export const {
 	useGetAllScholDocsQuery,
 	useGetAllKanchenungaDocsQuery,
 	useGetAllGivingBackDocsQuery,
+	useGetAllAuditReportDocsQuery,
 } = docsApi;

@@ -52,8 +52,8 @@ const moreLinks = [
 		link: "/rooms",
 	},
 	{
-		name: "Alumni-Fun-Club",
-		link: "/alumni-fun-club",
+		name: "Audit Report",
+		link: "/audit-report",
 	},
 	{
 		name: "Upcoming Events",
@@ -187,7 +187,9 @@ const Navbar = () => {
 						<div className="flex items-center text-white mt-4 gap-6">
 							{!!token ? (
 								<>
-									<Link href={`/profile/${user?.userId}`} onClick={()=>setOpenNav(false)}>
+									<Link
+										href={`/profile/${user?.userId}`}
+										onClick={() => setOpenNav(false)}>
 										<Image
 											src={user?.userPhoto || ""}
 											width={50}
@@ -197,7 +199,9 @@ const Navbar = () => {
 										/>
 									</Link>
 									<Button
-										onClick={()=>{handleLogout(),setOpenNav(false)}}
+										onClick={() => {
+											handleLogout(), setOpenNav(false);
+										}}
 										className="bg-red-500  px-4 font-medium ">
 										Logout
 									</Button>
