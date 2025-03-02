@@ -36,9 +36,9 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
                 </div>
             </div>
             {data?.data.images.length === 0 && <div className="text-center h-screen flex justify-center items-center text-2xl">No images found</div>}
-            <div className="h-screen p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="p-8 py-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 {data?.data.images.map((item: any) => (
-                    <div key={item.id} className="relative flex items-center justify-center h-[30vh]">
+                    <div key={item.id} className=" rotate-0 flex items-center justify-center h-[30vh]">
                         <Image
                             layout="fill"
                             objectFit="cover"
@@ -46,7 +46,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
                             alt=""
                             className="object-cover rounded-md  rotate-0"
                         />
-                        <div className="absolute text-white text-xl font-medium">{item.name}</div>
+                        
                     </div>
                 ))}
             </div>
