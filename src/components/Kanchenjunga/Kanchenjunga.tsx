@@ -40,12 +40,20 @@ const Kanchenjunga = () => {
 				normalTitle="junga"
 				description="A private land inside the college campus purchased by Alumni Association"
 			/>
-			<div className="flex justify-between lg:flex-row flex-col lg:items-start">
-				<div className="lg:p-8 border lg:w-[80%]">
+			<div className="flex justify-between mx-10 flex-col lg:items-start">
+				<div className="lg:p-8 border ">
 					<div className="border flex flex-col space-y-7 lg:space-y-14 border-gray-300 bg-white rounded-md p-4">
+					<div className=" p-2 w-full flex flex-col">
+						<h2 className="lg:text-2xl md:text-3xl text-2xl text-primary  font-semibold">
+							JALPAIGURI GOVERNMENT ENGINEERING COLLEGE ALUMNI BUILD
+							MULTIPURPOSE "KANCHENJUNGA": A HUB FOR LEARNING, COLLABORATION,
+							AND COMMUNITY
+						</h2>
+						{/* <div className="border-primary w-20 md:w-48 mt-2 border-[2.5px] rounded-full"></div> */}
+					</div>
 						<div>
 							<div className="flex flex-col">
-								<h2 className="lg:text-3xl md:text-3xl text-2xl text-primary  font-semibold">
+								<h2 className="lg:text-2xl md:text-3xl text-2xl text-primary  font-semibold">
 									Kanchenjunga
 								</h2>
 								<div className="border-primary w-20 md:w-40 mt-2 border-[2px] rounded-full"></div>
@@ -176,7 +184,7 @@ const Kanchenjunga = () => {
 						</div>
 					</div>
 				</div>
-				<div className="my-8 lg:w-[40%] p-3 ">
+				<div className="my-8 lg:w-[80%] p-3 ">
 					{docsData?.response.length > 0 ? (
 						<div className=" bg-slate-100 mb-8 rounded overflow-y-auto h-[40vh] lg:h-[80vh]">
 							<div className="font-medium rounded bg-slate-200 p-2">

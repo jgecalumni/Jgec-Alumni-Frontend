@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import React from "react";
@@ -109,86 +109,104 @@ const Giving_Back = () => {
 					<></>
 				)}
 				<div className="pb-14">
-					<div className="lg:p-14 p-6 w-full flex flex-col">
-						<h2 className="lg:text-4xl md:text-3xl text-2xl text-primary  font-semibold">
-							How can you give back?
+					<div className="lg:p-6 p-2 w-full flex flex-col">
+						<h2 className="lg:text-2xl md:text-3xl text-2xl text-primary  font-semibold">
+							JALPAIGURI GOVERNMENT ENGINEERING COLLEGE ALUMNI BUILD
+							MULTIPURPOSE "KANCHENJUNGA": A HUB FOR LEARNING, COLLABORATION,
+							AND COMMUNITY
 						</h2>
-						<div className="border-primary w-20 md:w-48 mt-2 border-[2.5px] rounded-full"></div>
+						{/* <div className="border-primary w-20 md:w-48 mt-2 border-[2.5px] rounded-full"></div> */}
 					</div>
-					<div className="bg-[#f8f9f9] rounded-lg h-[70vh] md:h-[80vh] lg:h-[60vh]  flex flex-col-reverse lg:flex-row lg:justify-center items-end lg:items-center   mt-4">
-						<div className="p-8 lg:p-14">
-							<h2 className="lg:text-5xl md:text-4xl text-2xl lg:mb-6 mb-4 font-semibold">
-								Donation
-							</h2>
-							<p className="md:w-[80%] lg:text-lg md:text-lg text-sm">
-								Donations to the Alumni Association help us support and
-								strengthen our alumni network, career services, mentorship
-								program, and other initiatives that benefit both our alumni and
-								our university.
-							</p>
+					<div className="flex px-6 flex-col justify-center items-center gap-6">
+						<div>
+							<span className="font-medium">Jalpaiguri, West Bengal:</span> In a
+							testament to alumni spirit, the Jalpaiguri Government Engineering
+							College (JGEC) Alumni Association has constructed a unique
+							facility named "Kanchenjunga" on campus. This three-story building
+							serves a dual purpose: a convention center fostering
+							industry-academia interaction and a guest house offering
+							affordable accommodation.
 						</div>
-						<div className="  w-[75%] relative h-full p-4  bg-[#516bb7]">
-							<div className=" absolute rotate-0 bg-white  lg:top-[2.8rem] border-black w-full  -left-[4rem] h-full">
-								<Image
-									loading="lazy"
-									layout="fill"
-									objectFit="cover"
-									src="/assets/membership.jpg"
-									alt=""
-									className="p-4"
-								/>
-							</div>
+						<div>
+							<span className="font-medium">
+								A Dream Realized by Dedicated Alumni:
+							</span>{" "}
+							The project is the brainchild of a passionate group of former
+							students. Notably, the land for the project was a private plot
+							within the campus, purchased by the Alumni Association with the
+							generous financial support of another alumnus, Mr. Premangshu
+							Ghosh'79'.
+						</div>{" "}
+						<div>
+							<span className="font-medium">Beyond Bricks and Mortar:</span> A
+							Platform for Growth: Kanchenjunga transcends its physical
+							structure. The Alumni Association envisioned it as a platform for
+							enriching the lives of students and the community. The center will
+							host diverse extracurricular activities and soft skill development
+							programs for engineering students. A few students interaction
+							sessions had been organised. However, more facility enhancement is
+							under plan to continue full fledged students development program.
+							Alumni Association invites more ideas and volunteers as flag
+							bearer of the program. Additionally, Jyoti, an educational center
+							for underprivileged children run by the JGEC students, is already
+							utilizing Kanchenjunga for cultural events.
 						</div>
-					</div>
-					<div className="bg-[#fff] rounded-lg h-[75vh] md:h-[84vh] lg:h-[60vh]  flex lg:flex-row flex-col lg:justify-center lg:items-center gap-8   mb-4">
-						<div className="  w-[75%] relative h-full p-4  bg-[#516bb7]">
-							<div className=" absolute rotate-0 bg-white  lg:top-[2.8rem] border-black w-full  -right-[4rem] h-full">
-								<Image
-									loading="lazy"
-									layout="fill"
-									objectFit="cover"
-									src="/assets/membership.jpg"
-									alt=""
-									className="p-4"
-								/>
-							</div>
+						<div>
+							<span className="font-medium">Giving Back During Hardship:</span>{" "}
+							The commitment of the alumni association extends beyond academics.
+							During the COVID-19 pandemic, Kanchenjunga served as a base for
+							supporting 55 underprivileged families around the college campus
+							for two years. Essential commodities and winter clothes were
+							distributed, demonstrating the alumni's strong social
+							responsibility.
 						</div>
-						<div className="lg:p-14 p-8 ">
-							<h2 className="lg:text-5xl md:text-4xl text-2xl mb-4 lg:mb-6 font-semibold">
-								Internship/Job opportunity
-							</h2>
-							<p className="md:w-[90%] text-sm md:text-lg lg:text-lg">
-								JGEC Alumni Association provides internship opportunities for
-								our students with alumni-owned or alumni-managed companies,
-								offering valuable hands-on experience and networking
-								opportunities to help jump-start their careers.
-							</p>
+						<div>
+							<span className="font-medium">Sustainability Takes Root:</span>{" "}
+							Kanchenjunga fosters a spirit of environmental consciousness. Led
+							by ex-students, the Alumni Association had initiated a
+							research-based composting program at the premises, utilizing food
+							waste from hostels and local food stalls. This program actively
+							engages students, academicians, and local residents, promoting
+							sustainable practices. The program is already published in a
+							reputed Bengali Newspaper.
 						</div>
-					</div>
-					<div className="bg-[#f8f9f9] rounded-lg h-[70vh] md:h-[80vh] lg:h-[60vh]  flex flex-col-reverse lg:flex-row lg:justify-center items-end lg:items-center   mt-4">
-						<div className="p-8 lg:p-14">
-							<h2 className="lg:text-5xl text-2xl lg:mb-6 mb-4 font-semibold">
-								Mentorship Programme
-							</h2>
-							<p className="md:w-[80%] text-sm md:text-lg lg:text-lg">
-								The alumni mentoring program at Jalpaiguri Government
-								Engineering College is an initiative that connects current
-								students with experienced alumni who can provide guidance and
-								support as they navigate their academic and professional
-								journeys.
-							</p>
+						<div>
+							<span className="font-medium">
+								Affordable Comfort for Visitors:
+							</span>{" "}
+							Seven well-appointed guest rooms with air conditioning are already
+							operational at Kanchenjunga. These rooms provide a comfortable and
+							affordable stay for visitors to the college campus, including
+							guardians of current students. The price of around Rs. 1,000 per
+							night is significantly lower than market rates, with additional
+							price waivers available for students from economically
+							disadvantaged backgrounds. This facility is particularly
+							beneficial for guardians of new students during intake events and
+							for industry professionals visiting for campus recruitment drives.
+							For enhanced security, CCTV camera surveillance is planned for the
+							building.
 						</div>
-						<div className="  w-[75%] relative h-full p-4  bg-[#516bb7]">
-							<div className=" absolute rotate-0 bg-white  lg:top-[2.8rem] border-black w-full  -left-[4rem] h-full">
-								<Image
-									loading="lazy"
-									layout="fill"
-									objectFit="cover"
-									src="/assets/membership.jpg"
-									alt=""
-									className="p-4"
-								/>
-							</div>
+						<div>
+							<span className="font-medium">A Vision for the Future:</span> A
+							State-of-the-Art Conference Hub: The Alumni Association has
+							ambitious plans for Kanchenjunga, according to Project Manager
+							Rajib Bhattacharya. They aim to raise donations from ex-students
+							to create a modern conference hall within the facility. This hall
+							can be booked by local businesses and industries for workshops,
+							seminars, and other events, fostering stronger industry-academia
+							collaboration.
+						</div>
+						<div>
+							<span className="font-medium">Kanchenjunga:</span> A Beacon of
+							Opportunity: The Kanchenjunga project is more than just a
+							building; it represents the dedication and vision of the JGEC
+							alumni. Professor Subhas Barman sees Kanchenjunga's potential to
+							become a crucial hub for industry-academia collaboration in North
+							Bengal, while promoting social development and sustainable
+							practices. Principal Amitava Ray of Jalpaiguri Government
+							Engineering College believes this initiative sets a remarkable
+							example of how alumni can contribute significantly to their alma
+							mater and the surrounding community.{" "}
 						</div>
 					</div>
 				</div>
