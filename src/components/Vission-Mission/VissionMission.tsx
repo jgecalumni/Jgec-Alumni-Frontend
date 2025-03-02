@@ -12,8 +12,8 @@ const VisionMission: React.FC = () => {
 				description="Alumni Needs enables you to harness the power of your alumni network. Whatever may be the need"
 			/>
 			{/* About Details */}
-			<div className="flex p-14 flex-col gap-10 items-center justify-normal">
-				<div className="flex items-center justify-center">
+			<div className="flex lg:p-14 p-4 gap-10 flex-col items-center justify-normal">
+				<div className="flex flex-col-reverse items-center justify-center">
 					<div className="">
 						<div className="flex items-center gap-2">
 							<div className="border-2 rounded border-blue-400 h-10"></div>
@@ -21,7 +21,7 @@ const VisionMission: React.FC = () => {
 								Vission
 							</h3>
 						</div>
-						<ul className="text-[14px] text-justify mt-4 list-disc px-10  max-w-fit w-[95%] lg:text-[16px] space-y-4">
+						<ul className="text-[14px] text-justify mt-4 list-disc px-4 lg:px-10  max-w-fit w-[95%] lg:text-[16px] space-y-4">
 							<li>
 								To emerge as a strong co-ordination and healthy interaction
 								between the college and its Alumni.
@@ -38,17 +38,17 @@ const VisionMission: React.FC = () => {
 						alt=""
 						height={250}
 						width={250}
-						className="w-[40%] pr-8 pt-8"
+						className="lg:w-[40%] mb-4 pr-8 lg:pt-8"
 					/>
 				</div>
 
-				<div className="flex items-center justify-center">
+				<div className="flex flex-col items-center justify-center">
 					<Image
 						src="/assets/JGECAA.jpg"
 						alt=""
 						height={250}
 						width={250}
-						className="w-[40%] pr-8 pt-8"
+						className="lg:w-[40%] pr-8 lg:pt-8"
 					/>
 					<div className="">
 						<div className="flex items-center gap-2">
@@ -57,7 +57,7 @@ const VisionMission: React.FC = () => {
 								Mission
 							</h3>
 						</div>
-						<ul className="text-[14px] text-justify mt-4 text-clip list-disc px-10 max-w-fit  lg:text-[16px] space-y-4">
+						<ul className="text-[14px] text-justify mt-4 text-clip list-disc lg:px-10 px-4 max-w-fit  lg:text-[16px] space-y-4">
 							<li>
 								Fostering an inspiring and conductive learning environment to
 								prepare skilled and competent engineers and entrepreneurs for

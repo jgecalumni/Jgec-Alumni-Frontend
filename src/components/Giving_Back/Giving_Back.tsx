@@ -55,7 +55,7 @@ const Giving_Back = () => {
 					/>
 				</div>
 			</div>
-			<div className="my-8 flex flex-col-reverse items-center p-3 px-8 justify-evenly">
+			<div className="my-8 flex flex-col-reverse  items-center p-3 lg:px-8 justify-evenly">
 				{docsData?.response.length > 0 ? (
 					<div className=" bg-slate-100 mb-8 rounded overflow-y-auto w-full  h-[50vh]">
 						<div className="font-medium rounded bg-slate-200 p-2">
@@ -109,15 +109,15 @@ const Giving_Back = () => {
 					<></>
 				)}
 				<div className="pb-14">
-					<div className="lg:p-6 p-2 w-full flex flex-col">
-						<h2 className="lg:text-2xl md:text-3xl text-2xl text-primary  font-semibold">
+					<div className="lg:p-6  w-full flex flex-col">
+						<h2 className="lg:text-2xl md:text-3xl text-lg text-primary  font-semibold">
 							JALPAIGURI GOVERNMENT ENGINEERING COLLEGE ALUMNI BUILD
 							MULTIPURPOSE "KANCHENJUNGA": A HUB FOR LEARNING, COLLABORATION,
 							AND COMMUNITY
 						</h2>
 						{/* <div className="border-primary w-20 md:w-48 mt-2 border-[2.5px] rounded-full"></div> */}
 					</div>
-					<div className="flex px-6 flex-col text-justify  items-center gap-6">
+					<div className="flex mt-4 lg:px-6 flex-col text-justify  items-center text-sm lg:text-lg gap-6">
 						<div>
 							<span className="font-medium">Jalpaiguri, West Bengal:</span> In a
 							testament to alumni spirit, the Jalpaiguri Government Engineering

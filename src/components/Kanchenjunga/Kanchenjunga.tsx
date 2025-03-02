@@ -40,11 +40,11 @@ const Kanchenjunga = () => {
 				normalTitle="junga"
 				description="A private land inside the college campus purchased by Alumni Association"
 			/>
-			<div className="flex justify-between mx-10 flex-col lg:items-start">
+			<div className="flex justify-between lg:mx-10 flex-col lg:items-start">
 				<div className="lg:p-8 border ">
 					<div className="border flex flex-col space-y-7 lg:space-y-14 border-gray-300 bg-white rounded-md p-4">
 					<div className=" p-2 w-full flex flex-col">
-						<h2 className="lg:text-2xl md:text-3xl text-2xl text-primary  font-semibold">
+						<h2 className="lg:text-2xl md:text-3xl text-lg text-primary  font-semibold">
 							JALPAIGURI GOVERNMENT ENGINEERING COLLEGE ALUMNI BUILD
 							MULTIPURPOSE "KANCHENJUNGA": A HUB FOR LEARNING, COLLABORATION,
 							AND COMMUNITY
