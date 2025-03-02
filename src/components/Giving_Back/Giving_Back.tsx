@@ -61,7 +61,7 @@ const Giving_Back = () => {
 						<div className="font-medium rounded bg-slate-200 p-2">
 							Documents
 						</div>
-						<div className="p-4 grid lg:grid-cols-3  lg:gap-3 grid-cols-2 gap-3 ">
+						<div className="p-4 grid lg:grid-cols-6  lg:gap-3 grid-cols-2 gap-3 ">
 							{docsData?.response.map((item: any) => (
 								<div
 									key={item.title}
@@ -117,7 +117,7 @@ const Giving_Back = () => {
 						</h2>
 						{/* <div className="border-primary w-20 md:w-48 mt-2 border-[2.5px] rounded-full"></div> */}
 					</div>
-					<div className="flex px-6 flex-col justify-center items-center gap-6">
+					<div className="flex px-6 flex-col text-justify  items-center gap-6">
 						<div>
 							<span className="font-medium">Jalpaiguri, West Bengal:</span> In a
 							testament to alumni spirit, the Jalpaiguri Government Engineering
@@ -207,6 +207,50 @@ const Giving_Back = () => {
 							Engineering College believes this initiative sets a remarkable
 							example of how alumni can contribute significantly to their alma
 							mater and the surrounding community.{" "}
+						</div>
+						<div className="text-justify flex flex-col gap-8">
+							<div>
+								About 14 years ago, when Alumni Association at JGEC campus was
+								at forming stage, there were no visibility that how it can
+								perform and how impactful it'll be. There were official mission
+								and vision, there were official procedure for functioning. But
+								this type of organisation become successful only through
+								participation of right stakeholders.
+							</div>
+							<div>
+								<span className="font-medium">Purpose was very clear:</span>
+								<ul className="px-4 mt-2 space-y-2">
+									<li>1) Reconnect all the ex-students with campus</li>
+									<li>
+										2) Perform students centric activities at JGEC Campus so
+										that we can support maximum number of present students
+									</li>
+									<li>
+										3) Create a platform where all the different JGEC groups get
+										a 'home' at campus and all can function together with their
+										own pace
+									</li>
+								</ul>
+							</div>
+							<div>
+								The biggest challenge was how to make all aware about such
+								initiative started in a 'tiny' 'isolated' location! Ex-students
+								of this '50 years (then)' college were scattered across the
+								globe - busy with own life. How to re-integrate them with their
+								beloved campus. Alumni Association taken various steps, and it
+								was decided that digital platform will be utilised at fullest!
+								Imagine, in 2011, WhatsApp was unknown . Facebook and LinkedIn
+								were it's 'initial' days - people started using Facebook, but it
+								was not same as today. Social media's power was not understood,
+								but not utilized at fullest. Foresee power of digital platform
+								for common organisations was not that easy! But Alumni
+								Association taken this decision considering social media and
+								digital platform is going to reach almost every citizen which
+								will help all jgecian to reconnect with campus. During that
+								time, Alumni Association decided to explore all possible digital
+								platforms, and I started using my blog as one of the media to
+								reach out to our beloved brothers and sisters.
+							</div>
 						</div>
 					</div>
 				</div>

@@ -38,7 +38,7 @@ const AuditReport = () => {
 			<SectionHeader
 				highlightTitle="Audit"
 				normalTitle="Reports"
-				description="Get all yout audit reports here."
+				description="Get all your audit reports here"
 			/>
 			<div
 				className={`${

@@ -58,7 +58,7 @@ const Kanchenjunga = () => {
 								</h2>
 								<div className="border-primary w-20 md:w-40 mt-2 border-[2px] rounded-full"></div>
 							</div>
-							<div className="mt-6 lg:text-lg text-[16px]">
+							<div className="mt-6 text-justify lg:text-lg text-[16px]">
 								<div className="text-black">
 									The mystical Himalaya for thousand of years remain the center
 									of knowledge for seers and scientists. Kanchenjunga is one
@@ -93,7 +93,7 @@ const Kanchenjunga = () => {
 							</h2>
 							<div className="border-primary w-48 md:w-48 mt-2 border-[2px] rounded-full"></div>
 							<div className="mt-4 bg-white rounded-md flex items-center flex-col-reverse lg:flex-row justify-between gap-4">
-								<div className="lg:w-1/2 flex flex-col gap-4  lg:text-lg text-[16px]">
+								<div className="lg:w-1/2 flex text-justify flex-col gap-4  lg:text-lg text-[16px]">
 									<div>
 										Kanchenjunga, a Knowledge & Development center shall offer
 										Management & Technical Development programs, Seminars,
@@ -122,7 +122,7 @@ const Kanchenjunga = () => {
 									width={500}
 									className="rounded-md"
 								/>
-								<div className="lg:w-1/2 flex flex-col gap-4 pr-4 text-[16px] lg:text-lg">
+								<div className="lg:w-1/2 text-justify flex flex-col gap-4 pr-4 text-[16px] lg:text-lg">
 									<div>
 										Kanchenjunga shall provide challenges to the loyal
 										exstudents of JGEC to deliver lectures on their specialized
@@ -165,7 +165,7 @@ const Kanchenjunga = () => {
 								Building Features
 							</h2>
 							<div className="border-primary w-48 md:w-48 mt-2 border-[2px] rounded-full"></div>
-							<div className="mt-4 pl-6 lg:text-[16px] text-[16px]">
+							<div className="mt-4 text-justify pl-6 lg:text-[16px] text-[16px]">
 								<ul className=" list-disc space-y-2">
 									<li>One 1044 sq. ft. conference/ seminar hall.</li>
 									<li>
@@ -183,18 +183,19 @@ const Kanchenjunga = () => {
 							</div>
 						</div>
 					</div>
+					
 				</div>
-				<div className="my-8 lg:w-[80%] p-3 ">
+				<div className="my-8  p-3 ">
 					{docsData?.response.length > 0 ? (
-						<div className=" bg-slate-100 mb-8 rounded overflow-y-auto h-[40vh] lg:h-[80vh]">
+						<div className=" bg-slate-100 mb-8 rounded overflow-y-auto h-[60vh] ">
 							<div className="font-medium rounded bg-slate-200 p-2">
 								Kanchenjunga Documents
 							</div>
-							<div className="p-4 grid lg:grid-cols-3 lg:gap-3 grid-cols-2 gap-3 ">
+							<div className="p-4 grid lg:grid-cols-6  lg:gap-3 grid-cols-2 gap-3 ">
 								{docsData?.response.map((item: any) => (
 									<div
 										key={item.title}
-										className="group rounded border shadow-lg flex flex-col items-center bg-[#f2f2f2] w-[18vh]  h-[18vh]  lg:w-[20vh] lg:h-[20vh] relative overflow-hidden">
+										className="group rounded border shadow-lg flex flex-col items-center bg-[#f2f2f2]  h-[20vh]  lg:w-[30vh] lg:h-[20vh] relative overflow-hidden">
 										<div className="mt-7 lg:mt-8">
 											<Image
 												src="/assets/pdf.png"

@@ -7,8 +7,8 @@ const VisionMission: React.FC = () => {
 	return (
 		<>
 			<SectionHeader
-				highlightTitle="About"
-				normalTitle="Us"
+				highlightTitle="Vission "
+				normalTitle="& Mission"
 				description="Alumni Needs enables you to harness the power of your alumni network. Whatever may be the need"
 			/>
 			{/* About Details */}
@@ -21,7 +21,7 @@ const VisionMission: React.FC = () => {
 								Vission
 							</h3>
 						</div>
-						<ul className="text-[14px] mt-4 list-disc px-10  max-w-fit w-[95%] lg:text-[16px] space-y-4">
+						<ul className="text-[14px] text-justify mt-4 list-disc px-10  max-w-fit w-[95%] lg:text-[16px] space-y-4">
 							<li>
 								To emerge as a strong co-ordination and healthy interaction
 								between the college and its Alumni.
@@ -57,7 +57,7 @@ const VisionMission: React.FC = () => {
 								Mission
 							</h3>
 						</div>
-						<ul className="text-[14px] mt-4 text-clip list-disc px-10 max-w-fit  lg:text-[16px] space-y-4">
+						<ul className="text-[14px] text-justify mt-4 text-clip list-disc px-10 max-w-fit  lg:text-[16px] space-y-4">
 							<li>
 								Fostering an inspiring and conductive learning environment to
 								prepare skilled and competent engineers and entrepreneurs for
