@@ -67,7 +67,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 	
 
 	return (
-		<div className="grid grid-cols-1 ">
+		<div className="grid text-justify grid-cols-1 ">
 			<div className=" flex lg:flex-row flex-col px-4 lg:px-14 justify-center items-center bg-[#edf1f4] gap-4 pt-[6em] lg:pt-[10em]">
 				<div className="p-4 px-6 bg-white rounded-md shadow-xl  w-full">
 					<div className="bg-[#91c837] p-2 w-1/2 lg:w-1/4 font-medium rounded-md flex items-center justify-center">
