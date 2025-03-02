@@ -1,5 +1,7 @@
 "use client";
+import { useGetCategoryQuery } from "@/store/feature/gallery-feature";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const photos = [
@@ -54,6 +56,9 @@ const photos = [
 ];
 
 const MasonryGallery = () => {
+	const { data, isLoading, isError, error } = useGetCategoryQuery({});
+	console.log(data);
+
 	return (
 		<>
 			<div className="lg:mt-[8em] mt-[6em] h-[60vh] overflow-hidden">
@@ -75,19 +80,18 @@ const MasonryGallery = () => {
 					</div>
 				</div>
 			</div>
-			<div className="lg:columns-4 rotate-0 columns-2 gap-4 lg:gap-2 lg:p-14 p-4 ">
-				{photos.map((photo) => (
-					<div
-						key={photo.id}
-						className=" p-1 pt-2 rotate-0 ">
+			<div className="h-screen p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+				{data?.data.map((item: any) => (
+					<Link href={`/gallery/${item.id}`} key={item.id} className="relative flex items-center justify-center h-[30vh]">
 						<Image
-							width={400}
-							height={400}
-							src={photo.url}
+							layout="fill"
+							objectFit="cover"
+							src={item.images[0].image}
 							alt=""
-							className=" rounded-lg shadow-md"
+							className="object-cover rounded-md brightness-50 rotate-0"
 						/>
-					</div>
+						<div className="absolute text-white text-xl font-medium">{item.name}</div>
+					</Link>
 				))}
 			</div>
 		</>
