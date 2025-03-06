@@ -163,45 +163,43 @@ const Home: React.FC = () => {
 						</div>
 					</div>
 				</div> */}
-				<div className="bg-primary p-4 h-[50vh] w-full flex items-center justify-center relative">
-					<div className="w-full max-w-6xl h-full mx-auto text-center p-4 md:p-8 relative z-10">
+				<div className="bg-primary p-4 h-[70vh] md:h-[50vh] w-full flex items-center justify-center relative">
+					<div className="w-full max-w-5xl h-full mx-auto text-center p-4 md:p-8 relative z-10">
 						<Swiper
-							slidesPerView={1}
-							spaceBetween={30}
-							loop={true}
-							pagination={{ clickable: false }}
-							modules={[Navigation]}
-							className="mySwiper">
-							{data?.scholarships.map((ele: any, index: number) => (
-								<SwiperSlide key={index}>
-									<div className="flex flex-col text-center lg:flex-row items-center gap-6">
-										{/* Image Section */}
-										<div className="w-full lg:w-1/2 h-auto  flex justify-center">
+								slidesPerView={1}
+								spaceBetween={30}
+								loop={true}
+								pagination={{
+									clickable: false,
+								}}
+								// navigation={true}
+								modules={[Navigation]}
+								className="mySwiper">
+								{data?.scholarships.map((ele: any) => (
+									<SwiperSlide key={ele}>
+									<div className="w-full h-full flex flex-col lg:flex-row gap-6 pb-4 pr-4 ">
+										<div className="h-auto sm:h-60 w-full lg:w-1/2 lg:h-full">
 											<Image
 												src={ele.providerImage}
 												alt={ele.providerName}
-												width={180}
-												height={180}
-												className="w-full h-full object-contain lg:object-cover rounded-md"
+												width={150}
+												height={150}
+												className="w-full h-full !object-contain lg:!object-cover rounded-sm"
 											/>
 										</div>
-
-										{/* Text Section */}
-										<div className="flex flex-col gap-8 text-center items-center justify-center w-full text-white">
-											<Link
-												href={`/scholarships/${ele.id}`}
-												className="text-lg md:text-xl lg:text-2xl font-semibold  uppercase">
+										<div className="flex flex-col justify-start  gap-6  w-full text-white lg:pt-8">
+											<div className="text-base md:text-lg lg:text-xl uppercase font-medium w-full text-center">
 												{ele.name}
-											</Link>
-											<p className="text-sm md:text-base lg:text-lg text-slate-200 text-center lg:text-left mt-2">
+											</div>
+											<div className="flex flex-col text-[14px] lg:text-[18px] md:text-base justify-center items-center text-slate-200 gap-2">
 												{ele.subtitle}
-											</p>
+											</div>
 										</div>
 									</div>
 								</SwiperSlide>
-							))}
-							<SwiperButtons />
-						</Swiper>
+								))}
+								<SwiperButtons />
+							</Swiper>
 					</div>
 				</div>
 			</div>
