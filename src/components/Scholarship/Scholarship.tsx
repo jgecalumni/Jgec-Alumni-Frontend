@@ -65,7 +65,7 @@ const Scholarship = () => {
 
 			{/* Scholarship Details */}
 			<div className="my-8 lg:flex gap-8 flex-col items-center p-3 justify-evenly">
-				<div className="w-full flex flex-col gap-3 lg:w-3/4 text-justify">
+				<div className="w-full flex pb-4 flex-col gap-3 text-sm lg:text-lg lg:w-[80%] text-justify">
 					<p>
 						It is the vision of the Jalpaiguri Government Engineering College
 						Alumni Association to project JGEC as a successful and a leading
@@ -84,7 +84,7 @@ const Scholarship = () => {
 					</p>
 				</div>
 
-				<div className="w-full lg:w-3/4">
+				<div className="w-full lg:w-[80%]">
 					<div className="bg-[#7ec9ee] h-full">
 						<div className="bg-[#3fa3d5] text-lg md:text-xl text-neutral-950 p-2.5 font-medium">
 							Scholarship Programs
@@ -102,8 +102,8 @@ const Scholarship = () => {
 													<Link
 														href={`/scholarships/${item.id}`}
 														className="flex flex-col gap-2">
-														<h4 className="text-sm font-medium">{item.name}</h4>
-														<p className="text-xs">{item.subtitle}</p>
+														<h4 className="text-sm line-clamp-1 font-medium">{item.name}</h4>
+														<p className="text-xs line-clamp-1">{item.subtitle}</p>
 													</Link>
 												</li>
 											);
@@ -123,11 +123,11 @@ const Scholarship = () => {
 					</div>
 				</div>
 				{docsData?.response.length > 0 ? (
-					<div className=" bg-slate-100 mb-8 rounded overflow-y-auto w-3/4  h-[70vh]">
-						<div className="font-medium rounded bg-slate-200 p-2">
+					<div className=" bg-slate-100 mb-8 relative rounded mt-4 overflow-y-auto lg:w-[80%]  h-[70vh]">
+						<div className="font-medium sticky z-10 top-0 rounded bg-slate-200 p-2">
 							Scholarship Recipient List
 						</div>
-						<div className="p-4 grid lg:grid-cols-5 lg:gap-3 grid-cols-2 gap-3 ">
+						<div className="p-3 grid lg:grid-cols-5 lg:gap-3 grid-cols-2 gap-3 ">
 							{docsData?.response.map((item: any) => (
 								<div
 									key={item.title}
