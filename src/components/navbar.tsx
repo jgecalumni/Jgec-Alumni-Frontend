@@ -29,8 +29,12 @@ const Links = [
 		link: "/kanchenjunga",
 	},
 	{
-		name: "Take a trip",
-		link: "/take-a-trip",
+		name: "Scholarships",
+		link: "/scholarships",
+	},
+	{
+		name: "Audit Report",
+		link: "/audit-report",
 	},
 ];
 
@@ -52,17 +56,14 @@ const moreLinks = [
 		link: "/rooms",
 	},
 	{
-		name: "Audit Report",
-		link: "/audit-report",
+		name: "Take a trip",
+		link: "/take-a-trip",
 	},
 	{
 		name: "Upcoming Events",
 		link: "/upcoming-events",
 	},
-	{
-		name: "Scholarships",
-		link: "/scholarships",
-	},
+	
 ];
 
 const Navbar = () => {
@@ -73,8 +74,8 @@ const Navbar = () => {
 
 	return (
 		<>
-			<nav className="h-24 w-full z-50 lg:top-9  top-0 bg-white fixed shadow-lg px-4 md:px-10">
-				<div className="w-full h-full max-w-screen-xl  mx-auto flex items-center justify-between">
+			<nav className="h-24 w-full z-50 lg:top-9  top-0 bg-white fixed shadow-lg px-4 md:px-8">
+				<div className="w-full h-full max-w-screen-2xl  mx-auto flex items-center justify-between">
 					<div className="flex items-center justify-between w-fit ">
 						<div className="">
 							<Image
@@ -100,7 +101,7 @@ const Navbar = () => {
 						<RxHamburgerMenu />
 					</div>
 
-					<div className="lg:flex hidden h-full  lg:text-[0.6em] 2xl:text-[0.88rem] xl:text-sm items-center duration-200  justify-between font-medium w-full max-w-2xl">
+					<div className="lg:flex hidden h-full  lg:text-[0.6em] 2xl:text-[0.88rem] xl:text-sm items-center duration-200  justify-between font-medium w-full max-w-4xl">
 						{Links.map((link) => (
 							<Link
 								key={link.name}

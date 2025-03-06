@@ -29,7 +29,9 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 	const [loading, setLoading] = useState<boolean>(false);
 	useEffect(() => {
 		if (isError) {
-			toast.error((error as any)?.data?.message || "Failed to fetch scholarship");
+			toast.error(
+				(error as any)?.data?.message || "Failed to fetch scholarship"
+			);
 		}
 	}, [isError, error]);
 
@@ -64,12 +66,11 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 	const semArray: any = data?.data.semRequire
 		.split(",")
 		.map((sem) => sem.trim());
-	
 
 	return (
 		<div className="grid text-justify grid-cols-1 ">
 			<div className=" flex lg:flex-row flex-col px-4 lg:px-14 justify-center items-center bg-[#edf1f4] gap-4 pt-[6em] lg:pt-[10em]">
-				<div className="p-4 px-6 bg-white rounded-md shadow-xl  w-full">
+				{/* <div className="p-4 px-6 bg-white rounded-md shadow-xl  w-full">
 					<div className="bg-[#91c837] p-2 w-1/2 lg:w-1/4 font-medium rounded-md flex items-center justify-center">
 						Scholarship
 					</div>
@@ -95,7 +96,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> */}
 				<div className="rounded-md h-full  bg-[#c4eb80]  lg:w-1/2">
 					<div className="p-4 lg:text-sm text-xs bg-[#91c837] rounded-t-md font-semibold">
 						{data?.data.name}
@@ -109,6 +110,56 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 							<span className="font-semibold">Amount of scholarship :</span>{" "}
 							{data?.data.amountDetails}
 						</div>
+						<div className="pt-4 flex flex-col gap-2">
+							<div className="flex gap-2">
+								
+								<div className="text-xs sm:text-sm font-medium">
+								<span className="font-semibold">About Scholarship: </span>
+								The sponsor of the scholarship is entitled to decide salient
+									selection criteria, which is confidential. Out of the
+									available applications, the top ten students will be called
+									for an interview via an invitation email. The interview date
+									and schedule shall be informed through the invitation mail.
+									The subject of the interview can be academic or general,
+									depending on the decision of the interviewers. The interview
+									shall be held at the JGEC campus. After the interview, one or
+									two (maximum) successful students shall be selected for the
+									scholarship. The decision of the sponsor, with prior
+									information to the Alumni Association, is final and must be
+									accepted by all parties involved. In extraordinary cases, the
+									selection procedure may be altered by mutual understanding
+									between the sponsor and the Alumni Association, without prior
+									information to any other party apart from these two entities.
+									Supporting documents of all the provided data (in original or
+									attested true copy format) must be presented only during the
+									interview. Candidates need to submit their parent's family
+									income and other direct family member’s (real brother/sister
+									only) income-related reliable supporting documents during the
+									face-to-face interview process.
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				<div className="h-full lg:w-1/2 lg:px-4  rounded-md">
+					<div className="flex rotate-0 rounded-md overflow-hidden shadow-xl   h-[40vh] items-center justify-center">
+						<Image
+							src={data?.data.providerImage || ""}
+							alt={data?.data.providerName || ""}
+							layout="fill"
+							objectFit="contain"
+							className=" rotate-0  rounded-sm"
+						/>
+					</div>
+					<div className="lg:text-sm  my-4 space-y-2 bg-sky-200 shadow-xl rounded-md p-4">
+						<span className="font-semibold text-lg">About Sponsor </span>
+						<ReactQuill
+							theme="bubble"
+							value={data?.data.providerDescription}
+							readOnly={true}
+							className="view_editor text-gr"
+						/>
 					</div>
 				</div>
 			</div>
@@ -140,7 +191,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 							extraCurricularActivities: "",
 							percentHigherSecondary: "",
 							...Object.fromEntries(
-								semArray.map((sem:string) => [`sem_${sem.split(" ")[0]}`, ""])
+								semArray.map((sem: string) => [`sem_${sem.split(" ")[0]}`, ""])
 							),
 							average: "",
 							department: "",
@@ -151,8 +202,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 						onSubmit={(values) => {
 							handleFormSubmit(values);
 						}}
-						validationSchema={ScholarshipSchema}
-					>
+						validationSchema={ScholarshipSchema}>
 						{({ handleChange, values, setFieldValue }) => (
 							<Form>
 								<div className="grid lg:grid-cols-2 grid-col-1 gap-4">
@@ -440,31 +490,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 										/>
 									</div>
 								</div>
-								<div className="flex flex-col gap-4 py-6">
-									<div className="text-xs sm:text-sm font-medium">
-										(The sponsor of the scholarship is entitled to decide
-										salient selection criteria, which is confidential. Out of
-										the available applications, top ten students will be called
-										for interview vide invitation email. Interview date and
-										schedule shall be informed through invitation mail. Subject
-										of interview can be academic or general, depending on
-										decision of interviewers. Interview shall be held at JGEC
-										campus. After interview, one/ two (max) successful students
-										shall be selected for scholarship. Decision of sponsor, with
-										prior information to Alumni Association, is ultimate and
-										shall be accepted by all parties involved in this process.
-										In case of extra ordinary cases, selection procedure may be
-										altered by mutual understanding between sponsor and alumni
-										association, without prior information to any other party
-										other than sponsor and alumni association. Supporting
-										documents of all above data (in original / attested true
-										copy format) have to be presented only during interview.
-										Candidates need to submit parent’s family income and other
-										direct family member’s (real brother / sister only) income
-										related reliable supporting documents during face to face
-										interview process.)
-									</div>
-								</div>
+
 								<Button
 									className="py-3 hover:scale-100 w-full max-w-xs"
 									type="submit">
@@ -473,25 +499,6 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 							</Form>
 						)}
 					</Formik>
-				</div>
-				<div className="h-full lg:w-1/2 lg:px-4  rounded-md">
-					<div className="flex rotate-0 rounded-md overflow-hidden shadow-xl  bg-white h-[40vh] items-center justify-center">
-						<Image
-							src={data?.data.providerImage || ""}
-							alt={data?.data.providerName || ""}
-							layout="fill"
-							objectFit="contain"
-							className=" rotate-0  rounded-sm"
-						/>
-					</div>
-					<div className="lg:text-sm text-xs my-4 bg-white shadow-xl rounded-md p-4">
-						<ReactQuill
-							theme="bubble"
-							value={data?.data.providerDescription}
-							readOnly={true}
-							className="view_editor"
-						/>
-					</div>
 				</div>
 			</div>
 		</div>

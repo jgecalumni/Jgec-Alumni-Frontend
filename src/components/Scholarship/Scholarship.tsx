@@ -89,7 +89,7 @@ const Scholarship = () => {
 						<div className="bg-[#3fa3d5] text-lg md:text-xl text-neutral-950 p-2.5 font-medium">
 							Scholarship Programs
 						</div>
-						<div className="w-full  h-[calc(70vh-4rem)">
+						<div className="w-full  ">
 							<div className="grid grid-cols-1 md:grid-cols-2  h-full">
 								{data?.scholarships
 									.reduce<[JSX.Element[], JSX.Element[]]>(

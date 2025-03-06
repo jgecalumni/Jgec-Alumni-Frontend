@@ -34,12 +34,12 @@ const Home: React.FC = () => {
 							<SwiperSlide key={ele}>
 								<div className="h-full relative w-full">
 									<div className="absolute z-20 rotate-0 h-full  flex flex-col gap-4 lg:gap-10 justify-center max-w-xs xs:max-w-sm sm:max-w-xl  w-full left-[1em]  lg:left-[13.5em]">
-										<div className="text-yellow-400 text-left font-medium lg:text-3xl sm:text-xl text-base">
+										{/* <div className="text-yellow-400 text-left font-medium lg:text-3xl sm:text-xl text-base">
 											<h1 className="text-wrap break-words">
 												The Jalpaiguri Government Engineering College Alumini
 												Association, Jalpaiguri
 											</h1>
-										</div>
+										</div> */}
 										{/* <div className="flex gap-8">
 											<Link href="/vision-mission">
 												<Button className="lg:text-base text-white lg:p-3 lg:px-5  p-2">
