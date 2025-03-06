@@ -106,16 +106,8 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 							{data?.data.whoCanApply}
 						</div>
 						<div>
-							<span className="font-semibold">Age Criteria:</span>{" "}
-							{data?.data.ageLimit}
-						</div>
-						<div>
 							<span className="font-semibold">Amount of scholarship :</span>{" "}
 							{data?.data.amountDetails}
-						</div>
-						<div>
-							<span className="font-semibold">When to apply :</span>{" "}
-							{data?.data.whenToApply}
 						</div>
 					</div>
 				</div>

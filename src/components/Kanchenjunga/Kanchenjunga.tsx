@@ -43,14 +43,14 @@ const Kanchenjunga = () => {
 			<div className="flex justify-between lg:mx-10 flex-col lg:items-start">
 				<div className="lg:p-8 border ">
 					<div className="border flex flex-col space-y-7 lg:space-y-14 border-gray-300 bg-white rounded-md p-4">
-					<div className=" p-2 w-full flex flex-col">
-						<h2 className="lg:text-2xl md:text-3xl text-lg text-primary  font-semibold">
-							JALPAIGURI GOVERNMENT ENGINEERING COLLEGE ALUMNI BUILD
-							MULTIPURPOSE "KANCHENJUNGA": A HUB FOR LEARNING, COLLABORATION,
-							AND COMMUNITY
-						</h2>
-						{/* <div className="border-primary w-20 md:w-48 mt-2 border-[2.5px] rounded-full"></div> */}
-					</div>
+						<div className=" p-2 w-full flex flex-col">
+							<h2 className="lg:text-2xl md:text-3xl text-lg text-primary  font-semibold">
+								JALPAIGURI GOVERNMENT ENGINEERING COLLEGE ALUMNI BUILD
+								MULTIPURPOSE "KANCHENJUNGA": A HUB FOR LEARNING, COLLABORATION,
+								AND COMMUNITY
+							</h2>
+							{/* <div className="border-primary w-20 md:w-48 mt-2 border-[2.5px] rounded-full"></div> */}
+						</div>
 						<div>
 							<div className="flex flex-col">
 								<h2 className="lg:text-2xl md:text-3xl text-2xl text-primary  font-semibold">
@@ -59,11 +59,54 @@ const Kanchenjunga = () => {
 								<div className="border-primary w-20 md:w-40 mt-2 border-[2px] rounded-full"></div>
 							</div>
 							<div className="mt-6 text-justify lg:text-lg text-[16px]">
-								<div className="text-black">
-									The mystical Himalaya for thousand of years remain the center
-									of knowledge for seers and scientists. Kanchenjunga is one
-									such center of knowledge of Himalaya. The mission is to bring
-									Kanchenjunga inside JGEC campus.
+								<div className="text-black flex flex-col gap-3 ">
+									<p>
+										Kanchenjunga is the brainchild of our own Alumni - the
+										Engineers of JGEC, who drive the Industry today. It is meant
+										to facilitate students and act as a convention centre. A
+										perfect venue to conduct conferences and seminars, meetings,
+										interviews and group discussions or to house a start-up.
+									</p>
+									<p>
+										Additionally, this Convention centre houses a Reading Corner
+										- a state of the art library of fresh books of engineering
+										with latest edition and many relevant journals.
+									</p>
+									<p>
+										It also has a facility to lodge people who are associated
+										with the facilitation of present students or their parents,
+										Alumni or any company/institution representative who have
+										arrived to train/interview our students.
+									</p>
+								</div>
+							</div>
+					
+							<div className="flex flex-col">
+								<h2 className="lg:text-2xl md:text-3xl text-2xl text-primary  font-semibold">
+									Basic History
+								</h2>
+								<div className="border-primary w-20 md:w-40 mt-2 border-[2px] rounded-full"></div>
+							</div>
+							<div className="mt-6 text-justify lg:text-lg text-[16px]">
+								<div className="text-black flex flex-col gap-3 ">
+									<p>
+										Kanchenjunga is the brainchild of our own Alumni - the
+										Engineers of JGEC, who drive the Industry today. It is meant
+										to facilitate students and act as a convention centre. A
+										perfect venue to conduct conferences and seminars, meetings,
+										interviews and group discussions or to house a start-up.
+									</p>
+									<p>
+										Additionally, this Convention centre houses a Reading Corner
+										- a state of the art library of fresh books of engineering
+										with latest edition and many relevant journals.
+									</p>
+									<p>
+										It also has a facility to lodge people who are associated
+										with the facilitation of present students or their parents,
+										Alumni or any company/institution representative who have
+										arrived to train/interview our students.
+									</p>
 								</div>
 							</div>
 						</div>
@@ -183,7 +226,6 @@ const Kanchenjunga = () => {
 							</div>
 						</div>
 					</div>
-					
 				</div>
 				<div className="my-8  p-3 ">
 					{docsData?.response.length > 0 ? (
@@ -221,7 +263,10 @@ const Kanchenjunga = () => {
 												<Link
 													href={item.link}
 													target="_blank">
-													<Eye size={19} cursor={"pointer"}/>
+													<Eye
+														size={19}
+														cursor={"pointer"}
+													/>
 												</Link>
 												<Download
 													size={19}

@@ -64,13 +64,70 @@ const Scholarship = () => {
 			/>
 
 			{/* Scholarship Details */}
-			<div className="my-8 lg:flex items-center p-3 justify-evenly">
-				{docsData?.response.length > 0 ? (
-					<div className=" bg-slate-100 mb-8 rounded overflow-y-auto lg:w-1/2 h-[70vh]">
-						<div className="font-medium rounded bg-slate-200 p-2">
-							Scholarship Documents
+			<div className="my-8 lg:flex gap-8 flex-col items-center p-3 justify-evenly">
+				<div className="w-full flex flex-col gap-3 lg:w-3/4 text-justify">
+					<p>
+						It is the vision of the Jalpaiguri Government Engineering College
+						Alumni Association to project JGEC as a successful and a leading
+						institution of learning and research. One of the main aspects
+						towards fulfilling this goal would be to engage the successful
+						professional alumnus of our alma matter in order to nurture the
+						young minds of JGEC with positive and inspiring tools for their
+						enlightenment to outer world outside campus and thus to highlight
+						glory of JGEC to outsiders.
+					</p>
+					<p>
+						To promote this noble initiative of Alumni Association among
+						JGECian, Mr. BIbhas Bhowmik (CE, 1985) and Mr. Premangshu Ghosh (EE, 1979) have started the scholarship programme in the year 2013 for 4th year Civil Engineering and Electrical Engineering students respectively. Purpose of the alumni scholarship
+						programme is to help meritorious students who need some financial
+						assistance to achieve their career goal.
+					</p>
+				</div>
+
+				<div className="w-full lg:w-3/4">
+					<div className="bg-[#7ec9ee] h-[70vh]">
+						<div className="bg-[#3fa3d5] text-lg md:text-xl text-neutral-950 p-2.5 font-medium">
+							Scholarship Programs
 						</div>
-						<div className="p-4 grid lg:grid-cols-3 lg:gap-3 grid-cols-2 gap-3 ">
+						<div className="w-full overflow-hidden h-[calc(70vh-4rem)]">
+							<div className="grid grid-cols-1 md:grid-cols-2 overflow-auto h-full">
+								{data?.scholarships
+									.reduce<[JSX.Element[], JSX.Element[]]>(
+										(acc, item, index) => {
+											const column = index % 2;
+											acc[column].push(
+												<li
+													key={item.id}
+													className="px-4 py-2.5 border-b border-neutral-200 text-neutral-950">
+													<Link
+														href={`/scholarships/${item.id}`}
+														className="flex flex-col gap-2">
+														<h4 className="text-sm font-medium">{item.name}</h4>
+														<p className="text-xs">{item.subtitle}</p>
+													</Link>
+												</li>
+											);
+											return acc;
+										},
+										[[], []]
+									)
+									.map((column, idx) => (
+										<ul
+											key={idx}
+											className="overflow-auto">
+											{column}
+										</ul>
+									))}
+							</div>
+						</div>
+					</div>
+				</div>
+				{docsData?.response.length > 0 ? (
+					<div className=" bg-slate-100 mb-8 rounded overflow-y-auto w-3/4  h-[70vh]">
+						<div className="font-medium rounded bg-slate-200 p-2">
+							Scholarship Recipient List
+						</div>
+						<div className="p-4 grid lg:grid-cols-5 lg:gap-3 grid-cols-2 gap-3 ">
 							{docsData?.response.map((item: any) => (
 								<div
 									key={item.title}
@@ -121,30 +178,6 @@ const Scholarship = () => {
 				) : (
 					<></>
 				)}
-
-				<div className="w-full lg:w-[30%]">
-					<div className=" bg-[#7ec9ee]  h-[70vh]">
-						<div className="bg-[#3fa3d5] text-lg md:text-xl text-neutral-950 p-2.5 font-medium">
-							Scholarship Programs
-						</div>
-						<div className="w-full overflow-hidden h-[calc(70vh-4rem)]">
-							<ul className="bottom-top overflow-auto">
-								{data?.scholarships.map((item, index) => (
-									<li
-										key={index}
-										className="px-4 py-2.5 border-b border-neutral-200 text-neutral-950">
-										<Link
-											href={`/scholarships/${item.id}`}
-											className="flex flex-col gap-2">
-											<h4 className="text-sm font-medium">{item.name}</h4>
-											<p className="text-xs">{item.subtitle}</p>
-										</Link>
-									</li>
-								))}
-							</ul>
-						</div>
-					</div>
-				</div>
 			</div>
 		</>
 	);

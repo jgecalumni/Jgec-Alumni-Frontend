@@ -7,13 +7,13 @@ import { Button } from "../ui/button";
 import Image from "next/image";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useAllScholarshipsQuery } from "@/store/feature/scholarship-feature";
+import Loading from "@/app/Loader";
 const Home: React.FC = () => {
 	const { data, error, isError, isLoading } = useAllScholarshipsQuery({
 		page: 1,
 		search: "",
 	});
-	console.log(data);
-
+	if (isLoading) return <Loading />;
 	return (
 		<>
 			<div className="w-full">
@@ -40,7 +40,7 @@ const Home: React.FC = () => {
 												Association, Jalpaiguri
 											</h1>
 										</div>
-										<div className="flex gap-8">
+										{/* <div className="flex gap-8">
 											<Link href="/vision-mission">
 												<Button className="lg:text-base text-white lg:p-3 lg:px-5  p-2">
 													Our Mission
@@ -51,7 +51,7 @@ const Home: React.FC = () => {
 													Upcoming Events
 												</Button>
 											</Link>
-										</div>
+										</div> */}
 									</div>
 									<Image
 										src="https://jgecalum.org/public/site/images/slider/slider1.jpg"
@@ -71,7 +71,7 @@ const Home: React.FC = () => {
 						{/* Image Section */}
 						<div className="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-gray-300">
 							<Image
-								src="/assets/Members/BhaskarDasgupta.jpg" 
+								src="/assets/Members/BhaskarDasgupta.jpg"
 								alt="President Bhaskar Dasgupta"
 								width={192}
 								height={192}
@@ -166,17 +166,17 @@ const Home: React.FC = () => {
 				<div className="bg-primary p-4 h-[70vh] md:h-[50vh] w-full flex items-center justify-center relative">
 					<div className="w-full max-w-5xl h-full mx-auto text-center p-4 md:p-8 relative z-10">
 						<Swiper
-								slidesPerView={1}
-								spaceBetween={30}
-								loop={true}
-								pagination={{
-									clickable: false,
-								}}
-								// navigation={true}
-								modules={[Navigation]}
-								className="mySwiper">
-								{data?.scholarships.map((ele: any) => (
-									<SwiperSlide key={ele}>
+							slidesPerView={1}
+							spaceBetween={30}
+							loop={true}
+							pagination={{
+								clickable: false,
+							}}
+							// navigation={true}
+							modules={[Navigation]}
+							className="mySwiper">
+							{data?.scholarships.map((ele: any) => (
+								<SwiperSlide key={ele}>
 									<div className="w-full h-full flex flex-col lg:flex-row gap-6 pb-4 pr-4 ">
 										<div className="h-auto sm:h-60 w-full lg:w-1/2 lg:h-full">
 											<Image
@@ -197,9 +197,9 @@ const Home: React.FC = () => {
 										</div>
 									</div>
 								</SwiperSlide>
-								))}
-								<SwiperButtons />
-							</Swiper>
+							))}
+							<SwiperButtons />
+						</Swiper>
 					</div>
 				</div>
 			</div>

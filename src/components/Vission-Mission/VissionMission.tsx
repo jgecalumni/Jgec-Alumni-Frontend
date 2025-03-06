@@ -13,7 +13,7 @@ const VisionMission: React.FC = () => {
 			/>
 			{/* About Details */}
 			<div className="flex lg:p-14 p-4 gap-10 flex-col items-center justify-normal">
-				<div className="flex flex-col-reverse items-center justify-center">
+				<div className="flex flex-col-reverse lg:flex-row items-center justify-center">
 					<div className="">
 						<div className="flex items-center gap-2">
 							<div className="border-2 rounded border-blue-400 h-10"></div>
@@ -42,13 +42,13 @@ const VisionMission: React.FC = () => {
 					/>
 				</div>
 
-				<div className="flex flex-col items-center justify-center">
+				<div className="flex flex-col lg:flex-row items-center justify-center">
 					<Image
 						src="/assets/JGECAA.jpg"
 						alt=""
 						height={250}
 						width={250}
-						className="lg:w-[40%] pr-8 lg:pt-8"
+						className="lg:w-[35%] pr-8 lg:pt-8"
 					/>
 					<div className="">
 						<div className="flex items-center gap-2">
