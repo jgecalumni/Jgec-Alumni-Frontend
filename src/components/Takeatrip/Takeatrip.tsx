@@ -10,7 +10,7 @@ const Takeatrip: React.FC = () => {
 				normalTitle="Trip"
 				description="Brief introduction about the alumni association of Jalpaiguri Government Engineering College."
 			/>
-			<div className="lg:px-14 lg:p-8 p-2">
+			<div className="lg:px-14 text-justify lg:p-8 p-2">
 				<div className="flex items-center gap-2">
 					<div className="border-2 rounded border-blue-400 h-10"></div>
 					<h3 className="text-[#364150] font-semibold uppercase text-[16px] lg:text-[24px]">
