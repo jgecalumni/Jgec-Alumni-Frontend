@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <>
       <HomePage />
-      <section className="w-full h-auto mt-6 bg-[#ecf0f4] px-4 md:px-10 py-8 md:py-16">
+      <section className="w-full text-justify h-auto  bg-[#ecf0f4] px-4 md:px-10 py-8 md:py-16">
         <div className="w-full max-w-screen-xl mx-auto px-2 font-semibold flex justify-center items-center flex-col gap-2 md:gap-1">
           <h1 className="lg:text-3xl text-xl font-semibold text-center">Welcome To The</h1>
           <h1 className="lg:text-3xl font-semibold  text-lg text-center">
