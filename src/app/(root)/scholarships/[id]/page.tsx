@@ -68,8 +68,8 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 		.map((sem) => sem.trim());
 
 	return (
-		<div className="grid text-justify grid-cols-1 ">
-			<div className=" flex lg:flex-row flex-col px-4 lg:px-14 justify-center items-center bg-[#edf1f4] gap-4 pt-[6em] lg:pt-[10em]">
+		<div className="grid text-justify  grid-cols-1 ">
+			<div className=" flex lg:flex-row flex-col px-4 lg:px-14 justify-center items-center bg-[#edf1f4] gap-4 pb-4 pt-[6em] lg:pt-[10em]">
 				{/* <div className="p-4 px-6 bg-white rounded-md shadow-xl  w-full">
 					<div className="bg-[#91c837] p-2 w-1/2 lg:w-1/4 font-medium rounded-md flex items-center justify-center">
 						Scholarship
@@ -97,7 +97,29 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 						</div>
 					</div>
 				</div> */}
-				<div className="rounded-md h-full  bg-[#c4eb80]  lg:w-1/2">
+				
+				<div className="h-full lg:w-full flex flex-col lg:flex-row gap-4 items-center justify-center lg:px-4  rounded-md">
+					<div className=" h-full rotate-0 rounded-md overflow-hidden ">
+						<Image
+							src={data?.data.providerImage || ""}
+							alt={data?.data.providerName || ""}
+							width={400}
+							height={400}
+							className=" rounded-sm"
+						/>
+					</div>
+					<div className="lg:text-sm lg:w-3/4 h-full space-y-2 bg-sky-200 shadow-xl rounded-md p-4 px-8">
+						<span className="font-semibold text-lg">About Sponsor </span>
+						<ReactQuill
+							theme="bubble"
+							value={data?.data.providerDescription}
+							readOnly={true}
+							className="view_editor text-gr"
+						/>
+					</div>
+				</div>
+			</div>
+			<div className="rounded-md m-4 lg:mx-14  bg-[#c4eb80] ">
 					<div className="p-4 lg:text-sm text-xs bg-[#91c837] rounded-t-md font-semibold">
 						{data?.data.name}
 					</div>
@@ -142,27 +164,6 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 						</div>
 					</div>
 				</div>
-				<div className="h-full lg:w-1/2 lg:px-4  rounded-md">
-					<div className="flex rotate-0 rounded-md overflow-hidden shadow-xl   h-[40vh] items-center justify-center">
-						<Image
-							src={data?.data.providerImage || ""}
-							alt={data?.data.providerName || ""}
-							layout="fill"
-							objectFit="contain"
-							className=" rotate-0  rounded-sm"
-						/>
-					</div>
-					<div className="lg:text-sm  my-4 space-y-2 bg-sky-200 shadow-xl rounded-md p-4">
-						<span className="font-semibold text-lg">About Sponsor </span>
-						<ReactQuill
-							theme="bubble"
-							value={data?.data.providerDescription}
-							readOnly={true}
-							className="view_editor text-gr"
-						/>
-					</div>
-				</div>
-			</div>
 
 			<div className=" p-4  lg:px-14 flex lg:flex-row flex-col-reverse  bg-[#edf1f4]">
 				<div className="h-full bg-white shadow-xl w-full rounded-md p-4">
@@ -492,7 +493,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 								</div>
 
 								<Button
-									className="py-3 hover:scale-100 w-full max-w-xs"
+									className="py-3 mt-3 hover:scale-100 w-full max-w-xs"
 									type="submit">
 									Submit
 								</Button>

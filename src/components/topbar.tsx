@@ -7,6 +7,8 @@ import React, { use } from "react";
 
 const Topbar = () => {
 	const { token, handleLogout, user } = useAuth();
+	console.log(token);
+	
 	return (
 		<nav className="text-white fixed top-0 z-[200] w-full   bg-[#161f37]">
 			<div className="w-full max-w-screen-xl mx-auto lg:flex hidden justify-between items-center">

@@ -59,8 +59,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
 	};
 
 	useEffect(() => {
-		setLoading(true);
-		const storedToken = Cookies.get("token") || null;
+		setLoading(true);	
+		const storedToken = localStorage.getItem("token") || null;
 		setToken(storedToken);
 		setUser(decodeToken(storedToken));
 	}, []);
@@ -78,6 +78,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 			router.push("/");
 
 			const accessToken = res.data.accessToken;
+			localStorage.setItem("token", accessToken);
 			setToken(accessToken);
 			setUser(decodeToken(accessToken));
 		}
@@ -89,6 +90,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
 		if (res?.data?.success) {
 			toast.success("Logout successful");
 			setToken("");
+			localStorage.removeItem("token");
+			Cookies.remove("token");
 			setUser(null);
 			router.push("/login")
 		}
