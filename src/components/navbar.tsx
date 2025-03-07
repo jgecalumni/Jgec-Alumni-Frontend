@@ -32,10 +32,10 @@ const Links = [
 		name: "Scholarships",
 		link: "/scholarships",
 	},
-	{
-		name: "Audit Report",
-		link: "/audit-report",
-	},
+	// {
+	// 	name: "Audit Report",
+	// 	link: "/audit-report",
+	// },
 ];
 
 const moreLinks = [
@@ -101,7 +101,7 @@ const Navbar = () => {
 						<RxHamburgerMenu />
 					</div>
 
-					<div className="lg:flex hidden h-full  lg:text-[0.6em] 2xl:text-[0.88rem] xl:text-sm items-center duration-200  justify-between font-medium w-full max-w-4xl">
+					<div className="lg:flex hidden h-full  lg:text-[0.6em] 2xl:text-[0.88rem] xl:text-sm items-center duration-200 justify-between font-medium w-full max-w-3xl">
 						{Links.map((link) => (
 							<Link
 								key={link.name}

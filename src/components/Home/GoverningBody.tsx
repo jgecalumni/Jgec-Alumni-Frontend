@@ -118,7 +118,7 @@ const bottomLinks = [
 	},
 	{
 		name: "Constitution",
-		link: "/constitution",
+		link: "/assets/constitution_of_AA.pdf",
 	},
 	{
 		name: "Alumni Activities",
