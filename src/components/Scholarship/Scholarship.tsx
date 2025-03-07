@@ -123,7 +123,7 @@ const Scholarship = () => {
 					</div>
 				</div>
 				{docsData?.response.length > 0 ? (
-					<div className=" bg-slate-100 mb-8 relative rounded mt-4 overflow-y-auto lg:w-[80%]  h-[70vh]">
+					<div className=" bg-slate-100 mb-8 relative rounded mt-4 overflow-y-auto lg:w-[80%] h-full">
 						<div className="font-medium sticky z-10 top-0 rounded bg-slate-200 p-2">
 							Scholarship Recipient List
 						</div>
