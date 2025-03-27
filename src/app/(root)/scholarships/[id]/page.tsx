@@ -97,7 +97,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 						</div>
 					</div>
 				</div> */}
-				
+
 				<div className="h-full lg:w-full flex flex-col lg:flex-row gap-4 items-center justify-center lg:px-4  rounded-md">
 					<div className=" h-full rotate-0 rounded-md overflow-hidden ">
 						<Image
@@ -120,50 +120,47 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 				</div>
 			</div>
 			<div className="rounded-md m-4 lg:mx-14  bg-[#c4eb80] ">
-					<div className="p-4 lg:text-sm text-xs bg-[#91c837] rounded-t-md font-semibold">
-						{data?.data.name}
+				<div className="p-4 lg:text-sm text-xs bg-[#91c837] rounded-t-md font-semibold">
+					{data?.data.name}
+				</div>
+				<div className="lg:text-sm text-xs space-y-2 p-4">
+					<div>
+						<span className="font-semibold">Who can apply:</span>{" "}
+						{data?.data.whoCanApply}
 					</div>
-					<div className="lg:text-sm text-xs space-y-2 p-4">
-						<div>
-							<span className="font-semibold">Who can apply:</span>{" "}
-							{data?.data.whoCanApply}
-						</div>
-						<div>
-							<span className="font-semibold">Amount of scholarship :</span>{" "}
-							{data?.data.amountDetails}
-						</div>
-						<div className="pt-4 flex flex-col gap-2">
-							<div className="flex gap-2">
-								
-								<div className="text-xs sm:text-sm font-medium">
+					<div>
+						<span className="font-semibold">Amount of scholarship :</span>{" "}
+						{data?.data.amountDetails}
+					</div>
+					<div className="pt-4 flex flex-col gap-2">
+						<div className="flex gap-2">
+							<div className="text-xs sm:text-sm font-medium">
 								<span className="font-semibold">About Scholarship: </span>
 								The sponsor of the scholarship is entitled to decide salient
-									selection criteria, which is confidential. Out of the
-									available applications, the top ten students will be called
-									for an interview via an invitation email. The interview date
-									and schedule shall be informed through the invitation mail.
-									The subject of the interview can be academic or general,
-									depending on the decision of the interviewers. The interview
-									shall be held at the JGEC campus. After the interview, one or
-									two (maximum) successful students shall be selected for the
-									scholarship. The decision of the sponsor, with prior
-									information to the Alumni Association, is final and must be
-									accepted by all parties involved. In extraordinary cases, the
-									selection procedure may be altered by mutual understanding
-									between the sponsor and the Alumni Association, without prior
-									information to any other party apart from these two entities.
-									Supporting documents of all the provided data (in original or
-									attested true copy format) must be presented only during the
-									interview. Candidates need to submit their parent's family
-									income and other direct family member’s (real brother/sister
-									only) income-related reliable supporting documents during the
-									face-to-face interview process.
-								</div>
+								selection criteria, which is confidential. Out of the available
+								applications, the top ten students will be called for an
+								interview via an invitation email. The interview date and
+								schedule shall be informed through the invitation mail. The
+								subject of the interview can be academic or general, depending
+								on the decision of the interviewers. The interview shall be held
+								at the JGEC campus. After the interview, one or two (maximum)
+								successful students shall be selected for the scholarship. The
+								decision of the sponsor, with prior information to the Alumni
+								Association, is final and must be accepted by all parties
+								involved. In extraordinary cases, the selection procedure may be
+								altered by mutual understanding between the sponsor and the
+								Alumni Association, without prior information to any other party
+								apart from these two entities. Supporting documents of all the
+								provided data (in original or attested true copy format) must be
+								presented only during the interview. Candidates need to submit
+								their parent's family income and other direct family member’s
+								(real brother/sister only) income-related reliable supporting
+								documents during the face-to-face interview process.
 							</div>
-							
 						</div>
 					</div>
 				</div>
+			</div>
 
 			<div className=" p-4  lg:px-14 flex lg:flex-row flex-col-reverse  bg-[#edf1f4]">
 				<div className="h-full bg-white shadow-xl w-full rounded-md p-4">
@@ -449,13 +446,19 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 										<SelectField
 											name="department"
 											label="Department"
+											defaultValue="Select your department"
 											placeholder="Select your department"
-											data={["CSE", "ECE", "IT", "EE", "ME", "CE"]}
+											data={
+												data?.data.department === "All"
+													? ["CSE", "ECE", "IT", "EE", "ME", "CE"]
+													: [data?.data.department||""]
+											}
 											onValueChange={(value) =>
 												setFieldValue("department", value)
 											}
 											value={values.department}
 										/>
+
 										<ErrorMessage
 											name="department"
 											component="div"

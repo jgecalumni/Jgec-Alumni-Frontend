@@ -25,6 +25,9 @@ const Scholarship = () => {
 		page: page,
 		search: "",
 	});
+
+	const filterData = data?.scholarships.filter((item) => item.isActive === true)||[];
+
 	useEffect(() => {
 		if (isError) {
 			toast.error(
@@ -91,9 +94,9 @@ const Scholarship = () => {
 						</div>
 						<div className="w-full  ">
 							<div className="grid grid-cols-1 md:grid-cols-2  h-full">
-								{data?.scholarships
+								{filterData
 									.reduce<[JSX.Element[], JSX.Element[]]>(
-										(acc, item, index) => {
+										(acc:any, item:any, index:any) => {
 											const column = index % 2;
 											acc[column].push(
 												<li
@@ -101,8 +104,9 @@ const Scholarship = () => {
 													className="px-4 py-2.5 border-b border-neutral-200 text-neutral-950">
 													<Link
 														href={`/scholarships/${item.id}`}
-														className="flex flex-col gap-2">
+														className="flex flex-col gap-1">
 														<h4 className="text-sm line-clamp-1 font-medium">{item.name}</h4>
+														<p className="text-[12px] font-medium">by {item.providerName}</p>
 														<p className="text-xs line-clamp-1">{item.subtitle}</p>
 													</Link>
 												</li>
@@ -111,7 +115,7 @@ const Scholarship = () => {
 										},
 										[[], []]
 									)
-									.map((column, idx) => (
+									.map((column:any, idx:any) => (
 										<ul
 											key={idx}
 											className="overflow-auto">

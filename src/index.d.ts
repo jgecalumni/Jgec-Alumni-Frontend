@@ -63,6 +63,8 @@ interface IScholarshipType {
 	ageLimit: string;
 	amountDetails: string;
 	semRequire: string;
+	isActive: boolean;
+	department: string;
 	scholarshipApplicants: [
 		{
 			id: string;

@@ -169,6 +169,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
   selectItemClassName,
   data,
   placeholder,
+  defaultValue,
   ...props
 }) => {
   return (
@@ -180,7 +181,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
       }
       <Select {...props}>
         <SelectTrigger aria-placeholder={placeholder} >
-          <SelectValue>{ value}</SelectValue>
+        <SelectValue placeholder={defaultValue}>{value}</SelectValue>
         </SelectTrigger>
         <SelectContent className={cn(selectClassName)}>
           {data.map((item) => (
