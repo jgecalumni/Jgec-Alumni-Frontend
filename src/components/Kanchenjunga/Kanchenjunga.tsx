@@ -193,7 +193,7 @@ const Kanchenjunga = () => {
 									width={400}
 								/>
 								<div className="text-center lg:text-xl text-lg font-medium">
-									ENGINEERING GRADUATES OF JGEC FROM 1966 – 2015
+									ENGINEERING GRADUATES OF JGEC FROM 1966 – Recently Graduated Alumni
 								</div>
 								<Image
 									src="/assets/kanchenjunga-pic-4.png"
