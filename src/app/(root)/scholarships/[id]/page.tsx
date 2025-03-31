@@ -136,26 +136,14 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 						<div className="flex gap-2">
 							<div className="text-xs sm:text-sm font-medium">
 								<span className="font-semibold">About Scholarship: </span>
-								The sponsor of the scholarship is entitled to decide salient
-								selection criteria, which is confidential. Out of the available
-								applications, the top ten students will be called for an
-								interview via an invitation email. The interview date and
-								schedule shall be informed through the invitation mail. The
-								subject of the interview can be academic or general, depending
-								on the decision of the interviewers. The interview shall be held
-								at the JGEC campus. After the interview, one or two (maximum)
-								successful students shall be selected for the scholarship. The
-								decision of the sponsor, with prior information to the Alumni
-								Association, is final and must be accepted by all parties
-								involved. In extraordinary cases, the selection procedure may be
-								altered by mutual understanding between the sponsor and the
-								Alumni Association, without prior information to any other party
-								apart from these two entities. Supporting documents of all the
-								provided data (in original or attested true copy format) must be
-								presented only during the interview. Candidates need to submit
-								their parent's family income and other direct family member’s
-								(real brother/sister only) income-related reliable supporting
-								documents during the face-to-face interview process.
+								<div>
+									<ReactQuill
+										theme="bubble"
+										value={data?.data.description}
+										readOnly={true}
+										className="view_editor px-2"
+									/>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -432,7 +420,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 										<InputField
 											type="text"
 											name="average"
-											label="Average marks of first 5 semisters"
+											label="Average marks of first 5 semesters"
 											placeholder="x.xx"
 											onChange={handleChange}
 										/>
@@ -451,7 +439,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 											data={
 												data?.data.department === "All"
 													? ["CSE", "ECE", "IT", "EE", "ME", "CE"]
-													: [data?.data.department||""]
+													: [data?.data.department || ""]
 											}
 											onValueChange={(value) =>
 												setFieldValue("department", value)
