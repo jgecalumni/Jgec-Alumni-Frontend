@@ -1,55 +1,33 @@
 import * as Yup from "yup";
 
 export const ScholarshipSchema = Yup.object().shape({
-	scholarshipName: Yup.string().required("Required"),
-	name: Yup.string()
-		.min(2, "Too Short!")
-		.max(70, "Too Long!")
-		.required("Required"),
-	email: Yup.string().email("Invalid email").required("Required"),
-	studentId: Yup.string()
-		.min(11, "Must be 11 Digit")
-		.max(11, "Must be 11 Digit")
-		.required("Required")
-		.typeError("Student ID must be a number"),
-	dob: Yup.date().required("Required"),
-	contactHome: Yup.string()
-		.min(10, "Must be 10 digit")
-		.max(10, "Must be 10 digit")
-		.required("Required")
-		.typeError("Must be a number"),
-	contact: Yup.string()
-		.min(10, "Must be 10 digit")
-		.max(10, "Must be 10 digit")
-		.required("Required")
-		.typeError("Must be a number"),
-	numberofdirectfamilyMembers: Yup.number().required("Required"),
-	fatherOccupation: Yup.string()
-		.min(2, "Too Short!")
-		.max(70, "Too Long!")
-		.required("Required"),
-	totalEarningMembers: Yup.number().required("Required"),
-	totalFamilyIncome: Yup.number().required("Required"),
-	eachFamilyIncome: Yup.number().required("Required"),
-	jgecIntakeYear: Yup.string()
-		.min(4, "Must be 4 digits")
-		.max(4, "Must be 4 digits")
-		.required("Required")
-		.typeError("Intake Year must be a number"),
-	jgecPassingYear: Yup.string()
-		.min(4, "Must be 4 digits")
-		.max(4, "Must be 4 digits")
-		.required("Required")
-		.typeError("Passing Year must be a number"),
-	extraCurricularActivities: Yup.string()
-		.min(2, "Too Short!")
-		.max(70, "Too Long!")
-		.required("Required"),
-	percentHigherSecondary: Yup.string().required("Required"),
+  scholarshipName: Yup.string().required("Scholarship name is required"),
+  name: Yup.string().required("Full name is required"),
+  studentId: Yup.number().required("Student ID is required"),
+  dob: Yup.string().required("Date of birth is required"),
+  contactHome: Yup.string().matches(/^\d{10}$/, "Enter a valid phone number"),
+  contact: Yup.string().matches(/^\d{10}$/, "Enter a valid phone number"),
+  email: Yup.string().email("Enter a valid email").required("Email is required"),
+  numberofdirectfamilyMembers: Yup.number().required(),
+  fatherOccupation: Yup.string().required("Father's occupation is required"),
+  totalEarningMembers: Yup.number().required(),
+  totalFamilyIncome: Yup.number().required(),
+  eachFamilyIncome: Yup.number().required(),
+  jgecIntakeYear: Yup.string().required("Jgec intake year is required"),
+  jgecPassingYear: Yup.string().required("Jgec passing year is required"),
+  extraCurricularActivities: Yup.string().optional(),
+  percentHigherSecondary: Yup.string().required("Enter your +12 percentage"),
+  department: Yup.string().required("Department is required"),
+  residentialAddress: Yup.string().required("Address is required"),
+  specialAchievement: Yup.string().optional(),
+  jobCampusing: Yup.string().optional(),
+  average: Yup.string().required("Enter your average CGPA"),
 
-	average: Yup.string().required("Required"),
-	department: Yup.string().required("Required"),
-	residentialAddress: Yup.string().required("Required"),
-	specialAchievement: Yup.string().required("Required"),
-	jobCampusing: Yup.string().required("Required"),
+  // Dynamically validate semester CGPA fields
+  ...Object.fromEntries(
+    ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th"].map((sem) => [
+      `sem_${sem}`,
+      Yup.string().matches(/^\d+(\.\d{1,2})?$/, "Enter a valid CGPA").optional(),
+    ])
+  ),
 });
