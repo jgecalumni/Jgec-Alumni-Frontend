@@ -174,6 +174,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 							totalFamilyIncome: "",
 							eachFamilyIncome: "",
 							jgecIntakeYear: "",
+							jgecPassingYear: "",
 							extraCurricularActivities: "",
 							percentHigherSecondary: "",
 							...Object.fromEntries(
@@ -236,7 +237,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 										<InputField
 											type="number"
 											name="contactHome"
-											label="Contact No. (Home)"
+											label="Parent's Contact Number"
 											placeholder="xxxxxxxxxx"
 											onChange={handleChange}
 										/>
@@ -250,7 +251,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 										<InputField
 											type="number"
 											name="contact"
-											label="Your Mobile No."
+											label="Your Mobile Number."
 											placeholder="xxxxxxxxxx"
 											onChange={handleChange}
 										/>
@@ -344,6 +345,29 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 											className="text-red-500 text-xs"
 										/>
 									</div>
+									<div>
+										<SelectField
+											name="department"
+											label="Department"
+											defaultValue="Select your department"
+											placeholder="Select your department"
+											data={
+												data?.data.department === "All"
+													? ["CSE", "ECE", "IT", "EE", "ME", "CE"]
+													: [data?.data.department || ""]
+											}
+											onValueChange={(value) =>
+												setFieldValue("department", value)
+											}
+											value={values.department}
+										/>
+
+										<ErrorMessage
+											name="department"
+											component="div"
+											className="text-red-500 text-xs"
+										/>
+									</div>
 									<div className="flex flex-col gap-1">
 										<InputField
 											type="text"
@@ -354,6 +378,20 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 										/>
 										<ErrorMessage
 											name="jgecIntakeYear"
+											component="div"
+											className="text-red-500 text-xs"
+										/>
+									</div>
+									<div className="flex flex-col gap-1">
+										<InputField
+											type="text"
+											name="jgecPassingYear"
+											label="Jgec passing year "
+											placeholder="xxxx"
+											onChange={handleChange}
+										/>
+										<ErrorMessage
+											name="jgecPassingYear"
 											component="div"
 											className="text-red-500 text-xs"
 										/>
@@ -405,7 +443,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 											<InputField
 												type="text"
 												name={`sem_${sem.split(" ")[0]}`}
-												label={`Grade marks in ${sem}`}
+												label={`CGPA in ${sem}`}
 												placeholder="x.xx"
 												onChange={handleChange}
 											/>
@@ -420,7 +458,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 										<InputField
 											type="text"
 											name="average"
-											label="Average marks of first 5 semesters"
+											label="Average semester marks till date"
 											placeholder="x.xx"
 											onChange={handleChange}
 										/>
@@ -430,31 +468,9 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 											className="text-red-500 text-xs"
 										/>
 									</div>
-									<div>
-										<SelectField
-											name="department"
-											label="Department"
-											defaultValue="Select your department"
-											placeholder="Select your department"
-											data={
-												data?.data.department === "All"
-													? ["CSE", "ECE", "IT", "EE", "ME", "CE"]
-													: [data?.data.department || ""]
-											}
-											onValueChange={(value) =>
-												setFieldValue("department", value)
-											}
-											value={values.department}
-										/>
-
-										<ErrorMessage
-											name="department"
-											component="div"
-											className="text-red-500 text-xs"
-										/>
-									</div>
+									
 								</div>
-								<div className="grid pt-4 lg:grid-cols-2 grid-col-1 gap-4">
+								<div className="grid pt-4  grid-col-1 gap-4">
 									<div>
 										<TextareaField
 											name="specialAchievement"
@@ -468,7 +484,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 											className="text-red-500 text-xs"
 										/>
 									</div>
-									<div>
+									{/* <div>
 										<TextareaField
 											name="jobCampusing"
 											label="Have you already secured job at campusing?"
@@ -480,7 +496,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 											component="div"
 											className="text-red-500 text-xs"
 										/>
-									</div>
+									</div> */}
 								</div>
 
 								<Button

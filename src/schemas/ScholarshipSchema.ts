@@ -35,13 +35,18 @@ export const ScholarshipSchema = Yup.object().shape({
 		.min(4, "Must be 4 digits")
 		.max(4, "Must be 4 digits")
 		.required("Required")
+		.typeError("Intake Year must be a number"),
+	jgecPassingYear: Yup.string()
+		.min(4, "Must be 4 digits")
+		.max(4, "Must be 4 digits")
+		.required("Required")
 		.typeError("Passing Year must be a number"),
 	extraCurricularActivities: Yup.string()
 		.min(2, "Too Short!")
 		.max(70, "Too Long!")
 		.required("Required"),
 	percentHigherSecondary: Yup.string().required("Required"),
-	
+
 	average: Yup.string().required("Required"),
 	department: Yup.string().required("Required"),
 	residentialAddress: Yup.string().required("Required"),
