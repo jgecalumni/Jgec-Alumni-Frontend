@@ -106,7 +106,7 @@ const Scholarship = () => {
 														href={`/scholarships/${item.id}`}
 														className="flex flex-col gap-1">
 														<h4 className="text-sm line-clamp-1 font-medium">{item.name}</h4>
-														<p className="text-[12px] font-medium">Sponsored by {item.providerName}</p>
+														<p className="text-[12px] font-medium line-clamp-1">Sponsored by {item.providerName}</p>
 														<p className="text-xs line-clamp-1">{item.subtitle}</p>
 													</Link>
 												</li>
