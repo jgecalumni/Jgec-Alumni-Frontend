@@ -191,6 +191,7 @@ const Home: React.FC = () => {
 											<div className="text-base md:text-lg lg:text-xl uppercase font-medium w-full text-center">
 												{ele.name}
 											</div>
+											<div>Sponsored by {ele.providerName}</div>
 											<div className="flex flex-col text-[14px] lg:text-[18px] md:text-base justify-center items-center text-slate-200 gap-2">
 												{ele.subtitle}
 											</div>

@@ -19,6 +19,8 @@ export async function POST(req) {
 			totalFamilyIncome,
 			eachFamilyIncome,
 			jgecIntakeYear,
+			jgecPassingYear,
+			department,
 			extraCurricularActivities,
 			percentHigherSecondary,
 			sem_1st,
@@ -27,10 +29,8 @@ export async function POST(req) {
 			sem_4th,
 			sem_5th,
 			average,
-			department,
 			residentialAddress,
 			specialAchievement,
-			jobCampusing,
 		} = body;
 
 		console.log(`Processing scholarship: ${scholarshipName}`);
@@ -94,6 +94,8 @@ export async function POST(req) {
 				"Total Family Income",
 				"Each Family Income",
 				"JGEC Intake Year",
+				"JGEC Passing Year",
+				"Department",
 				"Extra Curricular Activities",
 				"Higher Secondary %",
 				"Grade Sem 1",
@@ -102,10 +104,8 @@ export async function POST(req) {
 				"Grade Sem 4",
 				"Grade Sem 5",
 				"Average Grade",
-				"Department",
 				"Residential Address",
 				"Special Achievements",
-				"Job Campus Placement",
 			];
 
 			// Insert the headers into the new sheet
@@ -139,6 +139,8 @@ export async function POST(req) {
 						totalFamilyIncome,
 						eachFamilyIncome,
 						jgecIntakeYear,
+						jgecPassingYear,
+						department,
 						extraCurricularActivities,
 						percentHigherSecondary,
 						sem_1st,
@@ -147,10 +149,8 @@ export async function POST(req) {
 						sem_4th,
 						sem_5th,
 						average,
-						department,
 						residentialAddress,
 						specialAchievement,
-						jobCampusing,
 					],
 				],
 			},

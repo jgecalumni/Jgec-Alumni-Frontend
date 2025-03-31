@@ -189,7 +189,8 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 						onSubmit={(values) => {
 							handleFormSubmit(values);
 						}}
-						validationSchema={ScholarshipSchema}>
+						// validationSchema={ScholarshipSchema}
+						>
 						{({ handleChange, values, setFieldValue }) => (
 							<Form>
 								<div className="grid lg:grid-cols-2 grid-col-1 gap-4">
