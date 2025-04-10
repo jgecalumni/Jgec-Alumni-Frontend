@@ -192,11 +192,20 @@
 	display: none !important;
 	height: 0 !important;
 }
+.view_editor1 .ql-container.ql-disabled .ql-tooltip {
+	display: none !important;
+	height: 0 !important;
+}
 
 .view_editor .ql-editor {
 	padding: 0 !important;
 	font-size: 15px;
 	font-weight: 400;
+}
+.view_editor1 .ql-editor {
+	padding: 0 !important;
+	/* font-size: 15px; */
+	/* font-weight: 400; */
 }
 
 /* Mobile-specific styles */

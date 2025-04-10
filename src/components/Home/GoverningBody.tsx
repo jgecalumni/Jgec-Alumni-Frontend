@@ -1,8 +1,13 @@
+"use client";
+import { useGetAllNoticesQuery } from "@/store/feature/notice-feature";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { format } from "date-fns";
+
 import { FaChevronCircleRight } from "react-icons/fa";
 import { FaCircleChevronRight } from "react-icons/fa6";
+import ReactQuill from "react-quill";
 
 const data = [
 	{
@@ -127,7 +132,7 @@ const bottomLinks = [
 	{
 		name: "Money Receipt",
 		link: "/money-receipt",
-	}
+	},
 ];
 
 const notices = [
@@ -178,6 +183,17 @@ const notices = [
 ];
 
 const GoverningBody = () => {
+	const {
+		data: noticeData,
+		isError,
+		isLoading,
+		error,
+	} = useGetAllNoticesQuery({
+		limit: 1000,
+		page: 1,
+	});
+	console.log(noticeData?.notices);
+
 	return (
 		<section className="w-full px-4 md:px-10 py-8 md:py-16">
 			<div className="w-full max-w-screen-xl mx-auto flex flex-col lg:flex-row gap-3 justify-center">
@@ -218,16 +234,33 @@ const GoverningBody = () => {
 							Noticeboard
 						</div>
 						<div className="w-full overflow-hidden h-[calc(70vh-4rem)]">
+							{noticeData?.notices.length === 0 && (
+								<div className="flex items-center justify-center h-full">
+									<p className="text-neutral-950 text-sm">
+										No notices available
+									</p>
+								</div>
+							)}
 							<ul className="bottom-top">
-								{notices.map((item, index) => (
+								{noticeData?.notices.map((item: INoticeType, index) => (
 									<li
 										key={index}
 										className="px-4 py-2.5 border-b border-neutral-200 text-neutral-950">
 										<Link
 											href={item.link}
 											className="flex flex-col gap-1">
-											<h4 className="text-sm">{item.title}</h4>
-											<p className="text-xs">{item.subtitle}</p>
+											<h4 className="text-sm font-medium">{item.title}</h4>
+											<div>
+												<ReactQuill
+													theme="bubble"
+													value={item.description}
+													readOnly={true}
+													className="view_editor1 text-xs"
+												/>
+											</div>
+											<p className="p-0 text-xs text-right">
+												Published on {format(item.date, "dd MMM, yyyy")}
+											</p>
 										</Link>
 									</li>
 								))}
