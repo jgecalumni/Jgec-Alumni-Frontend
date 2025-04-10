@@ -124,6 +124,10 @@ const bottomLinks = [
 		name: "Alumni Activities",
 		link: "/alumni-activities",
 	},
+	{
+		name: "Money Receipt",
+		link: "/money-receipt",
+	}
 ];
 
 const notices = [
