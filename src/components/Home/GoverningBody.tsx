@@ -259,7 +259,7 @@ const GoverningBody = () => {
 												/>
 											</div>
 											<p className="p-0 text-xs text-right">
-												Published on {format(item.date, "dd MMM, yyyy")}
+												published on {format(item.date, "dd MMM, yyyy")}
 											</p>
 										</Link>
 									</li>
