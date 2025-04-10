@@ -215,7 +215,7 @@ const GoverningBody = () => {
 				<div className="w-full lg:w-[30%]">
 					<div className=" bg-[#7ec9ee]  h-[70vh]">
 						<div className="bg-[#3fa3d5] text-lg md:text-xl text-neutral-950 p-2.5 font-medium">
-							Upcoming Events
+							Noticeboard
 						</div>
 						<div className="w-full overflow-hidden h-[calc(70vh-4rem)]">
 							<ul className="bottom-top">
