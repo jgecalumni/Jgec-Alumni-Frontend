@@ -77,8 +77,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 						Name : {data?.data.hostName}
 					</div>
 
-					<div className=" flex gap-2 pl-2 md:text-lg text-sm ">
-						<div className="text-[16px] font-medium">About : </div>
+					<div className=" flex gap-2 pt-2 pl-2 md:text-lg text-sm ">
 						<ReactQuill
 							theme="bubble"
 							value={data?.data.hostDetails}
@@ -100,7 +99,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 								<Button className="border bg-primary flex items-center justify-center text-white font-medium px-3 h-full">
 									{schedule.startTime}-{schedule.endTime}
 								</Button>
-								<div className="text-lg font-medium">{schedule.activity}</div>
+								<div className="text-[16px] font-medium">{schedule.activity}</div>
 							</div>
 						))}
 					</div>

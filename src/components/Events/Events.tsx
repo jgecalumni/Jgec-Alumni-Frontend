@@ -89,7 +89,7 @@ const Events: React.FC = () => {
 						<div
 							key={event.id}
 							className="my-8 flex flex-col justify-center items-center">
-							<div className="bg-primary rounded-md shadow-2xl flex md:flex-row flex-col items-center gap-4 justify-between md:h-full lg:h-full 2xl:h-[50vh] md:p-6 p-4 w-[90%] lg:w-[70%]">
+							<div className="bg-primary rounded-md shadow-2xl flex md:flex-row flex-col  gap-4 justify-between md:h-full lg:h-full 2xl:h-[50vh] md:p-6 p-4 w-[90%] lg:w-[70%]">
 								<Image
 									height={450}
 									width={450}
@@ -97,7 +97,7 @@ const Events: React.FC = () => {
 									alt={event.name}
 									className="rounded-md"
 								/>
-								<div className="flex flex-col gap-2 justify-evenly md:w-[60%] h-full">
+								<div className="flex flex-col gap-4 justify-evenly md:w-[60%] h-full">
 									<div className="flex gap-4 items-center">
 										{["Days", "Hr", "Min", "Sec"].map((unit, index) => {
 											const values = ["days", "hours", "minutes", "seconds"];
