@@ -191,10 +191,17 @@
 .view_editor .ql-container.ql-disabled .ql-tooltip {
 	display: none !important;
 	height: 0 !important;
+	pointer-events: none;
+}
+.view_editor .ql-container.ql-disabled .ql-clipboard {
+	display: none !important;
+	height: 0 !important;
+	pointer-events: none;
 }
 .view_editor1 .ql-container.ql-disabled .ql-tooltip {
 	display: none !important;
 	height: 0 !important;
+	pointer-events: none;
 }
 
 .view_editor .ql-editor {
@@ -216,11 +223,24 @@
 	}
 
 	.view_editor .ql-container {
-		min-height: 150px; /* Prevents text editor from collapsing on mobile */
+		min-height: 100px; /* Prevents text editor from collapsing on mobile */
 	}
 
 	.view_editor .ql-editor p {
 		line-height: 1.4; /* Adjust line spacing for better readability */
 		word-break: break-word; /* Ensures text wraps properly */
+	}
+	.view_editor .ql-container.ql-disabled .ql-tooltip {
+		display: none !important;
+		height: 0 !important;
+	}
+	.view_editor1 .ql-container.ql-disabled .ql-tooltip {
+		display: none !important;
+		height: 0 !important;
+	}
+	.view_editor .ql-container.ql-disabled .ql-clipboard {
+		display: none !important;
+		height: 0 !important;
+		pointer-events: none;
 	}
 }

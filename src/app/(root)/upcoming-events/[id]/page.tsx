@@ -55,7 +55,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 				{/* Details of the event */}
 				<div className="flex shadow-xl bg-white w-full mb-4 flex-col py-6 rounded-md p-4">
 					<div className="flex gap-0 flex-col">
-						<div className="text-black text-2xl  font-bold">
+						<div className="text-black lg:text-2xl  font-bold">
 							Details of the Event
 						</div>
 						<div className="border w-1/2 lg:w-1/4 border-blue-500"></div>
@@ -68,16 +68,16 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 							className="view_editor"
 						/>
 					</div>
-					<div className="flex flex-col">
-						<div className="text-black text-xl font-bold">Host Details</div>
+					<div className="flex pt-4 flex-col">
+						<div className="text-black lg:text-xl font-bold">Host Details</div>
 						<div className="border w-1/2 lg:w-14 border-blue-500"></div>
 					</div>
 
-					<div className="text-[16px] pl-2 pt-3 font-medium">
+					<div className="lg:text-[16px] text-[14px]  pt-3 font-medium">
 						Name : {data?.data.hostName}
 					</div>
 
-					<div className=" flex gap-2 pt-2 pl-2 md:text-lg text-sm ">
+					<div className=" flex gap-2 pt-2  md:text-lg text-sm ">
 						<ReactQuill
 							theme="bubble"
 							value={data?.data.hostDetails}
@@ -91,15 +91,15 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 					<div className="bg-primary rounded-md p-4 text-center font-medium text-xl lg:text-2xl text-white">
 						EVENT SCHEDULE
 					</div>
-					<div className="w-full px-2 lg:px-4">
+					<div className="w-full px-1 lg:px-4">
 						{data?.data.schedule.map((schedule, index) => (
 							<div
 								key={index}
-								className="rounded-md p-3 mb-2 flex shadow-xl gap-4 items-center bg-white h-[8vh]">
-								<Button className="border bg-primary flex items-center justify-center text-white font-medium px-3 h-full">
+								className="rounded-md p-3 mb-2 flex shadow-xl gap-4 items-center bg-white lg:h-[8vh]">
+								<Button className="border bg-primary lg:text-[16px] text-[12px] flex items-center justify-center text-white font-medium px-3 h-full">
 									{schedule.startTime}-{schedule.endTime}
 								</Button>
-								<div className="text-[16px] font-medium">{schedule.activity}</div>
+								<div className="lg:text-[16px] text-[12px] font-medium">{schedule.activity}</div>
 							</div>
 						))}
 					</div>
