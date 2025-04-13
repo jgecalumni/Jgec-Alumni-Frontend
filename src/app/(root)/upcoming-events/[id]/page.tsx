@@ -31,7 +31,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 	return (
 		<div className="lg:pt-[10em] pt-[4em] flex bg-[#edf1f4] justify-center items-center">
 			<div className="lg:px-14 px-4 flex flex-col lg:w-2/3 justify-center gap-8 items-center">
-				<div className="relative rounded-md shadow-xl  w-full h-[60vh]">
+				<div className="relative rounded-md shadow-xl  w-full h-[50vh] lg:h-[60vh]">
 					<Image
 						src={data?.data.event_thumbnail || ""}
 						objectFit="cover"
@@ -40,13 +40,13 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 						className="z-10 rounded-md brightness-50"
 					/>
 					<div className="z-20 bg-[#161616d5] flex gap-2 flex-col w-full absolute bottom-0 p-4">
-						<div className="text-white text-lg md:text-xl font-semibold">
+						<div className="text-white text-sm md:text-xl font-semibold">
 							{data?.data.name} ({data?.data.date})
 						</div>
-						<div className="flex items-center text-yellow-300 text-sm lg:text-lg">
+						<div className="flex items-center text-yellow-300 text-xs lg:text-lg">
 							<FaLocationDot
 								color="yellow"
-								size={20}
+								size={18}
 							/>
 							{data?.data.location}
 						</div>
@@ -70,14 +70,14 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 					</div>
 					<div className="flex pt-4 flex-col">
 						<div className="text-black lg:text-xl font-bold">Host Details</div>
-						<div className="border w-1/2 lg:w-14 border-blue-500"></div>
+						<div className="border w-1/4 lg:w-14 border-blue-500"></div>
 					</div>
 
 					<div className="lg:text-[16px] text-[14px]  pt-3 font-medium">
 						Name : {data?.data.hostName}
 					</div>
 
-					<div className=" flex gap-2 pt-2  md:text-lg text-sm ">
+					<div className=" flex gap-2 pt-2 ">
 						<ReactQuill
 							theme="bubble"
 							value={data?.data.hostDetails}
