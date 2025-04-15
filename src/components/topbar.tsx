@@ -14,7 +14,7 @@ const Topbar = () => {
 			<div className="w-full max-w-screen-xl mx-auto lg:flex hidden justify-between items-center">
 				<div className="flex xl:w-[45%] lg:w-2/3 w-full items-center  text-sm xl:text-sm lg:text-sm gap-4">
 					<div className="font-medium line-clamp-1 py-1">
-						Reg.No:-S/1L/No-70053 of 2010-2011.
+						Reg.No:-AADAT3213CF20251
 					</div>
 					<div>
 						<Link

@@ -1,23 +1,22 @@
 "use client";
 import React, { useEffect } from "react";
-import { MdCloudUpload } from "react-icons/md";
 import { InputField } from "../ui/input";
 import { ErrorMessage, Form, Formik } from "formik";
 import { Button } from "../ui/button";
-import { TextareaField } from "../ui/textarea";
 import { SelectField } from "../ui/select";
-import { LoginSchema, RegisterSchema } from "@/schemas/AuthSchema";
 import { Loader2 } from "lucide-react";
 import toast from "react-hot-toast";
-import { useRegisterMutation } from "@/store/baseApi";
-import { useAuth } from "@/store/AuthContext";
 import SectionHeader from "../section-header";
 import { useAddReceiptMutation } from "@/store/feature/receipt-feature";
+import { MoneyReceiptSchema } from "@/schemas/MoneyReceiptSchema";
+
+
 
 const MoneyReceipt: React.FC = () => {
 	const [addReceipt, { isError, isLoading, error }] = useAddReceiptMutation();
 	const handleSubmit = async (values: any) => {
 		console.log(values);
+		
 		const response = await addReceipt(values);
 		if (response.data?.success) {
 			toast.success("Receipt request sent successfully");
@@ -27,7 +26,7 @@ const MoneyReceipt: React.FC = () => {
 		if (isError) {
 			toast.error((error as any)?.data?.message || "Failed to add user");
 		}
-	}, [isError,error]);
+	}, [isError, error]);
 	return (
 		<div className="bg-slate-50">
 			<SectionHeader
@@ -44,13 +43,14 @@ const MoneyReceipt: React.FC = () => {
 						initialValues={{
 							email: "",
 							name: "",
-							amount: "",
+							amount: 0,
 							passoutYear: "",
+							date: "",
 							transactionId: "",
 							phone: "",
 							donationFor: "",
 						}}
-						// validationSchema={RegisterSchema}
+						validationSchema={MoneyReceiptSchema}
 						onSubmit={(values: any) => {
 							handleSubmit(values);
 						}}>
@@ -114,6 +114,7 @@ const MoneyReceipt: React.FC = () => {
 									<div className="flex flex-col gap-1">
 										<InputField
 											name="amount"
+											
 											label="Amount (in Rupees)"
 											placeholder="Amount"
 											onChange={handleChange}
@@ -137,49 +138,64 @@ const MoneyReceipt: React.FC = () => {
 											className="text-red-500 text-xs"
 										/>
 									</div>
+									<div className="flex flex-col gap-1">
+										<InputField
+											name="date"
+											label="Date of transaction"
+											type="date"
+											onChange={handleChange}
+										/>
+										<ErrorMessage
+											name="date"
+											component="div"
+											className="text-red-500 text-xs"
+										/>
+									</div>
+									<div>
+										<SelectField
+											name="donationFor"
+											label="Reason for donation"
+											defaultValue="Select reason for Donation"
+											data={[
+												"Building construction",
+												"Students scholarship",
+												"Events",
+												"Students services",
+												"Social awareness",
+												"Others",
+											]}
+											onValueChange={(value) =>
+												setFieldValue("donationFor", value)
+											}
+											value={values.donationFor}
+										/>
+										<ErrorMessage
+											name="donationFor"
+											component="div"
+											className="text-red-500 text-xs"
+										/>
+									</div>
 								</div>
-								<div className="py-4">
-									<SelectField
-										name="donationFor"
-										label="Reason for donation"
-										defaultValue="Select reason for Donation"
-										data={[
-											"Building construction",
-											"Students scholarship",
-											"Events",
-											"Students services",
-											"Social awareness",
-											"Others",
-										]}
-										onValueChange={(value) =>
-											setFieldValue("donationFor", value)
-										}
-										value={values.donationFor}
-									/>
-									<ErrorMessage
-										name="donationFor"
-										component="div"
-										className="text-red-500 text-xs"
-									/>
+								<div className="pt-4">
+									{isLoading ? (
+										<>
+											<Button
+												disabled
+												className="py-3 text-white hover:scale-100 w-full max-w-lg lg:max-w-xs"
+												type="submit">
+												<Loader2 className="animate-spin" /> Loading...
+											</Button>
+										</>
+									) : (
+										<>
+											<Button
+												className="py-3 text-white hover:scale-100 w-full max-w-lg lg:max-w-xs"
+												type="submit">
+												Submit
+											</Button>
+										</>
+									)}
 								</div>
-								{isLoading ? (
-									<>
-										<Button
-											disabled
-											className="py-3 text-white hover:scale-100 w-full max-w-lg lg:max-w-xs"
-											type="submit">
-											<Loader2 className="animate-spin" /> Loading...
-										</Button>
-									</>
-								) : (
-									<>
-										<Button
-											className="py-3 text-white hover:scale-100 w-full max-w-lg lg:max-w-xs"
-											type="submit">
-											Submit
-										</Button>
-									</>
-								)}
 							</Form>
 						)}
 					</Formik>
