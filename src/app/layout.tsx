@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 		title: "Jalpaiguri Government Engineering College.",
 		description:
 			"The alumini association of Jalpaiguri Government Engineering College.",
-		// url: 'https://cfi-jgec-new.vercel.app',
+		url: 'https://jgecalumni.in',
 		type: "website",
 	},
 };
