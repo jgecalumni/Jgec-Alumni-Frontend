@@ -12,9 +12,9 @@ const Topbar = () => {
 	return (
 		<nav className="text-white fixed top-0 z-[200] w-full   bg-[#161f37]">
 			<div className="w-full max-w-screen-xl mx-auto lg:flex hidden justify-between items-center">
-				<div className="flex xl:w-[45%] lg:w-2/3 w-full items-center  text-sm xl:text-sm lg:text-sm gap-4">
+				<div className="flex xl:w-[45%] lg:w-2/3 w-full items-center  text-sm xl:text-sm lg:text-sm gap-8">
 					<div className="font-medium line-clamp-1 py-1">
-						Reg.No:-AADAT3213CF20251
+						Unique Registration Number: AADAT3213CF20251
 					</div>
 					<div>
 						<Link

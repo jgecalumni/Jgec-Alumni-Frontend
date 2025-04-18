@@ -308,14 +308,11 @@ const Auth: React.FC = () => {
 										</p>
 										<ul className="list-decimal pl-4 text-sm space-y-2">
 											<li className="text-xs sm:text-sm">
-												SBI C.A No:-31904400275 IFSC-SBIN0007194,
+												SBI A/C No:-31904400275 IFSC-SBIN0007194,
 												MICR-735002512, Branch Code-7194-Jointly operated by
 												Treasurer &amp; either of President/Secretary.
 											</li>
-											<li className="text-xs sm:text-sm">
-												SBI C.A NO-31232430610- Jointly operated by Chairman-(Ex
-												officio )Principal &amp; either of President/Secretary.
-											</li>
+											
 										</ul>
 									</div>
 								</div>

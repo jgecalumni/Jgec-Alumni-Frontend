@@ -87,11 +87,11 @@ const Navbar = () => {
 							/>
 						</div>
 						<div className="flex w-full flex-col ms-3">
-							<h1 className="text-neutral-950 font-semibold lg:text-xl">
-								Alumni Association
+							<h1 className="text-neutral-950 font-semibold text-[12px] lg:text-[16px]">
+							The Jalpaiguri Government Engineering College Alumni Association
 							</h1>
 							<p className="lg:text-sm line-clamp-1 text-xs font-normal">
-								Jalpaiguri Government Engineering College
+								
 							</p>
 						</div>
 					</div>
