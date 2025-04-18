@@ -267,7 +267,7 @@ const GoverningBody = () => {
 							</ul>
 						</div>
 					</div>
-					<ul className="py-6 hidden lg:block">
+					<ul className="py-6 ">
 						{bottomLinks.map((item, index) => (
 							<li
 								key={index}

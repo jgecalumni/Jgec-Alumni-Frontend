@@ -7,7 +7,7 @@ export const MoneyReceiptSchema = Yup.object().shape({
 		.max(70, "Too Long!")
 		.required("Required"),
 	phone: Yup.string().max(10, "Must be 10 digits").required("Required"),
-	panId: Yup.string().max(10, "Must be 10 digits").min(10, "Must be 10 digits").required("Required"),
+	panId: Yup.string().matches(/^[A-Z0-9]*$/, "Only uppercase letters and digits allowed").max(10, "Must be 10 digits").min(10, "Must be 10 digits").required("Required"),
 	amount: Yup.number()
 		.min(499, "Amount must be greater than Rs.499")
 		.required("Required"),
