@@ -28,7 +28,7 @@ const Auth: React.FC = () => {
 		formData.append("email", userData.email);
 		formData.append("password", userData.password);
 		formData.append("photo", userData.photo || "");
-		formData.append("studentId", userData.studentId);
+		formData.append("nickname", userData.nickname);
 		formData.append("passingYear", userData.passingYear);
 		formData.append("department", userData.department);
 		formData.append("residentialAddress", userData.residentialAddress);
@@ -46,69 +46,7 @@ const Auth: React.FC = () => {
 		<section className="bg-white px-4 md:px-10 py-10 md:py-20">
 			{/* Authentication Form */}
 			<div className="h-full w-full max-w-screen-lg mx-auto  overflow-hidden flex lg:flex-row flex-col justify-center gap-8 items-center">
-				{/* Login Form */}
-				<div className="w-full max-lg:max-w-lg lg:w-1/3">
-					<h2 className="text-xl sm:text-2xl font-medium text-start mb-4 sm:mb-8">
-						Already a Member?
-					</h2>
-					<Formik
-						initialValues={{ email: "", password: "" }}
-						validationSchema={LoginSchema}
-						onSubmit={(values, actions) => {
-							handleLogin(values, actions.setSubmitting);
-						}}>
-						{({ handleChange,isSubmitting }) => (
-							<Form className="flex flex-col gap-4">
-								<div className="flex flex-col gap-1">
-									<InputField
-										type="email"
-										name="email"
-										label="Email"
-										placeholder="Enter your email"
-										onChange={handleChange}
-									/>
-									<ErrorMessage
-										name="email"
-										component="div"
-										className="text-red-500 text-xs"
-									/>
-								</div>
-								<div className="flex flex-col gap-1">
-									<InputField
-										type="password"
-										name="password"
-										label="Password"
-										placeholder="Enter your password"
-										onChange={handleChange}
-									/>
-									<ErrorMessage
-										name="password"
-										component="div"
-										className="text-red-500 text-xs"
-									/>
-								</div>
-								{isSubmitting ? (
-									<>
-										<Button
-											disabled
-											className="py-3 text-white hover:scale-100 w-full max-w-lg lg:max-w-xs"
-											type="submit">
-											<Loader2 className="animate-spin" /> Loading...
-										</Button>
-									</>
-								) : (
-									<>
-										<Button
-											className="py-3 text-white hover:scale-100 w-full max-w-lg lg:max-w-xs"
-											type="submit">
-											Login
-										</Button>
-									</>
-								)}
-							</Form>
-						)}
-					</Formik>
-				</div>
+				
 				<div className=" w-full max-lg:max-w-lg lg:w-2/3 max-lg:border-t-2  max-lg:mt-4 pt-8 lg:border-l-2 border-neutral-200 lg:pl-8">
 					<div className="text-xl sm:text-2xl font-medium mb-4 sm:mb-8">
 						Registration Form
@@ -118,7 +56,7 @@ const Auth: React.FC = () => {
 							email: "",
 							password: "",
 							name: "",
-							studentId: "",
+							nickname: "",
 							passingYear: "",
 							department: "",
 							residentialAddress: "",
@@ -176,13 +114,13 @@ const Auth: React.FC = () => {
 									</div>
 									<div className="flex flex-col gap-1">
 										<InputField
-											name="studentId"
-											label="Student ID"
-											placeholder="Student ID"
+											name="nickname"
+											label="Nickname(if any)"
+											placeholder="Nickname"
 											onChange={handleChange}
 										/>
 										<ErrorMessage
-											name="studentId"
+											name="nickname"
 											component="div"
 											className="text-red-500 text-xs"
 										/>
@@ -204,6 +142,7 @@ const Auth: React.FC = () => {
 										<SelectField
 											name="department"
 											label="Department"
+											defaultValue="Select your department"
 											placeholder="Select your department"
 											data={["CSE", "ECE", "IT", "EE", "ME", "CE"]}
 											onValueChange={(value) =>

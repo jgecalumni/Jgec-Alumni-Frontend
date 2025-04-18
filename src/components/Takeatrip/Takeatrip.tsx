@@ -356,7 +356,7 @@ const Takeatrip: React.FC = () => {
 						</h3>
 					</div>
 
-					<div className="border relative overflow-hidden border-black lg:w-1/2 h-[80vh mt-8">
+					<div className="border relative overflow-hidden border-black  mt-8">
 						<h3 className="text-center font-medium border-b border-b-black p-2">
 							Major Milestones of Alumni Association Activities at JGEC Campus
 						</h3>
@@ -365,7 +365,7 @@ const Takeatrip: React.FC = () => {
 							<div className="w-1/4 flex items-center justify-center">
 								April 2010
 							</div>
-							<div className="w-2/3 flex items-center justify-center">
+							<div className="w-2/3 ">
 								Alumni Association Journey Began At JGEC Campus
 							</div>
 						</div>
@@ -373,7 +373,7 @@ const Takeatrip: React.FC = () => {
 							<div className="w-1/4 flex items-center justify-center">
 								December 2011
 							</div>
-							<div className="w-2/3 flex flex-col space-y-2 items-center justify-center">
+							<div className="w-2/3  space-y-2 items-center justify-center">
 								<p>
 									First National Level Seminar Organized at Campus (at present,
 									seminars are organized regularly at JGEC campus, along with
@@ -407,7 +407,7 @@ const Takeatrip: React.FC = () => {
 							<div className="w-1/4 flex items-center justify-center">
 								March 2012
 							</div>
-							<div className="w-2/3 flex items-center justify-center">
+							<div className="w-2/3 ">
 								Inauguration of statue of Prof. N. C. Bose, Respected Founder
 								Principal of JGEC
 							</div>
@@ -416,7 +416,7 @@ const Takeatrip: React.FC = () => {
 							<div className="w-1/4 flex items-center justify-center">
 								August 2013
 							</div>
-							<div className="w-2/3 flex flex-col gap-2 items-center justify-center">
+							<div className="w-2/3  gap-2 items-center justify-center">
 								<p>
 									Launch of Scholarship Program (Every year, during May-June,
 									students can apply for scholarship)
@@ -432,7 +432,7 @@ const Takeatrip: React.FC = () => {
 							<div className="w-1/4 flex items-center justify-center">
 								January 2014
 							</div>
-							<div className="w-2/3 flex gap-2 flex-col justify-center">
+							<div className="w-2/3  gap-2 flex-col justify-center">
 								<p>Land for Kanchenjunga Inaugurated</p>
 								<p>
 									Alumni Association purchased an available private land inside
@@ -445,7 +445,7 @@ const Takeatrip: React.FC = () => {
 							<div className="w-1/4 flex items-center justify-center">
 								August 2016
 							</div>
-							<div className="w-2/3 flex gap-2 flex-col  justify-center">
+							<div className="w-2/3  gap-2 flex-col  justify-center">
 								<p>
 									Inauguration of Annexed Facility of Kanchenjunga & Alumni
 									Temporary Office;
@@ -460,7 +460,7 @@ const Takeatrip: React.FC = () => {
 							<div className="w-1/4 flex items-center justify-center">
 								July 2018
 							</div>
-							<div className="w-2/3 flex flex-col gap-2 justify-center">
+							<div className="w-2/3  gap-2 justify-center">
 								<p>
 									Beginning of Experience Sharing Welcome Sessions with the
 									first-year students
@@ -475,7 +475,7 @@ const Takeatrip: React.FC = () => {
 							<div className="w-1/4 flex items-center justify-center">
 								December 2020
 							</div>
-							<div className="w-2/3 flex flex-col gap-2 justify-center">
+							<div className="w-2/3  gap-2 justify-center">
 								<p>Completion of Ground Floor of Kanchenjunga (Phase-I)</p>
 								<p className="font-medium">
 									(Next Target is to complete next Phases for first & second

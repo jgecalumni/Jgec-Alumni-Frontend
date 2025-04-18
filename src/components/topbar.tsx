@@ -60,7 +60,7 @@ const Topbar = () => {
 									LOGIN
 								</button>
 							</Link>
-							<Link href="/login">
+							<Link href="/register">
 								<button className="bg-[#1cad6c] p-2 px-4 font-medium ">
 									SIGN UP
 								</button>

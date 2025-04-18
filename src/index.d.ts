@@ -2,7 +2,7 @@ interface IRegisterType {
 	email: string;
 	password: string;
 	name: string;
-	studentId: string;
+	nickname: string;
 	passingYear: string;
 	department: string;
 	residentialAddress: string;

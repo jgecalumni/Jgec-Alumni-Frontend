@@ -39,18 +39,18 @@ const Links = [
 ];
 
 const moreLinks = [
-	{
-		name: "Research & Internship",
-		link: "/research-internship",
-	},
-	{
-		name: "Contact",
-		link: "/contact",
-	},
-	{
-		name: "Digital Database",
-		link: "/digital-database",
-	},
+	// {
+	// 	name: "Research & Internship",
+	// 	link: "/research-internship",
+	// },
+	// {
+	// 	name: "Contact",
+	// 	link: "/contact",
+	// },
+	// {
+	// 	name: "Digital Database",
+	// 	link: "/digital-database",
+	// },
 	{
 		name: "Rooms",
 		link: "/rooms",
