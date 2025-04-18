@@ -44,6 +44,7 @@ const MoneyReceipt: React.FC = () => {
 							amount: 0,
 							passoutYear: "",
 							date: "",
+							gender:"",
 							transactionId: "",
 							panId: "",
 							phone: "",
@@ -80,6 +81,23 @@ const MoneyReceipt: React.FC = () => {
 										/>
 										<ErrorMessage
 											name="name"
+											component="div"
+											className="text-red-500 text-xs"
+										/>
+									</div>
+									<div className="">
+										<SelectField
+											name="gender"
+											label="Gender"
+											defaultValue="Select your gender"
+											data={["Male", "Female"]}
+											onValueChange={(value) =>
+												setFieldValue("gender", value)
+											}
+											value={values.gender}
+										/>
+										<ErrorMessage
+											name="gender"
 											component="div"
 											className="text-red-500 text-xs"
 										/>
@@ -163,30 +181,30 @@ const MoneyReceipt: React.FC = () => {
 											className="text-red-500 text-xs"
 										/>
 									</div>
-								</div>
-								<div className="mt-3">
-									<SelectField
-										name="donationFor"
-										label="Reason for donation"
-										defaultValue="Select reason for Donation"
-										data={[
-											"Building construction",
-											"Students scholarship",
-											"Events",
-											"Students services",
-											"Social awareness",
-											"Others",
-										]}
-										onValueChange={(value) =>
-											setFieldValue("donationFor", value)
-										}
-										value={values.donationFor}
-									/>
-									<ErrorMessage
-										name="donationFor"
-										component="div"
-										className="text-red-500 text-xs"
-									/>
+									<div className="">
+										<SelectField
+											name="donationFor"
+											label="Reason for donation"
+											defaultValue="Select reason for Donation"
+											data={[
+												"Building construction",
+												"Students scholarship",
+												"Events",
+												"Students services",
+												"Social awareness",
+												"Others",
+											]}
+											onValueChange={(value) =>
+												setFieldValue("donationFor", value)
+											}
+											value={values.donationFor}
+										/>
+										<ErrorMessage
+											name="donationFor"
+											component="div"
+											className="text-red-500 text-xs"
+										/>
+									</div>
 								</div>
 								<div className="pt-8 flex items-center justify-center">
 									{isLoading ? (
