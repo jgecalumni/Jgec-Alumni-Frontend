@@ -36,7 +36,7 @@ const data = [
 			{
 				name: "Mr. Partha Halder",
 				timeline: "(1989-1993)",
-				image: "/images/partha.jpg",
+				image: "/assets/Members/person-icon-8.png",
 			},
 		],
 	},
