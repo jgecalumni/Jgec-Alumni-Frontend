@@ -54,7 +54,7 @@ const Home: React.FC = () => {
 										</div> */}
 									</div>
 									<Image
-										src="https://jgecalum.org/public/site/images/slider/slider1.jpg"
+										src="/assets/Banner.png"
 										alt="slide-1"
 										width={1000}
 										height={300}
