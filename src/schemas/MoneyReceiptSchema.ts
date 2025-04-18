@@ -1,12 +1,13 @@
 import * as Yup from "yup";
 
 export const MoneyReceiptSchema = Yup.object().shape({
-	email: Yup.string().email("Invalid email").required("Required"),    
+	email: Yup.string().email("Invalid email").required("Required"),
 	name: Yup.string()
 		.min(2, "Too Short!")
 		.max(70, "Too Long!")
 		.required("Required"),
 	phone: Yup.string().max(10, "Must be 10 digits").required("Required"),
+	panId: Yup.string().max(10, "Must be 10 digits").min(10, "Must be 10 digits").required("Required"),
 	amount: Yup.number()
 		.min(499, "Amount must be greater than Rs.499")
 		.required("Required"),

@@ -10,13 +10,11 @@ import SectionHeader from "../section-header";
 import { useAddReceiptMutation } from "@/store/feature/receipt-feature";
 import { MoneyReceiptSchema } from "@/schemas/MoneyReceiptSchema";
 
-
-
 const MoneyReceipt: React.FC = () => {
 	const [addReceipt, { isError, isLoading, error }] = useAddReceiptMutation();
 	const handleSubmit = async (values: any) => {
 		console.log(values);
-		
+
 		const response = await addReceipt(values);
 		if (response.data?.success) {
 			toast.success("Receipt request sent successfully");
@@ -47,6 +45,7 @@ const MoneyReceipt: React.FC = () => {
 							passoutYear: "",
 							date: "",
 							transactionId: "",
+							panId: "",
 							phone: "",
 							donationFor: "",
 						}}
@@ -100,6 +99,20 @@ const MoneyReceipt: React.FC = () => {
 									</div>
 									<div className="flex flex-col gap-1">
 										<InputField
+											name="panId"
+											label="PAN"
+											placeholder="PAN"
+											onChange={handleChange}
+											className="uppercase"
+										/>
+										<ErrorMessage
+											name="panId"
+											component="div"
+											className="text-red-500 text-xs"
+										/>
+									</div>
+									<div className="flex flex-col gap-1">
+										<InputField
 											name="passoutYear"
 											label="Passout Year"
 											placeholder="Passout Year"
@@ -114,7 +127,6 @@ const MoneyReceipt: React.FC = () => {
 									<div className="flex flex-col gap-1">
 										<InputField
 											name="amount"
-											
 											label="Amount (in Rupees)"
 											placeholder="Amount"
 											onChange={handleChange}
@@ -151,32 +163,32 @@ const MoneyReceipt: React.FC = () => {
 											className="text-red-500 text-xs"
 										/>
 									</div>
-									<div>
-										<SelectField
-											name="donationFor"
-											label="Reason for donation"
-											defaultValue="Select reason for Donation"
-											data={[
-												"Building construction",
-												"Students scholarship",
-												"Events",
-												"Students services",
-												"Social awareness",
-												"Others",
-											]}
-											onValueChange={(value) =>
-												setFieldValue("donationFor", value)
-											}
-											value={values.donationFor}
-										/>
-										<ErrorMessage
-											name="donationFor"
-											component="div"
-											className="text-red-500 text-xs"
-										/>
-									</div>
 								</div>
-								<div className="pt-4">
+								<div className="mt-3">
+									<SelectField
+										name="donationFor"
+										label="Reason for donation"
+										defaultValue="Select reason for Donation"
+										data={[
+											"Building construction",
+											"Students scholarship",
+											"Events",
+											"Students services",
+											"Social awareness",
+											"Others",
+										]}
+										onValueChange={(value) =>
+											setFieldValue("donationFor", value)
+										}
+										value={values.donationFor}
+									/>
+									<ErrorMessage
+										name="donationFor"
+										component="div"
+										className="text-red-500 text-xs"
+									/>
+								</div>
+								<div className="pt-8 flex items-center justify-center">
 									{isLoading ? (
 										<>
 											<Button
