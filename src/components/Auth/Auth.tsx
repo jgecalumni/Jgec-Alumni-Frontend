@@ -65,7 +65,7 @@ const Auth: React.FC = () => {
 							receipt: null as File | null,
 						}}
 						validationSchema={RegisterSchema}
-						onSubmit={(values: any, actions: any) => {
+						onSubmit={(values: any, actions: any) => {					
 							registerUser(values, actions.setSubmitting);
 						}}>
 						{({ handleChange, values, setFieldValue, isSubmitting }) => (
