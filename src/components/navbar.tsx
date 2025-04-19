@@ -212,7 +212,7 @@ const Navbar = () => {
 									<Link href="/login">
 										<Button onClick={() => setOpenNav(false)}>LOGIN</Button>
 									</Link>
-									<Link href="/login">
+									<Link href="/register">
 										<Button
 											className="bg-[#1cad6c]"
 											onClick={() => setOpenNav(false)}>
