@@ -131,8 +131,7 @@ const Giving_Back = () => {
 							<span className="font-medium">
 								A Dream Realized by Dedicated Alumni:
 							</span>{" "}
-							The project is the brainchild of a passionate group of former
-							students. Notably, the land for the project was a private plot
+							The project is the brainchild of Alumni Association. Notably, the land for the project was a private plot
 							within the campus, purchased by the Alumni Association with the
 							generous financial support of another alumnus, Mr. Premangshu
 							Ghosh'79'.
