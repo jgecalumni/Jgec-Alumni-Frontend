@@ -57,7 +57,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 							<span className="text-blue-400">{data.data.name}</span>
 						</div>
 						<div className="text-sm lg:text-sm text-center">
-							Get all the latest images from our gallery.
+							Get all the latest images from our gallery
 						</div>
 					</div>
 				</div>
