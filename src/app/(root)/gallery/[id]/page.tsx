@@ -25,7 +25,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
     
         const img = document.createElement("img");
         img.src = image;
-        img.className = "max-w-full max-h-full rounded shadow-lg";
+        img.className = "max-w-full max-h-[80%] rounded shadow-lg";
     
         // Prevent closing when clicking on the image
         img.onclick = (e) => {
@@ -53,7 +53,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 						className="object-cover brightness-[30%]"
 					/>
 					<div className="text-white h-full w-full top-0 flex flex-col items-center justify-center gap-2 absolute">
-						<div className="md:text-5xl text-5xl text-white font-medium">
+						<div className="md:text-5xl text-xl text-center text-white font-medium">
 							<span className="text-blue-400">{data.data.name}</span>
 						</div>
 						<div className="text-sm lg:text-sm text-center">

@@ -106,7 +106,7 @@ const MasonryGallery = () => {
 								alt=""
 								className="object-cover rounded-md brightness-50 rotate-0"
 							/>
-							<div className="absolute text-white text-xl font-medium">
+							<div className="absolute text-center text-white text-xl font-medium">
 								{item.name}
 							</div>
 						</Link>
