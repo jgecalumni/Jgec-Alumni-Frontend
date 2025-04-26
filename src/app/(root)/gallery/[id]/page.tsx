@@ -76,6 +76,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 						<Image
 							layout="fill"
 							objectFit="cover"
+							loading="lazy"
 							src={item.image}
 							alt=""
 							className="object-cover rounded-md  rotate-0"
