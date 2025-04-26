@@ -1,8 +1,10 @@
 "use client";
+import Loading from "@/app/Loader";
 import { useGetCategoryQuery } from "@/store/feature/gallery-feature";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { use, useEffect } from "react";
+import toast from "react-hot-toast";
 
 const photos = [
 	{
@@ -57,8 +59,14 @@ const photos = [
 
 const MasonryGallery = () => {
 	const { data, isLoading, isError, error } = useGetCategoryQuery({});
-	console.log(data);
-
+	useEffect(() => {
+		if (isError) {
+			toast.error((error as any)?.data?.message || "Failed to fetch events");
+		}
+	}, [isError, error]);
+	if (isLoading) {
+		return <Loading />;
+	}
 	return (
 		<>
 			<div className="lg:mt-[8em] mt-[6em] h-[60vh] overflow-hidden">
@@ -80,26 +88,31 @@ const MasonryGallery = () => {
 					</div>
 				</div>
 			</div>
-			{data?.data.length === 0? (
+			{data?.data.length === 0 ? (
 				<div className="text-center h-[40vh] flex justify-center items-center text-2xl">
 					No images found
 				</div>
-			):<div className="p-8 py-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-			{data?.data.map((item: any) => (
-				<Link href={`/gallery/${item.id}`} key={item.id} className="relative flex items-center justify-center h-[30vh]">
-					<Image
-						layout="fill"
-						objectFit="cover"
-						src={item?.images[0]?.image}
-						alt=""
-						className="object-cover rounded-md brightness-50 rotate-0"
-					/>
-					<div className="absolute text-white text-xl font-medium">{item.name}</div>
-				</Link>
-			))}
-		</div>}
-			
-			
+			) : (
+				<div className="p-8 py-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+					{data?.data.map((item: any) => (
+						<Link
+							href={`/gallery/${item.id}`}
+							key={item.id}
+							className="relative flex items-center justify-center h-[30vh]">
+							<Image
+								layout="fill"
+								objectFit="cover"
+								src={item?.images[0]?.image}
+								alt=""
+								className="object-cover rounded-md brightness-50 rotate-0"
+							/>
+							<div className="absolute text-white text-xl font-medium">
+								{item.name}
+							</div>
+						</Link>
+					))}
+				</div>
+			)}
 		</>
 	);
 };
