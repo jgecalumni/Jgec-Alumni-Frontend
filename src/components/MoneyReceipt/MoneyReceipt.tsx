@@ -90,7 +90,7 @@ const MoneyReceipt: React.FC = () => {
 											name="gender"
 											label="Gender"
 											defaultValue="Select your gender"
-											data={["Male", "Female"]}
+											data={["Male", "Female", "Company"]}
 											onValueChange={(value) =>
 												setFieldValue("gender", value)
 											}
