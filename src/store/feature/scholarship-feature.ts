@@ -17,7 +17,9 @@ interface IResponse {
 	error: boolean;
 }
 export const scholarshipApi = baseApi
-	.enhanceEndpoints({ addTagTypes: ["scholarship", "scholarship-details"] })
+	.enhanceEndpoints({
+		addTagTypes: ["scholarship", "scholarship-details", "scholarship-apply"],
+	})
 	.injectEndpoints({
 		endpoints: (builder) => ({
 			allScholarships: builder.query<
@@ -40,7 +42,21 @@ export const scholarshipApi = baseApi
 				}),
 				providesTags: ["scholarship-details"],
 			}),
+
+			applyScholarship: builder.mutation<IResponse, any>({
+				query: (values) => ({
+					url: "/scholarships/apply",
+					method: "POST",
+					body: values,
+					credentials: "include",
+				}),
+				invalidatesTags: ["scholarship-apply"],
+			}),
 		}),
 	});
 
-export const { useAllScholarshipsQuery, useScholarshipsQuery } = scholarshipApi;
+export const {
+	useAllScholarshipsQuery,
+	useScholarshipsQuery,
+	useApplyScholarshipMutation,
+} = scholarshipApi;

@@ -9,7 +9,10 @@ import { SelectField } from "@/components/ui/select";
 import { TextareaField } from "@/components/ui/textarea";
 
 import { ScholarshipSchema } from "@/schemas/ScholarshipSchema";
-import { useScholarshipsQuery } from "@/store/feature/scholarship-feature";
+import {
+	useApplyScholarshipMutation,
+	useScholarshipsQuery,
+} from "@/store/feature/scholarship-feature";
 
 import { ErrorMessage, Formik, Form } from "formik";
 import dynamic from "next/dynamic";
@@ -25,7 +28,8 @@ interface EventParams {
 const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 	const { id } = params;
 	const { data, isLoading, isError, error } = useScholarshipsQuery(id);
-
+	const [applyScholarship, { isError: applyError, isLoading: applyLoading }] =
+		useApplyScholarshipMutation();
 	const [loading, setLoading] = useState<boolean>(false);
 	useEffect(() => {
 		if (isError) {
@@ -33,7 +37,12 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 				(error as any)?.data?.message || "Failed to fetch scholarship"
 			);
 		}
-	}, [isError, error]);
+		if (applyError) {
+			toast.error(
+				(error as any)?.data?.message || "Failed to apply scholarship"
+			);
+		}
+	}, [isError, error, applyError]);
 
 	if (isLoading) {
 		return <Loading />;
@@ -44,18 +53,23 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 
 		try {
 			setLoading(true);
-			await toast.promise(
-				fetch("/api/submit", {
-					method: "POST",
-					body: JSON.stringify(values),
-					headers: { "Content-Type": "application/json" },
-				}),
-				{
-					loading: "Submitting your application...",
-					success: "Application submitted successfully!",
-					error: "Failed to submit the application.",
-				}
-			);
+			// await toast.promise(
+			// 	fetch("/api/submit", {
+			// 		method: "POST",
+			// 		body: JSON.stringify(values),
+			// 		headers: { "Content-Type": "application/json" },
+			// 	}),
+			// 	{
+			// 		loading: "Submitting your application...",
+			// 		success: "Application submitted successfully!",
+			// 		error: "Failed to submit the application.",
+			// 	}
+			// );
+			const res = await applyScholarship({
+				...values,
+				scholarshipId: id,
+			});
+
 		} catch (error) {
 			console.error("Error:", error);
 		} finally {
@@ -184,7 +198,6 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 							department: "",
 							residentialAddress: "",
 							specialAchievement: "",
-							jobCampusing: "",
 						}}
 						onSubmit={(values) => {
 							handleFormSubmit(values);
