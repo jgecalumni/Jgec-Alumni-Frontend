@@ -248,7 +248,7 @@ const GoverningBody = () => {
 										className="px-4 py-2.5 border-b border-neutral-200 text-neutral-950">
 										<Link
 											href={item.link}
-											className="flex flex-col gap-1">
+											className="flex flex-col mb-1 gap-1">
 											<h4 className="text-sm font-medium">{item.title}</h4>
 										</Link>
 										<div>
