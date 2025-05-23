@@ -51,26 +51,38 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 	const handleFormSubmit = async (values: any) => {
 		console.log(values);
 
+		const now = new Date();
+		const june1Start = new Date("2025-06-01T00:00:00");
+		const june15End = new Date("2025-06-15T23:59:59");
+
 		try {
 			setLoading(true);
-			// await toast.promise(
-			// 	fetch("/api/submit", {
-			// 		method: "POST",
-			// 		body: JSON.stringify(values),
-			// 		headers: { "Content-Type": "application/json" },
-			// 	}),
-			// 	{
-			// 		loading: "Submitting your application...",
-			// 		success: "Application submitted successfully!",
-			// 		error: "Failed to submit the application.",
-			// 	}
-			// );
-			// const res = await applyScholarship({
-			// 	...values,
-			// 	scholarshipId: id,
-			// });
-			toast.error("Application will start from 1st June,2025.");
 
+			if (now < june1Start) {
+				// Before 1st June
+				toast.error("Application will start from 1st June, 2025.");
+			} else if (now <= june15End) {
+				// From 1st June to 15th June
+				await toast.promise(
+					fetch("/api/submit", {
+						method: "POST",
+						body: JSON.stringify(values),
+						headers: { "Content-Type": "application/json" },
+					}),
+					{
+						loading: "Submitting your application...",
+						success: "Application submitted successfully!",
+						error: "Failed to submit the application.",
+					}
+				);
+				const res = await applyScholarship({
+					...values,
+					scholarshipId: id,
+				});
+			} else {
+				// After 15th June
+				toast.error("Application period has ended.");
+			}
 		} catch (error) {
 			console.error("Error:", error);
 		} finally {
