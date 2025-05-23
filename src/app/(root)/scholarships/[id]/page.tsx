@@ -59,28 +59,27 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 			setLoading(true);
 
 			if (now < june1Start) {
-				// Before 1st June
 				toast.error("Application will start from 1st June, 2025.");
 			} else if (now <= june15End) {
-				// From 1st June to 15th June
-				await toast.promise(
-					fetch("/api/submit", {
-						method: "POST",
-						body: JSON.stringify(values),
-						headers: { "Content-Type": "application/json" },
-					}),
-					{
-						loading: "Submitting your application...",
-						success: "Application submitted successfully!",
-						error: "Failed to submit the application.",
-					}
-				);
 				const res = await applyScholarship({
 					...values,
 					scholarshipId: id,
 				});
+				if (res.data?.success) {
+					await toast.promise(
+						fetch("/api/submit", {
+							method: "POST",
+							body: JSON.stringify(values),
+							headers: { "Content-Type": "application/json" },
+						}),
+						{
+							loading: "Submitting your application...",
+							success: "Application submitted successfully!",
+							error: "Failed to submit the application.",
+						}
+					);
+				}
 			} else {
-				// After 15th June
 				toast.error("Application period has ended.");
 			}
 		} catch (error) {
