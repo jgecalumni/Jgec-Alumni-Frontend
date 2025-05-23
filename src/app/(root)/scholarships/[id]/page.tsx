@@ -65,10 +65,11 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 			// 		error: "Failed to submit the application.",
 			// 	}
 			// );
-			const res = await applyScholarship({
-				...values,
-				scholarshipId: id,
-			});
+			// const res = await applyScholarship({
+			// 	...values,
+			// 	scholarshipId: id,
+			// });
+			toast.error("Application will start from 1st June,2025.");
 
 		} catch (error) {
 			console.error("Error:", error);
