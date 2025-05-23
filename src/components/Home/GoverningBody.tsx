@@ -250,18 +250,18 @@ const GoverningBody = () => {
 											href={item.link}
 											className="flex flex-col gap-1">
 											<h4 className="text-sm font-medium">{item.title}</h4>
-											<div>
-												<ReactQuill
-													theme="bubble"
-													value={item.description}
-													readOnly={true}
-													className="view_editor1 text-xs"
-												/>
-											</div>
-											<p className="p-0 text-xs text-right">
-												published on {format(item.date, "dd MMM, yyyy")}
-											</p>
 										</Link>
+										<div>
+											<ReactQuill
+												theme="bubble"
+												value={item.description}
+												readOnly={true}
+												className="view_editor1 text-xs"
+											/>
+										</div>
+										<p className="p-0 text-xs text-right">
+											published on {format(item.date, "dd MMM, yyyy")}
+										</p>
 									</li>
 								))}
 							</ul>
