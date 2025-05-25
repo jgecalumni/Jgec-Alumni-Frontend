@@ -22,7 +22,7 @@ const MoneyReceipt: React.FC = () => {
 	};
 	useEffect(() => {
 		if (isError) {
-			toast.error((error as any)?.data?.message || "Failed to add user");
+			toast.error((error as any)?.data?.message || "Failed to add receipt");
 		}
 	}, [isError, error]);
 	return (
