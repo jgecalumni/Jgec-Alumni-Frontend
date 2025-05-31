@@ -15,6 +15,7 @@ import {
 } from "@/store/feature/scholarship-feature";
 
 import { ErrorMessage, Formik, Form } from "formik";
+import { Loader } from "lucide-react";
 import dynamic from "next/dynamic";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -28,8 +29,10 @@ interface EventParams {
 const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 	const { id } = params;
 	const { data, isLoading, isError, error } = useScholarshipsQuery(id);
-	const [applyScholarship, { isError: applyError, isLoading: applyLoading }] =
-		useApplyScholarshipMutation();
+	const [
+		applyScholarship,
+		{ isError: isapplyError, error: applyError, isLoading: applyLoading },
+	] = useApplyScholarshipMutation();
 	const [loading, setLoading] = useState<boolean>(false);
 	useEffect(() => {
 		if (isError) {
@@ -37,12 +40,12 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 				(error as any)?.data?.message || "Failed to fetch scholarship"
 			);
 		}
-		if (applyError) {
+		if (isapplyError) {
 			toast.error(
-				(error as any)?.data?.message || "Failed to apply scholarship"
+				(applyError as any)?.data?.message || "Failed to apply scholarship"
 			);
 		}
-	}, [isError, error, applyError]);
+	}, [isError, error, applyError, isapplyError]);
 
 	if (isLoading) {
 		return <Loading />;
@@ -522,12 +525,19 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 										/>
 									</div> */}
 								</div>
-
-								<Button
-									className="py-3 mt-3 hover:scale-100 w-full max-w-xs"
-									type="submit">
-									Submit
-								</Button>
+								{ applyLoading ? (
+									<Button
+										className="py-3 mt-3 hover:scale-100 w-full flex justify-center items-center max-w-xs"
+										disabled>
+										<Loader className="animate-spin"/><div>Submitting</div>
+									</Button>
+								) : (
+									<Button
+										className="py-3 mt-3 hover:scale-100 w-full max-w-xs"
+										type="submit">
+										Submit
+									</Button>
+								)}
 							</Form>
 						)}
 					</Formik>
