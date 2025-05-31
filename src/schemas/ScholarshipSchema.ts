@@ -3,7 +3,7 @@ import * as Yup from "yup";
 export const ScholarshipSchema = Yup.object().shape({
   scholarshipName: Yup.string().required("Scholarship name is required"),
   name: Yup.string().required("Full name is required"),
-  studentId: Yup.number().required("Student ID is required"),
+  studentId: Yup.string().matches(/^\d{11}$/, "Must be 11 digit").required("Student ID is required"),
   dob: Yup.string().required("Date of birth is required"),
   contactHome: Yup.string().matches(/^\d{10}$/, "Enter a valid phone number"),
   contact: Yup.string().matches(/^\d{10}$/, "Enter a valid phone number"),
