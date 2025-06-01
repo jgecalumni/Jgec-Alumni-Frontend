@@ -349,7 +349,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 										<InputField
 											type="number"
 											name="totalFamilyIncome"
-											label="Total family income (INR)"
+											label="Total family income (INR) (Yearly)"
 											placeholder="xxxxx"
 											onChange={handleChange}
 										/>
@@ -363,7 +363,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 										<InputField
 											type="number"
 											name="eachFamilyIncome"
-											label="Earning per family member "
+											label="Earning per family member (Yearly"
 											placeholder="xxxxx"
 											onChange={handleChange}
 										/>
