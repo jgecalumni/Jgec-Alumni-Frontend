@@ -26,7 +26,8 @@ const Scholarship = () => {
 		search: "",
 	});
 
-	const filterData = data?.scholarships.filter((item) => item.isActive === true)||[];
+	const filterData =
+		data?.scholarships.filter((item) => item.isActive === true) || [];
 
 	useEffect(() => {
 		if (isError) {
@@ -68,8 +69,13 @@ const Scholarship = () => {
 
 			{/* Scholarship Details */}
 			<div className="my-8 lg:flex gap-8 flex-col items-center p-3 justify-evenly">
-				<div className="w-full flex pb-4 flex-col gap-3 text-sm lg:text-lg lg:w-[80%] text-justify">
-					<p>
+				<div className="w-full bg-white shadow-xl p-6 rounded-md flex pb-4 flex-col gap-3 text-sm lg:text-lg lg:w-[80%] text-justify">
+					<div className="flex items-center gap-1">
+						<div className="h-8 border-2 border-primary"></div>
+
+						<h2 className="md:text-3xl text-2xl font-medium text-black">Details</h2>
+					</div>
+					<p className="pl-2 text-[14px] md:text-[16px]">
 						It is the vision of the Jalpaiguri Government Engineering College
 						Alumni Association to project JGEC as a successful and a leading
 						institution of learning and research. One of the main aspects
@@ -79,12 +85,72 @@ const Scholarship = () => {
 						enlightenment to outer world outside campus and thus to highlight
 						glory of JGEC to outsiders.
 					</p>
-					<p>
+					<p className="pl-2 text-[14px] md:text-[16px]">
 						To promote this noble initiative of Alumni Association among
-						JGECian, Mr. Bibhas Bhowmik (CE, 1985) and Mr. Premangshu Ghosh (EE, 1979) have started the scholarship programme in the year 2013 for 4th year Civil Engineering and Electrical Engineering students respectively. Purpose of the alumni scholarship
-						programme is to help meritorious students who need some financial
-						assistance to achieve their career goal.
+						JGECian, Mr. Bibhas Bhowmik (CE, 1985) and Mr. Premangshu Ghosh (EE,
+						1979) have started the scholarship programme in the year 2013 for
+						4th year Civil Engineering and Electrical Engineering students
+						respectively. Purpose of the alumni scholarship programme is to help
+						meritorious students who need some financial assistance to achieve
+						their career goal.
 					</p>
+					<p className=" pl-2 font-medium text-[14px] md:text-[16px]">
+						NB: One student can apply upto 3 scholarships.
+					</p>
+					<div className="pl-2 ">
+						<h1 className="text-black text-[18px]  font-semibold">
+							Selection Procedure
+						</h1>
+						<p className="md:text-sm mt-1 ">
+							After students submit their scholarship applications, the
+							following selection procedure is followed:
+						</p>
+						<ul className="md:text-[15px] text-[14px] space-y-3 mt-2 list-decimal pl-4">
+							<li className="">
+								<p className="">
+									<span className="font-medium">
+										Initial Shortlisting (1:10 Ratio):{" "}
+									</span>
+									The scholarship sponsor will review all applications and
+									shortlist candidates based on a 1:10 ratio. This means for
+									every 1 available scholarship, 10 students will be initially
+									shortlisted.
+								</p>
+							</li>
+							<li className="">
+								<p className="">
+									<span className="font-medium">
+										Interview on Scholarship Day:
+									</span>
+									The shortlisted candidates will be invited for an interview on
+									Scholarship Day. This interview will help assess the
+									candidates' qualifications, need, and suitability for the
+									scholarship.
+								</p>
+							</li>
+							<li className="">
+								<p className="">
+									<span className="font-medium">
+										Final Selection (1:3 Ratio) :{" "}
+									</span>
+									Based on interview performance and merit, students will be
+									selected in a 1:3 ratio for final consideration. This ensures
+									that for every 1 scholarship, 3 students are chosen from which
+									the final recipient is selected.
+								</p>
+							</li>
+							<li className="">
+								<p className="">
+									<span className="font-medium">
+										Awarding the Scholarship:{" "}
+									</span>
+									If a student is selected for more than one scholarship, they
+									will be awarded the scholarship with the highest monetary
+									value.
+								</p>
+							</li>
+						</ul>
+					</div>
 				</div>
 
 				<div className="w-full lg:w-[80%]">
@@ -96,7 +162,7 @@ const Scholarship = () => {
 							<div className="grid grid-cols-1 md:grid-cols-2  h-full">
 								{filterData
 									.reduce<[JSX.Element[], JSX.Element[]]>(
-										(acc:any, item:any, index:any) => {
+										(acc: any, item: any, index: any) => {
 											const column = index % 2;
 											acc[column].push(
 												<li
@@ -105,9 +171,15 @@ const Scholarship = () => {
 													<Link
 														href={`/scholarships/${item.id}`}
 														className="flex flex-col gap-1">
-														<h4 className="text-sm line-clamp-1 font-medium">{item.name}</h4>
-														<p className="text-[12px] font-medium line-clamp-1">Sponsored by {item.providerName}</p>
-														<p className="text-xs line-clamp-1">{item.subtitle}</p>
+														<h4 className="text-sm line-clamp-1 font-medium">
+															{item.name}
+														</h4>
+														<p className="text-[12px] font-medium line-clamp-1">
+															Sponsored by {item.providerName}
+														</p>
+														<p className="text-xs line-clamp-1">
+															{item.subtitle}
+														</p>
 													</Link>
 												</li>
 											);
@@ -115,7 +187,7 @@ const Scholarship = () => {
 										},
 										[[], []]
 									)
-									.map((column:any, idx:any) => (
+									.map((column: any, idx: any) => (
 										<ul
 											key={idx}
 											className="overflow-auto">
