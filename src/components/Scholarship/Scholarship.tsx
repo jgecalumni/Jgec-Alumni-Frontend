@@ -81,7 +81,7 @@ const Scholarship = () => {
 					</p>
 					<p>
 						To promote this noble initiative of Alumni Association among
-						JGECian, Mr. BIbhas Bhowmik (CE, 1985) and Mr. Premangshu Ghosh (EE, 1979) have started the scholarship programme in the year 2013 for 4th year Civil Engineering and Electrical Engineering students respectively. Purpose of the alumni scholarship
+						JGECian, Mr. Bibhas Bhowmik (CE, 1985) and Mr. Premangshu Ghosh (EE, 1979) have started the scholarship programme in the year 2013 for 4th year Civil Engineering and Electrical Engineering students respectively. Purpose of the alumni scholarship
 						programme is to help meritorious students who need some financial
 						assistance to achieve their career goal.
 					</p>
