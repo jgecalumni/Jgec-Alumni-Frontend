@@ -159,7 +159,7 @@ const Scholarship = () => {
 							Scholarship Programs
 						</div>
 						<div className="w-full  ">
-							<div className="grid grid-cols-1 md:grid-cols-2  h-full">
+							<div className="grid grid-cols-1 md:grid-cols-2 h-full">
 								{filterData
 									.reduce<[JSX.Element[], JSX.Element[]]>(
 										(acc: any, item: any, index: any) => {
