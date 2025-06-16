@@ -502,7 +502,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 										<TextareaField
 											name="specialAchievement"
 											label="Your Special Achievement"
-											placeholder="Tell about your special achievement"
+											placeholder="Mention any activities pertaining to Social Work"
 											onChange={handleChange}
 										/>
 										<ErrorMessage
@@ -525,11 +525,12 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 										/>
 									</div> */}
 								</div>
-								{ applyLoading ? (
+								{applyLoading ? (
 									<Button
 										className="py-3 mt-3 hover:scale-100 w-full flex justify-center items-center max-w-xs"
 										disabled>
-										<Loader className="animate-spin"/><div>Submitting</div>
+										<Loader className="animate-spin" />
+										<div>Submitting</div>
 									</Button>
 								) : (
 									<Button
