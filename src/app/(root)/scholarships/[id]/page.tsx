@@ -56,7 +56,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 
 		const now = new Date();
 		const june1Start = new Date("2025-06-01T00:00:00");
-		const june15End = new Date("2025-06-15T23:59:59");
+		const june15End = new Date("2025-06-25T23:59:59");
 
 		try {
 			setLoading(true);
