@@ -20,22 +20,19 @@ const Links = [
 		name: "Vision & Mission",
 		link: "/vision-mission",
 	},
-	{
-		name: "Giving Back",
-		link: "/giving-back",
-	},
+	
 	{
 		name: "Kanchenjunga",
 		link: "/kanchenjunga",
 	},
 	{
+		name: "Sathe Achi",
+		link: "https://satheachi.org/site/index",
+	},
+	{
 		name: "Scholarships",
 		link: "/scholarships",
 	},
-	// {
-	// 	name: "Audit Report",
-	// 	link: "/audit-report",
-	// },
 ];
 
 const moreLinks = [
@@ -51,6 +48,10 @@ const moreLinks = [
 	// 	name: "Digital Database",
 	// 	link: "/digital-database",
 	// },
+	{
+		name: "Giving Back",
+		link: "/giving-back",
+	},
 	{
 		name: "Rooms",
 		link: "/rooms",
