@@ -15,7 +15,7 @@ const data = [
 		member: [
 			{
 				name: "Ex-Officio Chairman",
-				timeline: "Principal, JGEC",
+				timeline: "Principal, JGEC (2016-Present)",
 				image: "/assets/Members/ex-officio.jpg",
 			},
 		],
