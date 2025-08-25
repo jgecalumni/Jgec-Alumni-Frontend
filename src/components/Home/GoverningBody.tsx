@@ -24,9 +24,9 @@ const data = [
 		post: "Vice President",
 		member: [
 			{
-				name: "Mr. Dilip Kumar Roy",
-				timeline: "(1980-1984)",
-				image: "/assets/Members/DilipKumarRoy.jpg",
+				name: "Mr. Biplob Kanti Roy",
+				timeline: "(1992-1996)",
+				image: "/assets/Members/person-icon-8.png",
 			},
 		],
 	},
