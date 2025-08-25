@@ -15,7 +15,7 @@ const data = [
 		member: [
 			{
 				name: "Dr. Amitava Ray",
-				timeline: "Principal, JGEC (2016-Present)",
+				timeline: "Principal",
 				image: "/assets/Members/ex-officio.jpg",
 			},
 		],
@@ -101,22 +101,22 @@ const data = [
 		],
 	},
 	{
-		post: "Project Director (Kanchenjunga Construction and Operations)",
-		member: [
-			{
-				name: "Mr. Rajib Bhattacharya",
-				timeline: "(1996-2000)",
-				image: "/assets/Members/RajibBhattacharya.jpg",
-			},
-		],
-	},
-	{
 		post: "Internal Auditor",
 		member: [
 			{
 				name: "Mr. Bithin Basu",
 				timeline: "(1989-1993)",
 				image: "/assets/Members/BithinBasu.jpg",
+			},
+		],
+	},
+	{
+		post: "Project Director (Kanchenjunga Construction and Operations)",
+		member: [
+			{
+				name: "Mr. Rajib Bhattacharya",
+				timeline: "(1996-2000)",
+				image: "/assets/Members/RajibBhattacharya.jpg",
 			},
 		],
 	},
