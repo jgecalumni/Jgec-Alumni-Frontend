@@ -36,9 +36,9 @@ const AgmMom = () => {
 	return (
 		<div>
 			<SectionHeader
-				highlightTitle="Audit"
-				normalTitle="Reports"
-				description="Get all your audit reports here"
+				highlightTitle="AGM"
+				normalTitle="MOM"
+				description="Get all AGM MOM documents here"
 			/>
 			<div
 				className={`${
