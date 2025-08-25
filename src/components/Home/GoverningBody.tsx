@@ -11,10 +11,10 @@ import ReactQuill from "react-quill";
 
 const data = [
 	{
-		post: "President",
+		post: "Ex-Officio Chairman",
 		member: [
 			{
-				name: "Ex-Officio Chairman",
+				name: "Dr. Amitava Ray",
 				timeline: "Principal, JGEC (2016-Present)",
 				image: "/assets/Members/ex-officio.jpg",
 			},
