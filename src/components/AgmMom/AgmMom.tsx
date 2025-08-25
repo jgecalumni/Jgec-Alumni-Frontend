@@ -48,7 +48,7 @@ const AgmMom = () => {
 					{docsData?.response.length > 0 ? (
 						<div className=" bg-slate-100 mb-8 rounded overflow-y-auto h-[40vh] lg:h-[80vh]">
 							<div className="font-medium rounded bg-slate-200 p-2">
-								Audit Reports
+								AGM MOM
 							</div>
 							<div className="p-4 grid lg:grid-cols-5 lg:gap-3 grid-cols-2 gap-3 ">
 								{docsData?.response.map((item: any) => (
