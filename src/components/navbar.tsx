@@ -64,6 +64,10 @@ const moreLinks = [
 		name: "Upcoming Events",
 		link: "/upcoming-events",
 	},
+	{
+		name: "AGM MOM",
+		link: "/agm-mom",
+	},
 	
 ];
 

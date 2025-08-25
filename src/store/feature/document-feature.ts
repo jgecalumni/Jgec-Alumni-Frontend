@@ -14,6 +14,7 @@ export const docsApi = baseApi
 			"getAllkanchenjungaDocs",
 			"getAllGivingBackDocs",
 			"getAllAuditReportDocs",
+			"getAllAgmMomDocs",
 		],
 	})
 	.injectEndpoints({
@@ -50,6 +51,14 @@ export const docsApi = baseApi
 				}),
 				providesTags: ["getAllAuditReportDocs"],
 			}),
+			getAllAgmMomDocs: builder.query<IGetAllDocsRes, any>({
+				query: () => ({
+					url: "/documents/AgmMomDocs",
+					method: "GET",
+					credentials: "include",
+				}),
+				providesTags: ["getAllAgmMomDocs"],
+			}),
 		}),
 	});
 
@@ -58,4 +67,5 @@ export const {
 	useGetAllKanchenungaDocsQuery,
 	useGetAllGivingBackDocsQuery,
 	useGetAllAuditReportDocsQuery,
+	useGetAllAgmMomDocsQuery
 } = docsApi;
