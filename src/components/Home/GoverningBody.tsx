@@ -14,6 +14,16 @@ const data = [
 		post: "President",
 		member: [
 			{
+				name: "Ex-Officio Chairman",
+				timeline: "Principal, JGEC",
+				image: "/assets/Members/ex-officio.jpg",
+			},
+		],
+	},
+	{
+		post: "President",
+		member: [
+			{
 				name: "Mr. Bhaskar Dasgupta",
 				timeline: "(1979-1983)",
 				image: "/assets/Members/BhaskarDasgupta.jpg",
