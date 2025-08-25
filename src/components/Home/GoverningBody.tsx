@@ -14,9 +14,9 @@ const data = [
 		post: "Ex-Officio Chairman",
 		member: [
 			{
-				name: "Principal",
-				timeline: "JGEC",
-				image: "/assets/Members/person-icon-8.png",
+				name: "Dr. Amitava Ray",
+				timeline: "Principal, JGEC",
+				image: "/assets/Members/ex-officio.jpg",
 			},
 		],
 	},
