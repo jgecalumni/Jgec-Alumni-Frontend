@@ -55,19 +55,30 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 		console.log(values);
 
 		const now = new Date();
-		const june1Start = new Date("2025-06-01T00:00:00");
-		const june15End = new Date("2025-06-20T23:59:59");
+
+		let startDate = new Date("2025-06-01T00:00:00");
+		let endDate = new Date("2025-06-20T23:59:59");
+
+		if (id === "45") {
+			startDate = new Date("2025-10-31T00:00:00");
+			endDate = new Date("2025-11-16T23:59:59");
+		}
 
 		try {
 			setLoading(true);
 
-			if (now < june1Start) {
-				toast.error("Application will start from 1st June, 2025.");
-			} else if (now <= june15End) {
+			if (now < startDate) {
+				toast.error(
+					id === "45"
+						? "Application will start from 31st October, 2025."
+						: "Application will start from 1st June, 2025."
+				);
+			} else if (now <= endDate) {
 				const res = await applyScholarship({
 					...values,
 					scholarshipId: id,
 				});
+
 				if (res.data?.success) {
 					await toast.promise(
 						fetch("/api/submit", {
