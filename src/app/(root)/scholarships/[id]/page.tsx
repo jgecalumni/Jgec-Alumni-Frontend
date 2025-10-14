@@ -60,7 +60,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 		let endDate = new Date("2025-06-20T23:59:59");
 
 		if (id === "45") {
-			startDate = new Date("2025-10-31T00:00:00");
+			startDate = new Date("2025-10-15T00:00:00");
 			endDate = new Date("2025-11-16T23:59:59");
 		}
 
@@ -213,9 +213,11 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 							totalEarningMembers: "",
 							totalFamilyIncome: "",
 							eachFamilyIncome: "",
+							rank: "",
 							jgecIntakeYear: "",
 							jgecPassingYear: "",
 							extraCurricularActivities: "",
+							percentSecondary: "",
 							percentHigherSecondary: "",
 							...Object.fromEntries(
 								semArray.map((sem: string) => [`sem_${sem.split(" ")[0]}`, ""])
@@ -226,9 +228,11 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 							specialAchievement: "",
 						}}
 						onSubmit={(values) => {
+							
 							handleFormSubmit(values);
 						}}
-						validationSchema={ScholarshipSchema}>
+						validationSchema={ScholarshipSchema}
+						>
 						{({ handleChange, values, setFieldValue }) => (
 							<Form>
 								<div className="grid lg:grid-cols-2 grid-col-1 gap-4">
@@ -276,6 +280,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 										<InputField
 											type="number"
 											name="contactHome"
+											required
 											label="Parent's Contact Number"
 											placeholder="xxxxxxxxxx"
 											onChange={handleChange}
@@ -290,6 +295,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 										<InputField
 											type="number"
 											name="contact"
+											required
 											label="Your Mobile Number."
 											placeholder="xxxxxxxxxx"
 											onChange={handleChange}
@@ -374,12 +380,26 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 										<InputField
 											type="number"
 											name="eachFamilyIncome"
-											label="Earning per family member (Yearly"
+											label="Earning per family member (Yearly)"
 											placeholder="xxxxx"
 											onChange={handleChange}
 										/>
 										<ErrorMessage
 											name="eachFamilyIncome"
+											component="div"
+											className="text-red-500 text-xs"
+										/>
+									</div>
+									<div className="flex flex-col gap-1">
+										<InputField
+											type="number"
+											name="rank"
+											label="WBJEE Rank"
+											placeholder="xxxxx"
+											onChange={handleChange}
+										/>
+										<ErrorMessage
+											name="rank"
 											component="div"
 											className="text-red-500 text-xs"
 										/>
@@ -435,21 +455,9 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 											className="text-red-500 text-xs"
 										/>
 									</div>
+									
 									<div className="flex flex-col gap-1">
-										<TextareaField
-											name="extraCurricularActivities"
-											label="Extra-Curricular Activities"
-											placeholder="Extra-Curricular Activities that you regularly perform at campus (Mention any achievement)"
-											onChange={handleChange}
-										/>
-										<ErrorMessage
-											name="extraCurricularActivities"
-											component="div"
-											className="text-red-500 text-xs"
-										/>
-									</div>
-									<div className="flex flex-col gap-1">
-										<TextareaField
+										<InputField
 											name="residentialAddress"
 											label="Residential Address"
 											placeholder="Enter your residential address"
@@ -464,8 +472,23 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 									<div className="flex flex-col gap-1">
 										<InputField
 											type="text"
+											name="percentSecondary"
+											label="Percentage obtained in Secondary (Class 10) "
+											placeholder="xx %"
+											onChange={handleChange}
+										/>
+										<ErrorMessage
+											name="percentSecondary"
+											component="div"
+											className="text-red-500 text-xs"
+										/>
+									</div>
+									
+									<div className="flex flex-col gap-1">
+										<InputField
+											type="text"
 											name="percentHigherSecondary"
-											label="Percentage obtained in Higher Secondary (+12) "
+											label="Percentage obtained in Higher Secondary (Class 12) "
 											placeholder="xx %"
 											onChange={handleChange}
 										/>
@@ -478,7 +501,9 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 									{semArray.map((sem: string, index: number) => (
 										<div
 											key={index}
-											className="flex flex-col gap-1">
+											className={`flex flex-col gap-1 ${
+												id === "45" ? "hidden" : ""
+											}`}>
 											<InputField
 												type="text"
 												name={`sem_${sem.split(" ")[0]}`}
@@ -493,7 +518,10 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 											/>
 										</div>
 									))}
-									<div className="flex flex-col gap-1">
+									<div
+										className={`flex flex-col gap-1 ${
+											id === "45" ? "hidden" : ""
+										}`}>
 										<InputField
 											type="text"
 											name="average"
@@ -508,7 +536,20 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 										/>
 									</div>
 								</div>
-								<div className="grid pt-4  grid-col-1 gap-4">
+								<div className="grid pt-4  grid-col-2 gap-4">
+									<div className="flex flex-col gap-1">
+										<TextareaField
+											name="extraCurricularActivities"
+											label="Extra-Curricular Activities"
+											placeholder="Extra-Curricular Activities that you regularly perform at campus (Mention any achievement)"
+											onChange={handleChange}
+										/>
+										<ErrorMessage
+											name="extraCurricularActivities"
+											component="div"
+											className="text-red-500 text-xs"
+										/>
+									</div>
 									<div>
 										<TextareaField
 											name="specialAchievement"
@@ -522,6 +563,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 											className="text-red-500 text-xs"
 										/>
 									</div>
+									
 									{/* <div>
 										<TextareaField
 											name="jobCampusing"
