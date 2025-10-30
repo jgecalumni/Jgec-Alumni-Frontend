@@ -172,8 +172,12 @@ const Home: React.FC = () => {
 							pagination={{
 								clickable: false,
 							}}
+							autoplay={{
+								delay: 3000,
+								disableOnInteraction: false,
+							}}
 							// navigation={true}
-							modules={[Navigation]}
+							modules={[Navigation, Autoplay]}
 							className="mySwiper">
 							{data?.scholarships.map((ele: any) => (
 								<SwiperSlide key={ele}>
