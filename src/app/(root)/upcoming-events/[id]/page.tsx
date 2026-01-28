@@ -69,7 +69,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 						/>
 					</div>
 					<div className="flex pt-4 flex-col">
-						<div className="text-black lg:text-xl font-bold">Host Details</div>
+						<div className="text-black lg:text-xl font-bold">Convenor of Seminar</div>
 						<div className="border w-1/4 lg:w-14 border-blue-500"></div>
 					</div>
 
