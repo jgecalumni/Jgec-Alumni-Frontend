@@ -79,7 +79,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 
 					<div className=" flex gap-2 pt-2 ">
 						<ReactQuill
-							theme="bubble"
+							theme="bubble" 
 							value={data?.data.hostDetails}
 							readOnly={true}
 							className="view_editor"
