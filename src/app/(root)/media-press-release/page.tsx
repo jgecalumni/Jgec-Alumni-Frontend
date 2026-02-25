@@ -129,7 +129,6 @@ export default function JGECNewspaperFeed() {
     <div className="min-h-screen bg-slate-100 pt-32 md:pt-32 lg:pt-40 pb-6 md:pb-12 px-2 md:px-8 font-serif text-slate-900">
       <div className="max-w-[1440px] w-full mx-auto bg-white border border-slate-300 shadow-xl overflow-hidden">
         
-        {/* --- Newspaper Masthead --- */}
         <header className="p-4 md:p-8 border-b-4 border-double border-slate-900 text-center">
           <div className="flex justify-between items-center text-[8px] md:text-xs font-sans font-bold border-b border-slate-200 pb-2 mb-4 md:mb-6 uppercase tracking-[0.15em] md:tracking-[0.2em] text-slate-500">
             <span>Vol. LXVI ... No. 2026</span>
