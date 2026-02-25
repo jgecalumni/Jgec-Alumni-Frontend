@@ -260,7 +260,7 @@ export default function JGECNewspaperFeed() {
 						</div>
 					</div>
 
-					{/* RIGHT: Feed Panel */}
+					{/* RIGHT: Feed Pane */}
 					<div className="lg:w-1/3 bg-white">
 						<div className="p-3 bg-slate-900 text-white flex justify-between items-center font-sans font-bold text-[9px] md:text-[10px] uppercase tracking-widest">
 							<span>Latest Despatches</span>
