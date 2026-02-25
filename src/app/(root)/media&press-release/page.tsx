@@ -18,13 +18,15 @@ type MediaType = "youtube" | "facebook" | "image";
 interface NewsItem {
 	id: number;
 	media: {
+    id:number;
 		type: MediaType;
 		url: string;
+    newsId:number;
 	}[];
 	tag: "Event" | "Notice" | "Achievement" | "Reunion";
 	title: string;
 	excerpt: string;
-	date: string;
+	createdAt: string;
 	location: string;
 }
 
@@ -36,7 +38,6 @@ const EXTENDED_NEWS: NewsItem[] = [
 		title: "Empowering the Next Generation: Skill Development Seminar 2026",
 		excerpt:
 			"Our esteemed alumni returned to campus to host an intensive workshop on emerging industry trends, professional networking, and soft-skill mastery. This seminar bridged the gap between academic theory and real-world application.",
-		date: "2026-02-25",
 		location: "JGEC Campus",
 		createdAt: "2026-02-25T13:55:21.310Z",
 		media: [
@@ -149,7 +150,7 @@ export default function JGECNewspaperFeed() {
 
 					<div className="flex flex-col md:flex-row justify-between items-center border-t border-slate-200 pt-2 mt-2 gap-2 text-[9px] md:text-xs font-sans font-bold uppercase tracking-widest text-slate-500">
 						<span className="order-2 md:order-1">
-							Last Updated: {activeNews.date}
+							Last Updated: {activeNews.createdAt}
 						</span>
 						<span className="flex items-center gap-2 text-emerald-600 order-1 md:order-2">
 							<Newspaper
@@ -252,7 +253,7 @@ export default function JGECNewspaperFeed() {
 									</p>
 									<div className="font-sans font-bold text-[10px] md:text-[11px] not-italic text-blue-900 uppercase tracking-tight bg-slate-50 p-4 border-l-4 border-blue-900">
 										Location: {activeNews.location} <br />
-										Filing Date: {activeNews.date}
+										Filing Date: {activeNews.createdAt}
 									</div>
 								</div>
 							</div>
@@ -305,7 +306,7 @@ export default function JGECNewspaperFeed() {
 													{item.tag}
 												</span>
 												<span className="text-[8px] font-sans text-slate-400 font-bold uppercase flex items-center gap-1">
-													<Clock size={8} /> {item.date}
+													<Clock size={8} /> {item.createdAt}
 												</span>
 											</div>
 											<h4
