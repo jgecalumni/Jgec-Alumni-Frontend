@@ -32,7 +32,7 @@ const Scholarship = () => {
 	useEffect(() => {
 		if (isError) {
 			toast.error(
-				(error as any)?.data?.message || "Failed to fetch scholarships"
+				(error as any)?.data?.message || "Failed to fetch scholarships",
 			);
 		}
 		if (data) {
@@ -69,87 +69,111 @@ const Scholarship = () => {
 
 			{/* Scholarship Details */}
 			<div className="my-8 lg:flex gap-8 flex-col items-center p-3 justify-evenly">
-				<div className="w-full bg-white shadow-xl p-6 rounded-md flex pb-4 flex-col gap-3 text-sm lg:text-lg lg:w-[80%] text-justify">
+				<div className="w-full bg-white shadow-xl p-6 rounded-md flex pb-4 flex-col gap-3 text-sm lg:text-[16px] lg:w-[80%] text-justify">
 					<div className="flex items-center gap-1">
 						<div className="h-8 border-2 border-primary"></div>
 
-						<h2 className="md:text-3xl text-2xl font-medium text-black">Details</h2>
+						<h2 className="md:text-3xl text-2xl font-medium text-black">
+							JGECAA Annual Scholarship for Scholastic Excellence
+						</h2>
 					</div>
-					<p className="pl-2 text-[14px] md:text-[16px]">
-						It is the vision of the Jalpaiguri Government Engineering College
-						Alumni Association to project JGEC as a successful and a leading
-						institution of learning and research. One of the main aspects
-						towards fulfilling this goal would be to engage the successful
-						professional alumnus of our alma matter in order to nurture the
-						young minds of JGEC with positive and inspiring tools for their
-						enlightenment to outer world outside campus and thus to highlight
-						glory of JGEC to outsiders.
+					<p className="text-gray-700 my-4 leading-relaxed">
+						The{" "}
+						<span className="font-semibold">
+							Jalpaiguri Government Engineering College Alumni Association
+							(JGECAA)
+						</span>
+						began the Annual Scholarship for Scholastic Excellence in the year
+						2013, spearheaded by two alumni—
+						<span className="font-medium">
+							{" "}
+							Mr. Bibhas Bhowmik (CE, 1985)
+						</span>{" "}
+						and
+						<span className="font-medium">
+							{" "}
+							Mr. Premangshu Ghosh (EE, 1979)
+						</span>
+						—under their unwavering vision and guidance.
 					</p>
-					<p className="pl-2 text-[14px] md:text-[16px]">
-						To promote this noble initiative of Alumni Association among
-						JGECian, Mr. Bibhas Bhowmik (CE, 1985) and Mr. Premangshu Ghosh (EE,
-						1979) have started the scholarship programme in the year 2013 for
-						4th year Civil Engineering and Electrical Engineering students
-						respectively. Purpose of the alumni scholarship programme is to help
-						meritorious students who need some financial assistance to achieve
-						their career goal.
+
+					<p className="text-gray-700 mb-4 leading-relaxed">
+						JGECAA initiated this academic aid program to support students of
+						high calibre as well as those facing financial constraints but
+						possessing strong potential to achieve their professional goals.
 					</p>
-					<p className=" pl-2 font-medium text-[14px] md:text-[16px]">
-						NB: One student can apply upto 3 scholarships.
+
+					<p className="text-gray-700 mb-4 leading-relaxed">
+						What began in 2013 with two sponsors supporting two students from
+						each discipline with an amount of
+						<span className="font-semibold">
+							{" "}
+							(₹ 2 × 20,000) × 2 = ₹ 80,000 per annum
+						</span>
+						, has now grown into a full-fledged scholarship program with over{" "}
+						<span className="font-semibold">32 sponsors</span> from India and
+						abroad.
 					</p>
-					<div className="pl-2 ">
-						<h1 className="text-black text-[18px]  font-semibold">
-							Selection Procedure
-						</h1>
-						<p className="md:text-sm mt-1 ">
-							After students submit their scholarship applications, the
-							following selection procedure is followed:
+
+					<p className="text-gray-700 mb-6 leading-relaxed">
+						These scholarships are in addition to the schemes provided by the
+						West Bengal Government that have existed for many years.
+					</p>
+
+					<h2 className="text-2xl font-semibold text-gray-800 mb-4">
+						Objectives of the Program
+					</h2>
+
+					<p className="text-gray-700 mb-6 leading-relaxed">
+						The Alumni Association works tirelessly to ensure that alumni from
+						all parts of India and the world come together for the upliftment
+						and expansion of the current student community.
+					</p>
+
+					<h2 className="text-2xl font-semibold text-gray-800 mb-4">
+						Sponsorship Guidelines
+					</h2>
+
+					<ul className="list-disc pl-6 space-y-4 text-gray-700 leading-relaxed">
+						<li>
+							Selection criteria (merit-based, need-based, etc.) are open to the
+							sponsor’s choice and may be applied to any number of students from
+							1st to 4th year. Support may also be extended to postgraduate
+							aspirants if desired.
+						</li>
+
+						<li>
+							Selection is primarily based on a direct face-to-face interview
+							conducted by the sponsor or designated senior members. Online
+							selection is also encouraged and is generally conducted during the
+							Alumni Association AGM in the first week of August.
+						</li>
+
+						<li>
+							The stipend amount is fully flexible and determined by the
+							sponsor. There is no upper limit.
+						</li>
+
+						<li>
+							Funds are collected annually and then disbursed directly to the
+							selected students’ designated bank accounts.
+						</li>
+
+						<li>
+							Sponsors are encouraged to continue the scholarship for a long
+							duration (preferably more than 3–5 years), barring any extreme
+							emergencies.
+						</li>
+					</ul>
+
+					<div className="mt-8 p-5 bg-blue-50 border border-blue-200 rounded-xl">
+						<p className="text-gray-700 leading-relaxed">
+							JGECAA expects greater participation in such multidimensional and
+							benevolent initiatives for the entire JGEC fraternity, both within
+							the campus and beyond. With active participation from alumni
+							across the globe, we aim to support an even larger cross-section
+							of students in the coming years.
 						</p>
-						<ul className="md:text-[15px] text-[14px] space-y-3 mt-2 list-decimal pl-4">
-							<li className="">
-								<p className="">
-									<span className="font-medium">
-										Initial Shortlisting (1:10 Ratio):{" "}
-									</span>
-									The scholarship sponsor will review all applications and
-									shortlist candidates based on a 1:10 ratio. This means for
-									every 1 available scholarship, 10 students will be initially
-									shortlisted.
-								</p>
-							</li>
-							<li className="">
-								<p className="">
-									<span className="font-medium">
-										Interview on Scholarship Day:
-									</span>
-									The shortlisted candidates will be invited for an interview on
-									Scholarship Day. This interview will help assess the
-									candidates' qualifications, need, and suitability for the
-									scholarship.
-								</p>
-							</li>
-							<li className="">
-								<p className="">
-									<span className="font-medium">
-										Final Selection (1:3 Ratio) :{" "}
-									</span>
-									Based on interview performance and merit, students will be
-									selected in a 1:3 ratio for final consideration. This ensures
-									that for every 1 scholarship, 3 students are chosen from which
-									the final recipient is selected.
-								</p>
-							</li>
-							<li className="">
-								<p className="">
-									<span className="font-medium">
-										Awarding the Scholarship:{" "}
-									</span>
-									If a student is selected for more than one scholarship, they
-									will be awarded the scholarship with the highest monetary
-									value.
-								</p>
-							</li>
-						</ul>
 					</div>
 				</div>
 
@@ -181,11 +205,11 @@ const Scholarship = () => {
 															{item.subtitle}
 														</p>
 													</Link>
-												</li>
+												</li>,
 											);
 											return acc;
 										},
-										[[], []]
+										[[], []],
 									)
 									.map((column: any, idx: any) => (
 										<ul

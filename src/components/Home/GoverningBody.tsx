@@ -143,6 +143,10 @@ const bottomLinks = [
 		name: "Money Receipt",
 		link: "/money-receipt",
 	},
+	{
+		name: "Media & Press Release",
+		link: "/media-press-release",
+	},
 ];
 
 const notices = [
@@ -202,7 +206,6 @@ const GoverningBody = () => {
 		limit: 1000,
 		page: 1,
 	});
-	console.log(noticeData?.notices);
 
 	return (
 		<section className="w-full px-4 md:px-10 py-8 md:py-16">
