@@ -145,7 +145,7 @@ const bottomLinks = [
 	},
 	{
 		name: "Media & Press Release",
-		link: "/media-press-release",
+		link: "/media&press-release",
 	},
 ];
 
