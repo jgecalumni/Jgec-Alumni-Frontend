@@ -3,13 +3,10 @@
 import React, { useState, useMemo } from "react";
 import {
   Play,
-  Calendar,
   Youtube,
-  Facebook,
   Search,
   Newspaper,
   Clock,
-  ExternalLink,
   ChevronLeft,
   ChevronRight,
   Camera,
@@ -82,17 +79,12 @@ const getMediaEmbedUrl = (type: MediaType, url: string) => {
   return url;
 };
 
-/**
- * Fetches YouTube thumbnails automatically. 
- * Uses a stylized fallback for Facebook videos.
- */
 const getMediaThumbnail = (type: MediaType, url: string): string => {
   if (type === "youtube") {
     const videoId = url.split("v=")[1]?.split("&")[0] || url.split("/").pop();
     return videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : "";
   }
   if (type === "facebook") {
-    // Static brand-matched placeholder for FB videos
     return "https://graph.facebook.com/3124907687712460/picture?type=large";
   }
   return url;
@@ -107,10 +99,21 @@ export default function JGECNewspaperFeed() {
   const handleNewsChange = (news: NewsItem) => {
     setActiveNews(news);
     setActiveMediaIndex(0);
+    // Scroll to top of story on mobile when selecting from list
+    if (window.innerWidth < 1024) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
-  const nextMedia = () => setActiveMediaIndex((prev) => (prev + 1) % activeNews.media.length);
-  const prevMedia = () => setActiveMediaIndex((prev) => (prev - 1 + activeNews.media.length) % activeNews.media.length);
+  const nextMedia = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setActiveMediaIndex((prev) => (prev + 1) % activeNews.media.length);
+  };
+  
+  const prevMedia = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setActiveMediaIndex((prev) => (prev - 1 + activeNews.media.length) % activeNews.media.length);
+  };
 
   const filteredNews = useMemo(() => {
     return EXTENDED_NEWS.filter((item) => {
@@ -123,45 +126,48 @@ export default function JGECNewspaperFeed() {
   const currentMedia = activeNews.media[activeMediaIndex];
 
   return (
-    <div className="min-h-screen bg-slate-50 pt-40 pb-12 px-4 md:px-8 font-serif text-[#1e293b]">
-      <div className="max-w-[1920px] w-full mx-auto bg-white border border-slate-200 shadow-2xl overflow-hidden">
+    <div className="min-h-screen bg-slate-100 pt-32 md:pt-32 lg:pt-40 pb-6 md:pb-12 px-2 md:px-8 font-serif text-slate-900">
+      <div className="max-w-[1440px] w-full mx-auto bg-white border border-slate-300 shadow-xl overflow-hidden">
         
-       
-
-        <header className="p-8 border-b-4 border-double border-[#1a1c3d] text-center">
-          <div className="flex justify-between items-center text-[10px] md:text-xs font-sans font-bold border-b border-slate-200 pb-2 mb-6 uppercase tracking-[0.2em] text-slate-400">
+        {/* --- Newspaper Masthead --- */}
+        <header className="p-4 md:p-8 border-b-4 border-double border-slate-900 text-center">
+          <div className="flex justify-between items-center text-[8px] md:text-xs font-sans font-bold border-b border-slate-200 pb-2 mb-4 md:mb-6 uppercase tracking-[0.15em] md:tracking-[0.2em] text-slate-500">
             <span>Vol. LXVI ... No. 2026</span>
-            <span className="hidden md:block">Jalpaiguri Government Engineering College</span>
+            <span className="hidden sm:block">Jalpaiguri Government Engineering College</span>
             <span>Est. 1961</span>
           </div>
-          <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-4 font-serif italic text-[#1a1c3d]">
-            Alumni <span className="not-italic text-[#506ab7]">Gazette</span>
+          
+          <h1 className="text-4xl sm:text-6xl md:text-8xl font-black uppercase tracking-tighter mb-2 md:mb-4 font-serif italic text-slate-900">
+            Alumni <span className="not-italic text-indigo-700">Gazette</span>
           </h1>
-          <div className="flex justify-between items-center border-t border-slate-200 pt-2 mt-2 text-[10px] md:text-xs font-sans font-bold uppercase tracking-widest text-slate-500">
-            <span>Last Updated: {activeNews.date}</span>
-            <span className="flex items-center gap-2 text-[#10b981]"><Newspaper size={14} /> Official Despatches</span>
-            <span className="hidden md:block text-[#1e3a8a]">Member Portal Active</span>
+
+          <div className="flex flex-col md:flex-row justify-between items-center border-t border-slate-200 pt-2 mt-2 gap-2 text-[9px] md:text-xs font-sans font-bold uppercase tracking-widest text-slate-500">
+            <span className="order-2 md:order-1">Last Updated: {activeNews.date}</span>
+            <span className="flex items-center gap-2 text-emerald-600 order-1 md:order-2">
+                <Newspaper size={14} className="hidden xs:block" /> Official Despatches
+            </span>
+            <span className="hidden lg:block text-blue-900 order-3">Member Portal Active</span>
           </div>
         </header>
 
-        {/* --- Search Bar --- */}
+        {/* --- Search & Filters --- */}
         <div className="flex flex-col md:flex-row border-b border-slate-200">
-          <div className="flex-1 p-4 border-r border-slate-200 flex items-center gap-4 bg-slate-50">
-            <Search size={18} className="text-[#1e3a8a]" />
+          <div className="flex-1 p-3 md:p-4 border-b md:border-b-0 md:border-r border-slate-200 flex items-center gap-3 bg-slate-50">
+            <Search size={16} className="text-slate-500" />
             <input
               type="text"
               placeholder="Search Public Records..."
-              className="bg-transparent outline-none w-full font-sans text-sm italic"
+              className="bg-transparent outline-none w-full font-sans text-xs md:text-sm italic"
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
-          <div className="flex gap-1 p-2 overflow-x-auto bg-white">
+          <div className="flex gap-1 p-1 md:p-2 overflow-x-auto no-scrollbar bg-white whitespace-nowrap">
             {["All", "Event", "Notice", "Achievement"].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveFilter(tab)}
-                className={`px-5 py-2 text-[10px] font-sans font-black uppercase tracking-widest transition-all
-                  ${activeFilter === tab ? "bg-[#1a1c3d] text-white shadow-lg shadow-blue-900/20" : "text-slate-500 hover:bg-slate-100"}
+                className={`px-4 md:px-5 py-2 text-[9px] md:text-[10px] font-sans font-black uppercase tracking-widest transition-all
+                  ${activeFilter === tab ? "bg-slate-900 text-white" : "text-slate-500 hover:bg-slate-100"}
                 `}
               >
                 {tab}
@@ -170,56 +176,55 @@ export default function JGECNewspaperFeed() {
           </div>
         </div>
 
-        {/* --- Main Content --- */}
-        <div className="flex flex-col lg:flex-row min-h-[850px]">
+        {/* --- Main Body --- */}
+        <div className="flex flex-col lg:flex-row">
           
           {/* LEFT: Lead Story Panel */}
-          <div className="lg:w-7/12 p-8 lg:border-r border-slate-200">
-            <div className="sticky top-44 space-y-8">
+          <div className="lg:w-2/3 p-4 md:p-6 lg:p-10 border-b lg:border-b-0 lg:border-r border-slate-200">
+            <div className="lg:sticky lg:top-10 space-y-6">
               
-              {/* Media Gallery Wrapper */}
-              <div className="relative border-[12px] border-slate-50 shadow-inner group overflow-hidden">
-                <div className="aspect-video w-full overflow-hidden bg-slate-900 ring-1 ring-slate-200 relative">
+              {/* Media Gallery */}
+              <div className="relative border-4 md:border-[12px] border-slate-100 shadow-sm group">
+                <div className="aspect-video w-full overflow-hidden bg-black relative">
                   {currentMedia.type === "image" ? (
-                    <img src={currentMedia.url} className="w-full h-full object-cover block" alt="" />
+                    <img src={currentMedia.url} className="w-full h-full object-cover" alt="" />
                   ) : (
                     <iframe
-                      className="w-full h-full block"
+                      className="w-full h-full"
                       src={getMediaEmbedUrl(currentMedia.type, currentMedia.url)}
                       allowFullScreen
-                      scrolling="no"
                     />
                   )}
 
-                  {/* Navigation for Multi-Media */}
                   {activeNews.media.length > 1 && (
-                    <>
-                      <button onClick={prevMedia} className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 p-2 hover:bg-[#1a1c3d] hover:text-white transition-all shadow-xl"><ChevronLeft size={20} /></button>
-                      <button onClick={nextMedia} className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 p-2 hover:bg-[#1a1c3d] hover:text-white transition-all shadow-xl"><ChevronRight size={20} /></button>
-                      <div className="absolute bottom-4 right-4 bg-black/80 text-white px-3 py-1 text-[10px] font-sans font-bold">
-                        {activeMediaIndex + 1} / {activeNews.media.length}
-                      </div>
-                    </>
+                    <div className="absolute inset-0 flex items-center justify-between px-2 md:px-4 pointer-events-none">
+                      <button onClick={prevMedia} className="pointer-events-auto bg-white/90 p-1.5 md:p-2 hover:bg-slate-900 hover:text-white transition-colors shadow-lg">
+                        <ChevronLeft size={18} />
+                      </button>
+                      <button onClick={nextMedia} className="pointer-events-auto bg-white/90 p-1.5 md:p-2 hover:bg-slate-900 hover:text-white transition-colors shadow-lg">
+                        <ChevronRight size={18} />
+                      </button>
+                    </div>
                   )}
                 </div>
-                <div className="absolute top-4 right-4 bg-[#6b21a8] text-white px-3 py-1 text-[9px] font-sans font-bold uppercase tracking-widest shadow-lg">
-                  {currentMedia.type} / Archive
+                <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-purple-700 text-white px-2 py-1 text-[8px] md:text-[10px] font-sans font-bold uppercase tracking-widest shadow-md">
+                  {currentMedia.type}
                 </div>
               </div>
 
-              {/* Story Details */}
-              <div className="space-y-6">
-                <div className="flex items-center gap-3 text-xs font-sans font-black uppercase tracking-widest text-[#10b981]">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#10b981] animate-pulse" /> Lead Story
+              {/* Story Heading */}
+              <div className="space-y-4">
+                <div className="flex items-center gap-2 text-[10px] md:text-xs font-sans font-black uppercase tracking-widest text-emerald-600">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" /> Lead Story
                 </div>
-                <h2 className="text-4xl md:text-7xl font-black leading-[0.9] tracking-tighter uppercase text-[#1a1c3d]">
+                <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black leading-[0.95] tracking-tighter uppercase text-slate-900">
                   {activeNews.title}
                 </h2>
-                <div className="columns-1 md:columns-2 gap-10 text-base leading-relaxed text-justify italic border-t border-slate-100 pt-6 text-slate-600">
-                  <p className="first-letter:text-6xl first-letter:font-black first-letter:mr-3 first-letter:float-left first-letter:text-[#1a1c3d] first-letter:not-italic">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 text-sm md:text-base leading-relaxed text-justify italic border-t border-slate-100 pt-6 text-slate-700">
+                  <p className="first-letter:text-5xl md:first-letter:text-6xl first-letter:font-black first-letter:mr-2 first-letter:float-left first-letter:text-slate-900 first-letter:not-italic">
                     {activeNews.excerpt}
                   </p>
-                  <div className="mt-6 md:mt-0 font-sans font-bold text-[11px] not-italic text-[#1e3a8a] uppercase tracking-tighter bg-blue-50 p-4 border-l-4 border-[#1e3a8a]">
+                  <div className="font-sans font-bold text-[10px] md:text-[11px] not-italic text-blue-900 uppercase tracking-tight bg-slate-50 p-4 border-l-4 border-blue-900">
                     Location: {activeNews.location} <br />
                     Filing Date: {activeNews.date}
                   </div>
@@ -228,50 +233,50 @@ export default function JGECNewspaperFeed() {
             </div>
           </div>
 
-          {/* RIGHT: Recent Despatches Feed */}
-          <div className="lg:w-5/12 bg-white">
-            <div className="p-4 bg-[#1a1c3d] text-white flex justify-between items-center font-sans font-bold text-[10px] uppercase tracking-widest">
+          {/* RIGHT: Feed Panel */}
+          <div className="lg:w-1/3 bg-white">
+            <div className="p-3 bg-slate-900 text-white flex justify-between items-center font-sans font-bold text-[9px] md:text-[10px] uppercase tracking-widest">
               <span>Latest Despatches</span>
               <span className="opacity-60 italic">Scroll for more</span>
             </div>
 
-            <div className="h-[850px] overflow-y-auto custom-newspaper-scrollbar divide-y divide-slate-100">
+            <div className="max-h-[400px] lg:max-h-[none] lg:h-[calc(100vh-200px)] overflow-y-auto custom-newspaper-scrollbar divide-y divide-slate-100">
               {filteredNews.length > 0 ? (
                 filteredNews.map((item) => (
                   <div
                     key={item.id}
                     onClick={() => handleNewsChange(item)}
-                    className={`group cursor-pointer p-6 transition-all flex gap-6
-                      ${activeNews.id === item.id ? "bg-slate-50 border-l-4 border-[#6b21a8]" : "hover:bg-slate-50/50"}
+                    className={`group cursor-pointer p-4 transition-all flex gap-4
+                      ${activeNews.id === item.id ? "bg-slate-50 border-l-4 border-purple-700" : "hover:bg-slate-50/50"}
                     `}
                   >
-                    <div className="h-24 w-24 shrink-0 border border-slate-200 p-1 bg-white shadow-sm relative overflow-hidden transition-all group-hover:shadow-md">
+                    <div className="h-16 w-16 md:h-20 md:w-20 shrink-0 border border-slate-200 p-1 bg-white relative overflow-hidden">
                       <img 
                         src={getMediaThumbnail(item.media[0].type, item.media[0].url)} 
-                        className={`w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all`} 
+                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all" 
                         alt="" 
                       />
                       {item.media.length > 1 && (
-                        <div className="absolute top-1 left-1 bg-white border border-black p-0.5 shadow-sm"><Camera size={10} /></div>
+                        <div className="absolute top-0.5 left-0.5 bg-white border border-slate-900 p-0.5 shadow-sm"><Camera size={8} /></div>
                       )}
                       {item.media[0].type !== "image" && (
                         <div className="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-transparent">
-                          <Play size={16} className="text-white fill-white opacity-80" />
+                          <Play size={14} className="text-white fill-white opacity-80" />
                         </div>
                       )}
                     </div>
 
-                    <div className="flex flex-col justify-center flex-1 min-w-0">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-[9px] font-sans font-black uppercase tracking-tighter text-[#6b21a8] border-b border-black">
+                    <div className="flex flex-col justify-center min-w-0">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-[8px] font-sans font-black uppercase text-purple-700 border-b border-purple-700">
                           {item.tag}
                         </span>
-                        <span className="text-[10px] font-sans text-slate-400 font-bold uppercase">
-                          <Clock size={10} /> {item.date}
+                        <span className="text-[8px] font-sans text-slate-400 font-bold uppercase flex items-center gap-1">
+                          <Clock size={8} /> {item.date}
                         </span>
                       </div>
-                      <h4 className={`text-xl font-bold leading-tight transition-all
-                        ${activeNews.id === item.id ? "text-[#1a1c3d] underline decoration-1" : "text-slate-500 group-hover:text-[#1e3a8a]"}
+                      <h4 className={`text-sm md:text-base font-bold leading-tight transition-all
+                        ${activeNews.id === item.id ? "text-slate-900 underline" : "text-slate-500 group-hover:text-blue-900"}
                       `}>
                         {item.title}
                       </h4>
@@ -279,18 +284,18 @@ export default function JGECNewspaperFeed() {
                   </div>
                 ))
               ) : (
-                <div className="py-32 text-center italic font-sans text-slate-400 uppercase tracking-widest text-xs">No Records Found</div>
+                <div className="py-20 text-center italic font-sans text-slate-400 uppercase tracking-widest text-[10px]">No Records Found</div>
               )}
             </div>
 
             {/* Newsletter CTA */}
-            <div className="p-8 border-t border-slate-100 bg-slate-50">
-              <div className="border border-slate-200 p-6 bg-white text-center">
-                <h4 className="font-serif font-black text-xl uppercase text-[#1a1c3d] mb-1">Gazette Registry</h4>
-                <p className="font-sans text-[10px] font-bold text-slate-400 mb-6 tracking-widest uppercase">The Alumni Monthly Correspondence</p>
-                <div className="flex border border-black overflow-hidden">
-                  <input type="email" placeholder="EMAIL ADDRESS" className="flex-1 px-4 py-3 text-[10px] font-sans outline-none bg-transparent" />
-                  <button className="bg-[#1a1c3d] text-white px-6 text-[10px] font-black uppercase hover:bg-black">Join</button>
+            <div className="p-4 md:p-6 bg-slate-50 border-t border-slate-200">
+              <div className="border border-slate-300 p-4 bg-white text-center">
+                <h4 className="font-serif font-black text-lg uppercase text-slate-900">Gazette Registry</h4>
+                <p className="font-sans text-[9px] font-bold text-slate-400 mb-4 tracking-widest uppercase">Monthly Correspondence</p>
+                <div className="flex border border-slate-900 overflow-hidden">
+                  <input type="email" placeholder="EMAIL" className="flex-1 px-3 py-2 text-[10px] font-sans outline-none bg-transparent min-w-0" />
+                  <button className="bg-slate-900 text-white px-4 text-[10px] font-black uppercase hover:bg-black">Join</button>
                 </div>
               </div>
             </div>
@@ -299,9 +304,11 @@ export default function JGECNewspaperFeed() {
       </div>
 
       <style jsx>{`
-        .custom-newspaper-scrollbar::-webkit-scrollbar { width: 6px; }
-        .custom-newspaper-scrollbar::-webkit-scrollbar-track { background: #ffffff; }
-        .custom-newspaper-scrollbar::-webkit-scrollbar-thumb { background: #1a1c3d; }
+        .custom-newspaper-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-newspaper-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-newspaper-scrollbar::-webkit-scrollbar-thumb { background: #0f172a; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
     </div>
   );
