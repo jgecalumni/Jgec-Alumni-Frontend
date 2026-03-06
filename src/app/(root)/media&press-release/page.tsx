@@ -222,7 +222,7 @@ export default function JGECNewspaperFeed() {
                 <div className="flex items-center gap-2 text-xs font-sans font-black uppercase text-emerald-600">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" /> Lead Story
                 </div>
-                <h2 className="text-3xl md:text-6xl font-black leading-[0.95] tracking-tighter uppercase text-slate-900">
+                <h2 className="text-3xl md:text-4xl font-black leading-[0.95] tracking-tighter uppercase text-slate-900">
                   {activeNews.title}
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 text-base leading-relaxed text-justify italic border-t border-slate-100 pt-6 text-slate-700">
