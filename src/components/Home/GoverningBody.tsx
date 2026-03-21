@@ -147,6 +147,10 @@ const bottomLinks = [
 		name: "Media & Press Release",
 		link: "/media&press-release",
 	},
+	{
+		name: "Bulletins",
+		link: "/alumni-bulleins",
+	},
 ];
 
 const notices = [
