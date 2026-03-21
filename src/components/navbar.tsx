@@ -33,6 +33,10 @@ const Links = [
 		name: "Scholarships",
 		link: "/scholarships",
 	},
+	{
+		name: "Bulletins",
+		link: "/alumni-bulleins",
+	},
 ];
 
 const moreLinks = [
