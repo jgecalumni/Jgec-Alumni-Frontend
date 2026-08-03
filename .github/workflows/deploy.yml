@@ -43,6 +43,7 @@ jobs:
             cd /var/www/Jgec-Alumni-Frontend
             git pull origin main
             pnpm install --frozen-lockfile
+            export NODE_OPTIONS="--max-old-space-size=4096"
             pnpm run build
             pm2 restart Jgec-Alumni-Frontend || pm2 start "pnpm start" --name "Jgec-Alumni-Frontend"
             pm2 save
