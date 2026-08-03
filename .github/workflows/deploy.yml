@@ -3,82 +3,41 @@ name: Jgec Alumni Frontend
 on:
   push:
     branches:
-      - main
+      - main  
   pull_request:
     branches:
-      - main
+        - main 
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 22.13.1
-          cache: 'pnpm'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: npm install
 
       - name: Build project
-        run: pnpm run build
+        run: npm run build
 
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-output
-          path: |
-            .next
-            public
-            package.json
-            pnpm-lock.yaml
-            next.config.js
-            pnpm-workspace.yaml
-          retention-days: 1
-
-  deploy:
-    needs: build
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Download build artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: build-output
-          path: build-output
-
-      - name: Copy build to VPS
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH_KEY }}
-          source: "build-output/*"
-          target: "/var/www/Jgec-Alumni-Frontend"
-          strip_components: 1
-
-      - name: Install prod deps and restart app
+      - name: Deploy to VPS via SSH
         uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            set -e
-            command -v pnpm >/dev/null 2>&1 || npm install -g pnpm
             cd /var/www/Jgec-Alumni-Frontend
-            pnpm install --frozen-lockfile --prod
-            test -f .next/BUILD_ID
-            pm2 restart Jgec-Alumni-Frontend || pm2 start "pnpm start" --name "Jgec-Alumni-Frontend"
+            git pull origin main
+            npm install
+            npm run build
+            pm2 restart Jgec-Alumni-Frontend || pm2 start npm --name "Jgec-Alumni-Frontend" -- start
             pm2 save
