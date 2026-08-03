@@ -61,7 +61,7 @@ const ResearchInternship: React.FC = () => {
 					<h2 className="text-center  text-2xl lg:text-4xl font-medium">
 						Research and Internship
 					</h2>
-					<div className="w-1/2 border border-blue-500"></div>
+					<div className="w-1/2 border border-primary/100"></div>
 				</div>
 				<div className="grid gap-4 py-4 lg:p-14 md:px-4 justify-center items-center sm:grid-cols-2 lg:grid-cols-3">
 					{Career.map((career, index) => (

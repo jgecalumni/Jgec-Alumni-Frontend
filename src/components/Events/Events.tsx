@@ -7,6 +7,8 @@ import SectionHeader from "../section-header";
 import { useAllEventsQuery } from "@/store/feature/event-feature";
 import toast from "react-hot-toast";
 import Loading from "@/app/Loader";
+import { motion, Variants } from "framer-motion";
+import { ArrowRight, Calendar, Clock, MapPin } from "lucide-react";
 
 const Events: React.FC = () => {
 	const [page, setPage] = useState<number>(1);
@@ -76,65 +78,117 @@ const Events: React.FC = () => {
 		return <Loading />;
 	}
 
+	const containerVariants: Variants = {
+		hidden: { opacity: 0 },
+		show: {
+			opacity: 1,
+			transition: { staggerChildren: 0.1 }
+		}
+	};
+	const itemVariants: Variants = {
+		hidden: { opacity: 0, y: 20 },
+		show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
+	};
+
 	return (
-		<>
+		<div className="bg-[#edf1f4] min-h-screen pb-24">
 			<SectionHeader
 				highlightTitle="All Events"
 				normalTitle="Archive"
-				description="Get information about all our upcoming events"
+				description="Discover and join our amazing upcoming events"
 			/>
-			{data?.events.length!=0 ? (
-				<>
-					{data?.events.map((event) => (
-						<div
-							key={event.id}
-							className="my-8 flex flex-col justify-center items-center">
-							<div className="bg-primary rounded-md shadow-2xl flex md:flex-row flex-col  gap-4 justify-between md:h-full lg:h-full 2xl:h-[50vh] md:p-6 p-4 w-[90%] lg:w-[70%]">
-								<Image
-									height={450}
-									width={450}
-									src={event.event_thumbnail}
-									alt={event.name}
-									className="rounded-md"
-								/>
-								<div className="flex flex-col gap-4 justify-evenly md:w-[60%] h-full">
-									<div className="flex gap-4 items-center">
-										{["Days", "Hr", "Min", "Sec"].map((unit, index) => {
-											const values = ["days", "hours", "minutes", "seconds"];
-											return (
-												<div
-													key={unit}
-													className="flex flex-col items-center">
-													<div className="text-white font-medium">{unit}</div>
-													<div className="text-white w-12 h-12 flex justify-center items-center border border-white rounded-md bg-black">
-														{timeRemaining[event.id]?.[values[index]] || "00"}
+			
+			{data?.events.length !== 0 ? (
+				<div className="w-full max-w-7xl mx-auto px-6 lg:px-8 mt-12">
+					<motion.div 
+						variants={containerVariants}
+						initial="hidden"
+						animate="show"
+						className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+					>
+						{data?.events.map((event) => (
+							<motion.div
+								variants={itemVariants}
+								key={event.id}
+								className="group bg-white rounded-3xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col border border-neutral-100"
+							>
+								{/* Image Section */}
+								<div className="relative h-64 overflow-hidden bg-neutral-200">
+									<Image
+										layout="fill"
+										objectFit="cover"
+										src={event.event_thumbnail || "/assets/placeholder.jpg"}
+										alt={event.name}
+										className="object-cover transition-transform duration-700 group-hover:scale-105"
+									/>
+									{/* Gradient Overlay */}
+									<div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+									
+									{/* Glassmorphic Countdown Timer */}
+									<div className="absolute bottom-4 left-0 right-0 px-4">
+										<div className="flex gap-2 justify-between items-center bg-white/20 backdrop-blur-md rounded-2xl p-3 border border-white/30 shadow-lg">
+											{["Days", "Hrs", "Min", "Sec"].map((unit, index) => {
+												const values = ["days", "hours", "minutes", "seconds"];
+												return (
+													<div
+														key={unit}
+														className="flex flex-col items-center flex-1">
+														<div className="text-white/80 text-xs font-semibold uppercase tracking-wider mb-1">
+															{unit}
+														</div>
+														<div className="text-white text-xl lg:text-2xl font-bold font-mono tracking-tighter bg-black/40 w-full rounded-xl py-1 text-center shadow-inner">
+															{timeRemaining[event.id]?.[values[index]] || "00"}
+														</div>
 													</div>
-												</div>
-											);
-										})}
-									</div>
-									<div className="flex flex-col gap-2 lg:gap-1">
-										<Link
-											href={`/upcoming-events/${event.id}`}
-											className="text-white text-[18px] lg:text-[22px] font-semibold">
-											{event.name}
-										</Link>
-										<div className="text-white line-clamp-3 lg:text-[14px] leading-6 text-sm">
-											{event.shortDescription}
+												);
+											})}
 										</div>
 									</div>
-									<Button className="border-2 lg:w-[35%] hover:bg-white hover:text-black text-[16px] duration-200 border-white p-3 text-white bg-[#2e4da0] font-semibold">
-										JOIN WITH US
-									</Button>
 								</div>
-							</div>
-						</div>
-					))}
-				</>
+
+								{/* Content Section */}
+								<div className="p-6 flex flex-col flex-grow">
+									<div className="flex gap-4 mb-4 text-sm font-medium text-blue-600/80">
+										<div className="flex items-center gap-1.5 bg-blue-50 px-3 py-1 rounded-full">
+											<Calendar size={14} />
+											<span>{event.date}</span>
+										</div>
+										<div className="flex items-center gap-1.5 bg-blue-50 px-3 py-1 rounded-full">
+											<Clock size={14} />
+											<span>{event.time}</span>
+										</div>
+									</div>
+
+									<Link
+										href={`/upcoming-events/${event.id}`}
+										className="text-2xl font-bold text-slate-800 hover:text-blue-600 transition-colors mb-3 line-clamp-2 leading-tight">
+										{event.name}
+									</Link>
+									
+									<p className="text-neutral-500 line-clamp-3 text-sm leading-relaxed mb-8 flex-grow">
+										{event.shortDescription}
+									</p>
+
+									<Link href={`/upcoming-events/${event.id}`} className="w-full">
+										<Button className="w-full group/btn relative overflow-hidden bg-gradient-to-r from-blue-700 to-blue-500 hover:from-blue-600 hover:to-blue-400 text-white font-semibold py-6 rounded-2xl shadow-md transition-all hover:shadow-xl">
+											<span className="relative z-10 flex items-center justify-center gap-2 text-[16px]">
+												JOIN WITH US
+												<ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
+											</span>
+										</Button>
+									</Link>
+								</div>
+							</motion.div>
+						))}
+					</motion.div>
+				</div>
 			) : (
-				<><div className="h-full min-h-[70vh] flex justify-center items-center text-primary text-xl font-semibold">No events found</div></>
+				<div className="h-[50vh] flex flex-col justify-center items-center">
+					<div className="font-bold text-slate-800 text-2xl mb-2">No events found</div>
+					<p className="text-neutral-500 font-medium">Check back later for upcoming events.</p>
+				</div>
 			)}
-		</>
+		</div>
 	);
 };
 

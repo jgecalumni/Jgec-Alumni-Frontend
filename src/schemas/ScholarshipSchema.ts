@@ -7,7 +7,9 @@ export const ScholarshipSchema = Yup.object().shape({
 		.matches(/^\d{11}$/, "Must be 11 digit")
 		.required("Student ID is required"),
 	dob: Yup.string().required("Date of birth is required"),
-	contactHome: Yup.string().matches(/^\d{10}$/, "Enter a valid phone number"),
+	contactHome: Yup.string()
+		.matches(/^\d{10}$/, "Enter a valid phone number")
+		.notOneOf([Yup.ref('contact')], "Parent's contact cannot be the same as personal contact"),
 	contact: Yup.string().matches(/^\d{10}$/, "Enter a valid phone number"),
 	email: Yup.string()
 		.email("Enter a valid email")
@@ -41,4 +43,16 @@ export const ScholarshipSchema = Yup.object().shape({
 	// 			.optional(),
 	// 	])
 	// ),
+	document: Yup.mixed()
+		.required("Document is required")
+		.test(
+			"fileSize",
+			"File too large. Max size is 15MB",
+			(value: any) => value && value.size <= 15 * 1024 * 1024
+		)
+		.test(
+			"fileType",
+			"Only PDF format is supported",
+			(value: any) => value && value.type === "application/pdf"
+		),
 });

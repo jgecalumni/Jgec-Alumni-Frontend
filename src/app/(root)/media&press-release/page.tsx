@@ -151,7 +151,7 @@ export default function JGECNewspaperFeed() {
             <span className="flex items-center gap-2 text-emerald-600">
               <Newspaper size={14} /> Official Despatches
             </span>
-            <span className="hidden lg:block text-blue-900">Member Portal Active</span>
+            <span className="hidden lg:block text-primary">Member Portal Active</span>
           </div>
         </header>
 
@@ -229,7 +229,7 @@ export default function JGECNewspaperFeed() {
                   <p className="first-letter:text-6xl first-letter:font-black first-letter:mr-2 first-letter:float-left first-letter:text-slate-900 first-letter:not-italic">
                     {activeNews.excerpt}
                   </p>
-                  <div className="font-sans font-bold text-[11px] not-italic text-blue-900 uppercase tracking-tight bg-slate-50 p-4 border-l-4 border-blue-900">
+                  <div className="font-sans font-bold text-[11px] not-italic text-primary uppercase tracking-tight bg-slate-50 p-4 border-l-4 border-primary">
                     <div className="flex items-center gap-2 mb-1"><MapPin size={12}/> {activeNews.location}</div>
                     <div className="flex items-center gap-2"><Clock size={12}/> Filed: {formatDate(activeNews.createdAt)}</div>
                   </div>
@@ -282,7 +282,7 @@ export default function JGECNewspaperFeed() {
                       </span>
                     </div>
                     <h4 className={`text-sm md:text-base font-bold leading-tight transition-all
-                      ${activeNews.id === item.id ? "text-slate-900 underline" : "text-slate-500 group-hover:text-blue-900"}
+                      ${activeNews.id === item.id ? "text-slate-900 underline" : "text-slate-500 group-hover:text-primary"}
                     `}>
                       {item.title}
                     </h4>

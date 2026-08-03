@@ -12,7 +12,7 @@ const DigitalDatabase: React.FC = () => {
 			/>
 			<div className="lg:px-14  lg:p-8 p-2">
 				<div className="flex items-center gap-2">
-					<div className="border-2 rounded border-blue-400 h-10"></div>
+					<div className="border-2 rounded border-primary/40 h-10"></div>
 					<h3 className="text-[#364150] font-semibold uppercase text-[20px] lg:text-[24px]">
 						Digital Database
 					</h3>

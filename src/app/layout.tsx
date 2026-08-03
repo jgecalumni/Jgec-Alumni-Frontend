@@ -14,7 +14,7 @@ import { AuthProvider } from "@/store/AuthContext";
 
 const inter = Inter({
 	subsets: ["latin"],
-	weight: ["400", "500", "600", "700"],
+	weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -41,8 +41,8 @@ export default function RootLayout({
 	
 
 	return (
-		<html lang="en">
-			<body className="poppins-regular">
+		<html lang="en" className="scroll-smooth">
+			<body className={`${inter.className} antialiased`}>
 				<Providers>
 					<AuthProvider>
 						<ReactQueryProvider>

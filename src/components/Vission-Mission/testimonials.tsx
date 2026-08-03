@@ -43,7 +43,7 @@ const Testimonials = () => {
                         <SwiperSlide key={ele}>
                             <div className="h-60 mb-20 group hover:scale-105 duration-200 bg-white shadow-md rounded-md relative w-full max-w-sm mx-auto mt-20">
                                 <div className="h-full w-full flex justify-center absolute -top-[3em]">
-                                    <div className="w-28 group-hover:border-2 duration-200  group-hover:border-blue-400 h-28 rounded-full">
+                                    <div className="w-28 group-hover:border-2 duration-200  group-hover:border-primary/40 h-28 rounded-full">
                                         <Image
                                             loading="lazy"
                                             src="https://codeboxr.net/themedemo/unialumni/html/assets/images/testimonial/testi-3.png"
@@ -61,7 +61,7 @@ const Testimonials = () => {
                                     laboriosam ipsa?
                                 </div>
                                 <div className="h-12 flex justify-end w-full -bottom-6 absolute rotate-0">
-                                    <div className="bg-blue-200 h-full rounded-md w-72 text-sm text-neutral-950 flex items-center justify-center p-2 gap-1">
+                                    <div className="bg-primary/30 h-full rounded-md w-72 text-sm text-neutral-950 flex items-center justify-center p-2 gap-1">
                                         <p>~  Jyotirmoy Jhampati, 2002 Batch</p>
                                     </div>
                                 </div>

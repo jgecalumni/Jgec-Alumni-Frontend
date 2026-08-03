@@ -52,22 +52,22 @@ const Footer: React.FC = () => {
 				<div className="flex flex-col lg:p-4">
 					<h1 className="text-xl font-medium text-white">Useful Links</h1>
 					<div className="flex flex-col mt-2 sm:mt-4  gap-2">
-						<Link href="/" className="flex items-center hover:text-blue-500 hover:pl-2 duration-200 cursor-pointer">
+						<Link href="/" className="flex items-center hover:text-white0 hover:pl-2 duration-200 cursor-pointer">
 							<MdOutlineKeyboardArrowRight size={20} /> Home
 						</Link>
-						{/* <div className="flex items-center hover:text-blue-500 hover:pl-2 duration-200 cursor-pointer">
+						{/* <div className="flex items-center hover:text-white0 hover:pl-2 duration-200 cursor-pointer">
 							<MdOutlineKeyboardArrowRight size={20} /> Official's Desk
 						</div> */}
-						<Link href="/assets/constitution_of_AA.pdf" className="flex items-center hover:text-blue-500 hover:pl-2 duration-200 cursor-pointer">
+						<Link href="/assets/constitution_of_AA.pdf" className="flex items-center hover:text-white0 hover:pl-2 duration-200 cursor-pointer">
 							<MdOutlineKeyboardArrowRight size={20} /> Constitution
 						</Link>
-						<Link href="/take-a-trip" className="flex items-center hover:text-blue-500 hover:pl-2 duration-200 cursor-pointer">
+						<Link href="/take-a-trip" className="flex items-center hover:text-white0 hover:pl-2 duration-200 cursor-pointer">
 							<MdOutlineKeyboardArrowRight size={20} /> Take a Trip
 						</Link>
-						<Link href="/upcoming-events" className="flex items-center hover:text-blue-500 hover:pl-2 duration-200 cursor-pointer">
+						<Link href="/upcoming-events" className="flex items-center hover:text-white0 hover:pl-2 duration-200 cursor-pointer">
 							<MdOutlineKeyboardArrowRight size={20} /> Upcoming Events
 						</Link>
-						{/* <div className="flex items-center hover:text-blue-500 hover:pl-2 duration-200 cursor-pointer">
+						{/* <div className="flex items-center hover:text-white0 hover:pl-2 duration-200 cursor-pointer">
 							<MdOutlineKeyboardArrowRight size={20} /> Contact us
 						</div> */}
 					</div>
@@ -75,13 +75,13 @@ const Footer: React.FC = () => {
 				<div className="flex flex-col lg:p-4">
 					<h1 className="text-xl font-medium text-white">Policies</h1>
 					<div className="flex flex-col mt-2 sm:mt-4 gap-2 transition-all ease-linear">
-						<div className="flex items-center hover:text-blue-500 hover:pl-2 duration-200 cursor-pointer">
+						<div className="flex items-center hover:text-white0 hover:pl-2 duration-200 cursor-pointer">
 							<MdOutlineKeyboardArrowRight size={20} /> Privacy Policy
 						</div>
-						{/* <div className="flex items-center hover:text-blue-500 hover:pl-2 duration-200 cursor-pointer">
+						{/* <div className="flex items-center hover:text-white0 hover:pl-2 duration-200 cursor-pointer">
 							<MdOutlineKeyboardArrowRight size={20} /> Refund Policy
 						</div> */}
-						<div className="flex items-center hover:text-blue-500 hover:pl-2 duration-200 cursor-pointer">
+						<div className="flex items-center hover:text-white0 hover:pl-2 duration-200 cursor-pointer">
 							<MdOutlineKeyboardArrowRight size={20} /> Terms & Conditions
 						</div>
 					</div>

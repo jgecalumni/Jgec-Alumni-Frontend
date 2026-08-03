@@ -35,7 +35,7 @@ const Contact: React.FC = () => {
 					/>
 				</div>
 				{/* Divider */}
-				{/* <div className="border border-blue-500 h-1/2 rounded-md"></div> */}
+				{/* <div className="border border-primary/100 h-1/2 rounded-md"></div> */}
 				{/* Contact Form */}
 				<div className="w-full lg:w-1/2 border-t-2 lg:border-l-2 lg:border-t-0 lg:pt-0 pt-6 lg:pl-6 border-t-neutral-200 mx-4 lg:mx-0 lg:border-l-normal-200">
 					<div className="text-3xl font-medium mb-8">SEND MESSAGE</div>

@@ -49,6 +49,7 @@ interface INoticeType {
 }
 
 interface IScholarshipType {
+	document: any;
 	id: string;
 	name: string;
 	subtitle: string;

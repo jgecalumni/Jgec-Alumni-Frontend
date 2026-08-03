@@ -33,6 +33,7 @@ export async function POST(req) {
 			average,
 			residentialAddress,
 			specialAchievement,
+			document,
 		} = body;
 
 		console.log(`Processing scholarship: ${scholarshipName}`);
@@ -110,6 +111,7 @@ export async function POST(req) {
 				"Average Grade",
 				"Residential Address",
 				"Special Achievements",
+				"Document Link",
 			];
 
 			// Insert the headers into the new sheet
@@ -157,6 +159,7 @@ export async function POST(req) {
 						average,
 						residentialAddress,
 						specialAchievement,
+						document,
 					],
 				],
 			},
