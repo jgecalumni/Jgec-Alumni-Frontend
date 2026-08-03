@@ -14,22 +14,27 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 22.13.1
-          cache: 'npm'
+          node-version: 22.x
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: npm install
+        run: pnpm install --frozen-lockfile
 
       - name: Build project
-        run: npm run build
+        run: pnpm run build
 
       - name: Deploy to VPS via SSH
-        uses: appleboy/ssh-action@v0.1.10
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
@@ -37,7 +42,7 @@ jobs:
           script: |
             cd /var/www/Jgec-Alumni-Frontend
             git pull origin main
-            npm install
-            npm run build
-            pm2 restart Jgec-Alumni-Frontend || pm2 start npm --name "Jgec-Alumni-Frontend" -- start
+            pnpm install --frozen-lockfile
+            pnpm run build
+            pm2 restart Jgec-Alumni-Frontend || pm2 start "pnpm start" --name "Jgec-Alumni-Frontend"
             pm2 save
