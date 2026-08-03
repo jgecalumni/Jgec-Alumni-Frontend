@@ -3,13 +3,13 @@ name: Jgec Alumni Frontend
 on:
   push:
     branches:
-      - main  
+      - main
   pull_request:
     branches:
-        - main 
+      - main
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -30,10 +30,45 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build project (CI check only)
+      - name: Build project
         run: pnpm run build
 
-      - name: Deploy to VPS via SSH
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output
+          path: |
+            .next
+            public
+            package.json
+            pnpm-lock.yaml
+            next.config.js
+            pnpm-workspace.yaml
+          retention-days: 1
+
+  deploy:
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build-output
+          path: build-output
+
+      - name: Copy build to VPS
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: "build-output/*"
+          target: "/var/www/Jgec-Alumni-Frontend"
+          strip_components: 1
+
+      - name: Install prod deps and restart app
         uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ secrets.VPS_HOST }}
@@ -43,9 +78,7 @@ jobs:
             set -e
             command -v pnpm >/dev/null 2>&1 || npm install -g pnpm
             cd /var/www/Jgec-Alumni-Frontend
-            git pull origin main
-            pnpm install --frozen-lockfile
-            pnpm run build
+            pnpm install --frozen-lockfile --prod
             test -f .next/BUILD_ID
             pm2 restart Jgec-Alumni-Frontend || pm2 start "pnpm start" --name "Jgec-Alumni-Frontend"
             pm2 save
