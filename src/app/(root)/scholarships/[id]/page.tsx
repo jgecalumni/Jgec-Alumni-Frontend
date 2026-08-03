@@ -81,7 +81,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 		const now = new Date();
 
 		let startDate = new Date("2026-07-01T00:00:00");
-		let endDate = new Date("2026-08-20T23:59:59");
+		let endDate = new Date("2026-07-2T23:59:59");
 
 		if (id === "45") {
 			startDate = new Date("2025-10-15T00:00:00");
