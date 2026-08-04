@@ -224,7 +224,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 					</Card>
 				</div>
 
-				{/* Right Column (Application Form) */}
+				{/* Right Column (Application Form */}
 				<div className="w-full xl:w-8/12">
 					<Card className="border-none shadow-xl bg-white rounded-2xl overflow-hidden m-0">
 						<CardHeader className="bg-white border-b border-neutral-100 pb-8 pt-10 px-6 lg:px-10">
