@@ -224,7 +224,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 					</Card>
 				</div>
 
-				{/* Right Column (Application Form */}
+				{/* Right Column (Application Form) */}
 				<div className="w-full xl:w-8/12">
 					<Card className="border-none shadow-xl bg-white rounded-2xl overflow-hidden m-0">
 						<CardHeader className="bg-white border-b border-neutral-100 pb-8 pt-10 px-6 lg:px-10">
@@ -265,7 +265,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 								percentSecondary: "",
 								percentHigherSecondary: "",
 								...Object.fromEntries(
-									semArray.map((sem: string) => [`sem_${sem.split(" ")[0]}`, ""])
+									(semArray.length === 1 && semArray[0] === "1st Sem" ? ["1st Sem", "2nd Sem", "3rd Sem", "4th Sem", "5th Sem", "6th Sem", "7th Sem", "8th Sem"] : semArray).map((sem: string) => [`sem_${sem.split(" ")[0]}`, ""])
 								),
 								average: "",
 								department: "",
@@ -278,7 +278,33 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 							}}
 							validationSchema={ScholarshipSchema}
 						>
-							{({ handleChange, values, setFieldValue }) => (
+							{({ handleChange, values, setFieldValue }) => {
+								let displaySemArray = semArray;
+								
+								if (semArray.length === 1 && semArray[0] === "1st Sem") {
+									const intakeYearStr = values.jgecIntakeYear ? String(values.jgecIntakeYear).trim() : "";
+									if (intakeYearStr.length === 4) {
+										const intakeYear = parseInt(intakeYearStr);
+										if (!isNaN(intakeYear)) {
+											const currentYear = new Date().getFullYear();
+											const diff = currentYear - intakeYear;
+											if (diff > 0) {
+												let count = diff * 2;
+												if (count > 8) count = 8;
+												const allSems = ["1st Sem", "2nd Sem", "3rd Sem", "4th Sem", "5th Sem", "6th Sem", "7th Sem", "8th Sem"];
+												displaySemArray = allSems.slice(0, count);
+											} else {
+												displaySemArray = [];
+											}
+										} else {
+											displaySemArray = [];
+										}
+									} else {
+										displaySemArray = [];
+									}
+								}
+
+								return (
 								<Form className="flex flex-col gap-10">
 									<ScrollToError />
 									
@@ -395,13 +421,13 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 												<InputField type="text" name="percentHigherSecondary" label="Percentage in Higher Sec. (Class 12)" placeholder="xx %" onChange={handleChange} />
 												<ErrorMessage name="percentHigherSecondary" component="div" className="text-red-500 text-xs font-semibold" />
 											</div>
-											{semArray.map((sem: string, index: number) => (
+											{displaySemArray.map((sem: string, index: number) => (
 												<div key={index} className={`flex flex-col gap-1 ${id === "45" ? "hidden" : ""}`}>
 													<InputField type="text" name={`sem_${sem.split(" ")[0]}`} label={`CGPA in ${sem}`} placeholder="x.xx" onChange={handleChange} />
-													<ErrorMessage name={sem.replace(/\s/g, "")} component="div" className="text-red-500 text-xs font-semibold" />
+													<ErrorMessage name={`sem_${sem.split(" ")[0]}`} component="div" className="text-red-500 text-xs font-semibold" />
 												</div>
 											))}
-											<div className={`flex flex-col gap-1 ${id === "45" ? "hidden" : ""}`}>
+											<div className={`flex flex-col gap-1 ${id === "45" || displaySemArray.length === 0 ? "hidden" : ""}`}>
 												<InputField type="text" name="average" label="Average semester marks till date" placeholder="x.xx" onChange={handleChange} />
 												<ErrorMessage name="average" component="div" className="text-red-500 text-xs font-semibold" />
 											</div>
@@ -494,7 +520,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 										)}
 									</div>
 								</Form>
-							)}
+							)}}
 						</Formik>
 					</CardContent>
 				</Card>

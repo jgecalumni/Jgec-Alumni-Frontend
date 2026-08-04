@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react'
 import HomePage from "@/components/Home/Home"
 import GoverningBody from '@/components/Home/GoverningBody'
@@ -31,7 +33,14 @@ const Home = () => {
           </p>
           
           {/* Animated Scroll Indicator (PC Only) */}
-          <a href="#about" className="hidden md:flex flex-col items-center mt-8 lg:mt-12 opacity-75 hover:opacity-100 transition-all duration-300 group">
+          <a 
+            href="#about" 
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="hidden md:flex flex-col items-center mt-8 lg:mt-12 opacity-75 hover:opacity-100 transition-all duration-300 group"
+          >
             <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/70 mb-2 group-hover:text-white transition-colors">
               Scroll
             </span>
