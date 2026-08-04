@@ -84,7 +84,7 @@ const Navbar = () => {
 
 	return (
 		<>
-			<nav className="h-20 w-full z-50 lg:top-12 top-0 bg-white/95 backdrop-blur-md fixed shadow-sm border-b border-neutral-100 px-2 md:px-8 transition-all">
+			<nav className="h-19 w-full z-50 lg:top-12 top-0 bg-white/95 backdrop-blur-md fixed shadow-sm border-b border-neutral-100 px-2 md:px-8 transition-all">
 				<div className="w-full h-full max-w-screen-2xl mx-auto flex items-center justify-between">
 					<div className="flex items-center w-fit gap-3">
 						<Image

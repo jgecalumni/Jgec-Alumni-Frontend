@@ -147,7 +147,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 		: [];
 
 	return (
-		<div className="min-h-screen bg-[#edf1f4] pb-16 pt-[6em] lg:pt-[8em]">
+		<div className="min-h-screen bg-[#edf1f4] pb-16 pt-[6em] lg:pt-[10em]">
 			<div className="w-full px-4 lg:px-8 xl:px-12 flex flex-col xl:flex-row gap-8 items-start">
 				
 				{/* Left Column (Info Panel - Sticky) */}
@@ -161,27 +161,27 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 									<Image
 										src={data?.data.providerImage}
 										alt={data?.data.providerName || "Sponsor Image"}
-										width={140}
-										height={140}
+										width={280}
+										height={280}
 										className="rounded-xl shadow-sm object-cover border border-neutral-100"
 									/>
 								)}
 							</div>
 							<div className="flex flex-col gap-3 flex-1">
 								<div>
-									<h1 className="text-2xl font-bold text-neutral-900 mb-1">
+									<h1 className="md:text-xl text-lg font-bold text-neutral-900 mb-1">
 										{data?.data.name}
 									</h1>
-									<p className="text-neutral-500 font-medium">
+									<p className="text-neutral-500 text-sm md:text-md font-medium">
 										Sponsored by <span className="text-primary font-semibold">{data?.data.providerName || "Sponsor"}</span>
 									</p>
 								</div>
 								
 								<div className="flex flex-wrap gap-2 justify-center mt-2">
-									<div className="bg-primary/10 text-primary px-3 py-1.5 rounded-full text-xs font-semibold">
+									<div className="bg-primary/10 text-primary px-3 md:py-1.5 py-2 rounded-full text-[10px] md:text-[12px] font-semibold">
 										Eligibility: {data?.data.whoCanApply}
 									</div>
-									<div className="bg-green-100 text-green-700 px-3 py-1.5 rounded-full text-xs font-semibold">
+									<div className="bg-green-100 text-green-700 px-3 md:py-1.5 py-2 rounded-full text-[10px] md:text-[12px] font-semibold">
 										Amount: {data?.data.amountDetails}
 									</div>
 								</div>
@@ -201,7 +201,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 								theme="bubble"
 								value={data?.data.description}
 								readOnly={true}
-								className="view_editor text-neutral-900 p-0"
+								className="view_editor text-justify text-neutral-900 p-0"
 							/>
 						</CardContent>
 					</Card>
@@ -218,7 +218,7 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 								theme="bubble"
 								value={data?.data.providerDescription}
 								readOnly={true}
-								className="view_editor text-neutral-900 p-0"
+								className="view_editor text-justify text-neutral-900 p-0"
 							/>
 						</CardContent>
 					</Card>
@@ -232,13 +232,13 @@ const Page: React.FC<EventParams> = ({ params }: EventParams) => {
 								<div className="bg-[#c4eb80] text-[#7db02b] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
 									Application Portal
 								</div>
-								<CardTitle className="text-2xl lg:text-3xl text-neutral-900 font-extrabold text-center tracking-tight">
+								<CardTitle className="text-xl lg:text-3xl text-neutral-900 font-extrabold text-center tracking-tight">
 									Scholarship Application Form
 								</CardTitle>
-								<CardDescription className="text-center text-neutral-500 font-medium max-w-2xl mx-auto text-sm lg:text-base">
+								<CardDescription className="text-center text-neutral-500 font-medium max-w-4xl mx-auto text-[12px] md:text-[14px] ">
 									Please fill out all the required information accurately. Read all relevant rules mentioned before applying.
 								</CardDescription>
-								<div className="mt-4 bg-amber-50 text-amber-900 border border-amber-300 px-4 py-3 rounded-xl flex items-center justify-center gap-2 text-sm font-bold shadow-sm w-full max-w-lg mx-auto">
+								<div className="mt-4 bg-amber-50 text-amber-900 border border-amber-300 md:px-4 px-2 py-3 rounded-xl flex items-center justify-center gap-2 text-[12px] lg:text-[14px] text-center font-bold shadow-sm w-full max-w-xl mx-auto">
 									⚠️ Warning: An applicant can apply for a maximum of 3 scholarships.
 								</div>
 							</div>
