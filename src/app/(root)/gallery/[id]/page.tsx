@@ -134,21 +134,19 @@ const Page = ({ params }: EventParams) => {
 					variants={containerVariants}
 					initial="hidden"
 					animate="show"
-					className="w-full max-w-7xl mx-auto px-6 lg:px-8 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+					className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 columns-2 sm:columns-2 md:columns-3 xl:columns-4 gap-4 sm:gap-6 space-y-4 sm:space-y-6"
 				>
 					{images.map((item: any, idx: number) => (
 						<motion.div
 							variants={itemVariants}
 							onClick={() => setSelectedIndex(idx)}
 							key={item.id}
-							className="group relative cursor-pointer overflow-hidden rounded-[1.5rem] shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-[30vh] border-4 border-white bg-neutral-200">
-							<Image
-								layout="fill"
-								objectFit="cover"
+							className="group relative cursor-pointer overflow-hidden rounded-xl sm:rounded-[1.5rem] shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 break-inside-avoid border-4 border-white bg-neutral-200">
+							<img
 								loading="lazy"
 								src={item.image}
 								alt={`Gallery Image ${idx + 1}`}
-								className="object-cover transition-transform duration-700 group-hover:scale-110"
+								className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-[1.03] block"
 							/>
 							{/* Hover Overlay */}
 							<div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
@@ -202,15 +200,7 @@ const Page = ({ params }: EventParams) => {
 						</div>
 
 						{/* Image Container */}
-						<div className="relative w-full h-full flex items-center justify-center px-16 lg:px-24">
-							{/* Prev Button */}
-							<button 
-								onClick={prevImage}
-								className="absolute left-4 lg:left-8 text-white/70 hover:text-white p-3 lg:p-4 bg-[#1e293b]/60 hover:bg-[#c4eb80] hover:text-[#0f172a] border border-white/10 hover:border-[#c4eb80] backdrop-blur-md rounded-full transition-all hover:scale-110 z-[10000] shadow-xl"
-							>
-								<ChevronLeft size={32} />
-							</button>
-
+						<div className="relative w-full h-full flex flex-col items-center justify-center pt-20 pb-20 px-4 md:px-16 lg:px-24">
 							{/* Main Image */}
 							<AnimatePresence mode="wait">
 								<motion.div 
@@ -219,21 +209,43 @@ const Page = ({ params }: EventParams) => {
 									animate={{ opacity: 1, scale: 1 }}
 									exit={{ opacity: 0, scale: 0.95 }}
 									transition={{ duration: 0.2, ease: "easeOut" }}
-									className="relative max-w-full max-h-[85vh] w-auto h-auto flex items-center justify-center z-[9999]"
+									className="relative max-w-full max-h-full flex-1 flex items-center justify-center z-[9999]"
 									onClick={(e) => e.stopPropagation()} 
 								>
 									<img 
 										src={images[selectedIndex].image} 
 										alt={`Gallery Image ${selectedIndex + 1}`}
-										className="max-w-full max-h-[85vh] object-contain rounded-xl shadow-2xl ring-1 ring-white/10"
+										className="max-w-full max-h-[75vh] md:max-h-[85vh] object-contain rounded-lg md:rounded-xl shadow-2xl ring-1 ring-white/10"
 									/>
 								</motion.div>
 							</AnimatePresence>
 
-							{/* Next Button */}
+							{/* Mobile Navigation controls at bottom */}
+							<div className="absolute bottom-6 left-0 right-0 flex justify-center gap-6 md:hidden z-[10000]">
+								<button 
+									onClick={prevImage}
+									className="text-white/70 hover:text-white p-3 bg-[#1e293b]/60 border border-white/10 backdrop-blur-md rounded-full transition-all shadow-xl"
+								>
+									<ChevronLeft size={28} />
+								</button>
+								<button 
+									onClick={nextImage}
+									className="text-white/70 hover:text-white p-3 bg-[#1e293b]/60 border border-white/10 backdrop-blur-md rounded-full transition-all shadow-xl"
+								>
+									<ChevronRight size={28} />
+								</button>
+							</div>
+
+							{/* Desktop Navigation controls */}
+							<button 
+								onClick={prevImage}
+								className="hidden md:flex absolute left-4 lg:left-8 text-white/70 hover:text-white p-3 lg:p-4 bg-[#1e293b]/60 hover:bg-[#c4eb80] hover:text-[#0f172a] border border-white/10 hover:border-[#c4eb80] backdrop-blur-md rounded-full transition-all hover:scale-110 z-[10000] shadow-xl"
+							>
+								<ChevronLeft size={32} />
+							</button>
 							<button 
 								onClick={nextImage}
-								className="absolute right-4 lg:right-8 text-white/70 hover:text-white p-3 lg:p-4 bg-[#1e293b]/60 hover:bg-[#c4eb80] hover:text-[#0f172a] border border-white/10 hover:border-[#c4eb80] backdrop-blur-md rounded-full transition-all hover:scale-110 z-[10000] shadow-xl"
+								className="hidden md:flex absolute right-4 lg:right-8 text-white/70 hover:text-white p-3 lg:p-4 bg-[#1e293b]/60 hover:bg-[#c4eb80] hover:text-[#0f172a] border border-white/10 hover:border-[#c4eb80] backdrop-blur-md rounded-full transition-all hover:scale-110 z-[10000] shadow-xl"
 							>
 								<ChevronRight size={32} />
 							</button>
